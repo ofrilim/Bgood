@@ -1,9 +1,9 @@
 <template>
     <section>
         <h1>B-good Full List</h1>
-        <ul>
-            <ItemPreview v-for="currItem in items" :key="currItem._id" :item="currItem"></ItemPreview>
-            <!-- <li v-for="item in items" :key="item._id" >{{item.name}}</li> -->
+        <ul  class="preview-container item-preview flex">
+            <ItemPreview v-for="currItem in items" :key="currItem._id" :item="currItem">
+            </ItemPreview>
         </ul>
 
     </section>
@@ -14,6 +14,7 @@
 import ItemPreview from "@/components/ItemPreview.vue";
 
 export default {
+    name:'ItemList',
     props: ['items'],
     components: {
         ItemPreview
