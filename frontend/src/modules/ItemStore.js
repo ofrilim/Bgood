@@ -10,6 +10,17 @@ export default {
         setItems(state, {items}){
             state.items = items;
             console.log('store items:', state.items);
+        },
+        setCurrItem(state, {itemId}){
+            console.log('store items:', state.items);
+            var item = state.items.find((item) => {
+                console.log('store item:', item);
+                return item._id === itemId
+            });
+
+            state.currItem = item;
+            console.log('store item:', state.currItem);
+            
         }
     },
     actions: {
@@ -26,6 +37,9 @@ export default {
     getters: {
         items(state){
             return state.items;
+        },
+        item(state){
+            return state.currItem;
         }
     }
 }
