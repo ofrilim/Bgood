@@ -1,0 +1,50 @@
+// Aspect ratios
+
+.ratio-16-9 { @include aspect-ratio(100, 56); }
+
+.ratio-square { @include aspect-ratio(100, 100); }
+
+.ratio-card { @include aspect-ratio(100, 80); }
+
+.ratio-poster { @include aspect-ratio(100, 150); }
+
+
+
+/*--- a class for one line responsive - addind..... at the end ---*/
+.txt-ellipsis { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }  
+  
+/*--- Others: ---*/
+.bold { font-weight: bold; }
+
+.pointer { cursor: pointer; }
+
+.text-center { text-align: center; }
+
+.hidden { visibility: hidden; }
+
+
+/*--- flex helpers ---*/
+.flex { display: flex; }
+
+.flex-between { justify-content: space-between; }
+
+.flex-around { justify-content: space-around; }
+
+.flex-col { flex-direction: column; }
+
+.flex-row { flex-direction: row; }
+
+.justify-center { justify-content: center; }
+
+.align-center { align-items: center; }
+
+.align-start { align-items: start; }
+
+.flex-wrap { flex-wrap: wrap; }
+
+.flex .full { flex: 1; }
+
+/*--- grid helpers ---*/
+.grid { display: grid; }
+
+

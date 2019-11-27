@@ -1,0 +1,36 @@
+// Container
+
+.container {
+    margin: 0 auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    @include for-normal-layout {
+        max-width: $break-narrow;
+    }
+    @include for-wide-layout {
+        max-width: $break-normal;
+    }
+}
+
+// Grids
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
+
+    > * {
+        background-color: $clr1;
+        transition: all .3s;
+        color: $clr5;
+        &:hover {
+            background-color: #fff;
+            color: $clr1;
+            // img {
+            //     filter: grayscale(0);
+            // }
+        }
+    }
+
+
+}
