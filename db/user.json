@@ -1,82 +1,109 @@
 [
     {
-    "fullname": "Luping",
-    "tel": "(971)299-5808",
-    "address": "3511 Lacus Ave",
-    "city": "Glencoe",
-    "state": "WA",
     "_id": "2385",
-    "email": "CMuroski@nec.com",
+    "fullname": "Luping",
     "username": "MCory",
     "password": "hJTUg",
-    "isSeller" : false,
+    "email": "CMuroski@nec.com",
+    "imgUrl" : "",
     "isAdmin" : false,
-    "userImg" : "",
-    "soldItemsCount" : 6,
-    "wishlistItems" : []
+    "location": {
+        "adress": "kjhkag",
+        "lat": 0,
+        "lng": 0    },
+    "wishlistItems" : [
+        {
+            "_id": "2505",
+            "name": "ipsum vitae",
+            "imgUrl": ""    },
+        {
+            "_id": "2510",
+            "name": "aliquam ipsum",
+            "imgUrl": ""    }        
+        ]
     },
     {
-    "fullname": "Melody",
-    "tel": "(616)765-6853",
-    "address": "5069 Pulvinar Ave",
-    "city": "El Dorado",
-    "state": "AZ",
     "_id": "2386",
-    "email": "SFoster@molestie.ly",
+    "fullname": "Melody",
     "username": "DBroughton",
     "password": "IQnbd",
-    "isSeller" : false,
+    "email": "SFoster@molestie.ly",
+    "imgUrl" : "",
     "isAdmin" : false,
-    "userImg" : "",
-    "soldItemsCount" : 3,
-    "wishlistItems" : []
+    "location": {
+        "adress": "kjhkhg",
+        "lat": 0,
+        "lng": 0
+    },
+    "wishlistItems" : [
+        {
+            "_id": "2510",
+            "name": "aliquam ipsum",
+            "imgUrl": ""    }
+        ]
     },
     {
-    "fullname": "admin",
-    "tel": "(823)648-5507",
-    "address": "5511 Placerat Ave",
-    "city": "Rancho Cordova",
-    "state": "CA",
     "_id": "2387",
-    "email": "LSobel@pulvinar.org",
+    "fullname": "admin",
     "username": "OHefner",
     "password": "12345",
-    "isSeller" : true,
-    "isAdmin" : true,
-    "userImg" : "",
-    "soldItemsCount" : 10,
-    "wishlistItems" : []
+    "email": "LSobel@pulvinar.org",
+    "imgUrl" : "",
+    "isAdmin" : false,
+    "location": {
+        "adress": "kjhkahg",
+        "lat": 0,
+        "lng": 0
+    },
+    "wishlistItems" : [
+        {
+            "_id": "2509",
+            "name": "consequat massa",
+            "imgUrl": ""    },
+        {
+            "_id": "2507",
+            "name": "sollicitudin tempor",
+            "imgUrl": ""    }
+        ]
     },
     {
-    "fullname": "Jackie",
-    "tel": "(501)222-0838",
-    "address": "6534 Augue Rd",
-    "city": "Decatur",
-    "state": "KY",
     "_id": "2388",
-    "email": "iderp@scelerisque.com",
+    "fullname": "Jackie",
     "username": "ISchade",
     "password": "XsWRA",
-    "isSeller" : true,
+    "email": "iderp@scelerisque.com",
+    "imgUrl" : "",
     "isAdmin" : false,
-    "userImg" : "",
-    "soldItemsCount" : 0,
-    "wishlistItems" : []
+    "location": {
+        "adress": "kjhhaah",
+        "lat": 0,
+        "lng": 0
+    },
+    "wishlistItems" : [
+        {
+            "_id": "2507",
+            "name": "sollicitudin tempor",
+            "imgUrl": ""    }
+        ]
     },
     {
-    "fullname": "Travis",
-    "tel": "(608)671-4365",
-    "address": "9921 Porta Ln",
-    "city": "Honolulu",
-    "state": "OK",
     "_id": "2389",
-    "email": "DSchwaderer@elementum.io",
+    "fullname": "Travis",
     "username": "NRitchie",
     "password": "HVWLv",
-    "isSeller" : true,
+    "email": "DSchwaderer@elementum.io",
+    "imgUrl" : "",
     "isAdmin" : false,
-    "userImg" : "",
-    "soldItemsCount" : 2,
-    "wishlistItems" : []
+    "location": {
+        "adress": "kjhkhyry",
+        "lat": 0,
+        "lng": 0
+    },
+    "wishlistItems" : [
+        {
+            "_id": "2506",
+            "name": "vestibulum magna",
+            "imgUrl": ""   }
+        ]
     }
-    ]
+]
