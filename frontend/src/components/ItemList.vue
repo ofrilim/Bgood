@@ -1,22 +1,26 @@
 <template>
     <section>
         <h1>B-good Full List</h1>
-        <ItemPreview v-for="item in items" :key="item._id" ></ItemPreview>
+        <!-- <ItemPreview v-for="item in items" :key="item._id" ></ItemPreview> -->
+        <ul>
+            <li v-for="item in items" :key="item._id" >{{item.name}}</li>
+
+        </ul>
     </section>
 </template>
 
 
 <script>   
-import ItemPreview from "@/components/ItemPreview.vue";
+// import ItemPreview from "@/components/ItemPreview.vue";
 
 export default {
     props: ['items'],
     components: {
-        ItemPreview
+        // ItemPreview
     },
-    // created() {
-    //     console.log('items: ', this.items)
-    // }
+    created() {
+        // console.log('items: ', items)
+    }
 }
 </script>
    

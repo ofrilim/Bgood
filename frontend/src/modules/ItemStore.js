@@ -7,14 +7,16 @@ export default {
         currItem: null,
     },
     mutations: {
-        
+        setItems(state, {items}){
+            state.items = items;
+            console.log('store items:', state.items);
+        }
     },
     actions: {
         async loadItems(context){
             try {
                 const items = await ItemService.query();
-                context.state.items = items;
-                console.log('store items:', context.state.items);
+                context.commit({type: 'setItems', items})
             } catch(err) {
                 console.error(err);
                 
