@@ -1,7 +1,7 @@
 <template>
     <section>
         <h1>B-good</h1>
-        <ul class="flex wrap">
+        <ul class="flex flex-wrap">
             <ItemPreview v-for="currItem in items" :key="currItem._id" :item="currItem">
             </ItemPreview>
         </ul>

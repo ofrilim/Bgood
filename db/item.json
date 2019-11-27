@@ -9,12 +9,13 @@
     "wishCount": 2,
     "description": "lacus egestas lorem ac turpis hendrerit non",
     "createdAt" : 1574857047314,
-    "imgUrl": "",
+    "imgUrl": "https://i.pinimg.com/236x/ec/52/f4/ec52f48684087b3d242080b9c3d5f8a9.jpg",
     "status": "available",
     "owner": {
-        "_id": "6666",
-        "name": "gggg",
-        "imgUrl": ""   }
+        "_id": "2385",
+        "name": "Luping",
+        "imgUrl": "https://api.adorable.io/avatars/100/Luping@adorable.png"
+    }
 },
 {
     "_id": "2506",
