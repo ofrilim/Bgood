@@ -1,7 +1,7 @@
 <template>
     <section class="item-details">
         <h1>item-details - </h1>
-        <!-- {{this.item.name}} -->
+        <pre>{{this.item}}</pre>
     </section>
 </template>
 
@@ -16,13 +16,22 @@ export default {
             item: null,
         }
     },
+    methods:{
+        async getCurrItem(){
+            const itemId = this.$route.params.id
+            this.$store.commit({type: 'setCurrItem', itemId})
+            this.item = await this.$store.getters.item
+            console.log('item:', this.item);
+        },
+        // async getCurrItem(){
+        //     const currItemId = this.$route.params.id
+        //     this.$store.commit({type: 'setCurrItem', currItemId})
+        //     this.item = await this.$store.getters.item
+        //     console.log('item:', this.item);
+        // },
+    },
     created(){
-        this.$store.commit('setCurrItem', this.$route.params.id)
-        this.item = this.$store.getters.item
-        console.log('item:', this.item);
-        
-
-
+        this.getCurrItem();
     }
 }
 </script>

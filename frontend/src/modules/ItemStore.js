@@ -9,14 +9,9 @@ export default {
     mutations: {
         setItems(state, {items}){
             state.items = items;
-            console.log('store items:', state.items);
         },
         setCurrItem(state, {itemId}){
-            console.log('store items:', state.items);
-            var item = state.items.find((item) => {
-                console.log('store item:', item);
-                return item._id === itemId
-            });
+            var item = state.items.find((item) => item._id === itemId);
 
             state.currItem = item;
             console.log('store item:', state.currItem);
