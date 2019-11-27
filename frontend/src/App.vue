@@ -1,14 +1,14 @@
 <template>
   <div id="app" class="text-center">
-    <App-Header/>
+    <AppHeader/>
     <router-view/>
-    <App-Footer/>
+    <AppFooter/>
   </div>
 </template>
 
 <script>
-import AppHeader from './components/App-Header.vue';
-import AppFooter from './components/App-Footer.vue';
+import AppHeader from './components/AppHeader.vue';
+import AppFooter from './components/AppFooter.vue';
 
 export default {
   name: 'App',
