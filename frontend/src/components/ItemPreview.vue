@@ -1,27 +1,33 @@
 
 <template>
     <section>
+        <router-link :to="`/item/${item._id}`">
+        <li>
+            <section class= "item-container">
+                <h2>{{item.name}}</h2>
+                <img src="item.imgUrl">
+                <h3>Price: ${{item.price}}</h3>
+                <h3>Seller: {{item.owner.name}}</h3> 
+                <h3>{{item.owner.imgUrl}}</h3>
 
-        <li class="item-preview">
-            {{item.name}}
-            <!-- <h2>Item's name: {{item.name}}</h2>
-            <img src="item.imgUrl">
-            <h3>Price: {{item.price}}</h3>
-            <h3>Seller: {{item.owner.name}}</h3>
-            <h3>{{item.owner.imgUrl}}</h3>
+                <button>like</button>
+                <!-- <button @click="addToWishList(item._id)">like</button> -->
+                <!-- <button >Details</button> -->
+                <!-- <button @click="itemDetails(item._id)"> -->
 
-            <button @click="addToWishList(item._id)">like</button>
-            
-            <button @click="itemDetails(item._id)">
-            <router-link :to="'/item/'+item._id">Details</router-link> -->
-            <!-- </button> -->
+                <router-link :to="'/item/'+item._id">Details</router-link> -->
+                <!-- </button> -->
+            </section>
         </li>
+        </router-link>
     </section>
 </template>
 
 
 <script> 
 export default {
+    name:'ItemPreview',
+
     props: ['item'],
     computed: { // Sends the data back to the STORE-ACTIONS
     },

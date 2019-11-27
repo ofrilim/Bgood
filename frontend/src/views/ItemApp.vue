@@ -24,7 +24,7 @@ export default {
     },
     created(){
         this.$store.dispatch('loadItems')
-        console.log('app items:', this.items);
+        // console.log('app items:', items);
     }
 }
 </script>
