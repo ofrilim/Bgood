@@ -1,16 +1,20 @@
 <template>
-    <section v-if="item" class="item-details flex">
+    <section v-if="item" class="item-details container flex">
         <!-- <h1>item-details - </h1> -->
         <img :src="this.item.imgUrl" class="item-img"/>
-        <section class="details-content">
-            <h1>{{this.item.name}}</h1>
-            <h2>{{this.item.description}}</h2>
-            <h2>{{this.item.size}}</h2>
-            <section class="seller-info flex justify-center align-center">
-                <img :src="this.item.owner.imgUrl" class="seller-img"/>
-                <p>{{this.item.owner.name}}</p>
+        <section class="details-content container">
+              <h3>Price: ${{item.price}}</h3>
+                <h3>Category: {{item.category}}</h3>
+                <h3>Publishe at: {{item.createdAt}}</h3>
+                <h3>Condition: {{item.condition}}</h3>
+                <h3>Status: {{item.status}}</h3>
+                <h3>Additional information: {{item.description}}</h3>
+            <section class="seller-info container flex justify-center align-center">
+                <img :src="item.owner.imgUrl" class="seller-img"/>
+                <p>seller: {{item.owner.name}}</p>
             </section>
             <h3>{{this.item.price}}</h3>
+            <button>like</button>
         </section>
         <!-- <pre>{{this.item}}</pre> -->
     </section>
@@ -42,7 +46,9 @@ export default {
 </script>
 <style lang="scss" scoped>
     .item-img{
-        width: 35%;
+        width: auto;
+        height: 85vh;
+        padding: 10px;
     }
     .seller-info{
         width: 100%;

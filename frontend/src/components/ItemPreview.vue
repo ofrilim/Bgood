@@ -5,7 +5,7 @@
         <li class="preview-container item-preview">
             <!-- <section > -->
                 <h2>{{item.name}}</h2>
-                <img src="item.imgUrl">
+                <img class="img-prev" :src="item.imgUrl">
                 <h3>Price: ${{item.price}}</h3>
                 <h3>Seller: {{item.owner.name}}</h3> 
                 <h3>{{item.owner.imgUrl}}</h3>
