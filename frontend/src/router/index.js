@@ -2,11 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
-import ItemApp from '../views/Item-App.vue'
-import ItemDetails from '../views/Item-Details.vue'
-import ItemEdit from '../views/Item-Edit.vue'
+import ItemApp from '../views/ItemApp.vue'
+import ItemDetails from '../views/ItemDetails.vue'
+import ItemEdit from '../views/ItemEdit.vue'
 import SignIn from '../views/SignIn.vue'
-import UserDetails from '../views/User-Details.vue'
+import UserDetails from '../views/UserDetails.vue'
 
 Vue.use(VueRouter)
 

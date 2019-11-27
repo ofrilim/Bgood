@@ -2,8 +2,9 @@
 <template>
     <section>
 
-        <li class="item-details">
-            <h2>Item's name: {{item.name}}</h2>
+        <li class="item-preview">
+            {{item.name}}
+            <!-- <h2>Item's name: {{item.name}}</h2>
             <img src="item.imgUrl">
             <h3>Price: {{item.price}}</h3>
             <h3>Seller: {{item.owner.name}}</h3>
@@ -12,8 +13,8 @@
             <button @click="addToWishList(item._id)">like</button>
             
             <button @click="itemDetails(item._id)">
-            <router-link :to="'/item/'+item._id">Details</router-link>
-            </button>
+            <router-link :to="'/item/'+item._id">Details</router-link> -->
+            <!-- </button> -->
         </li>
     </section>
 </template>
@@ -26,10 +27,10 @@ export default {
     },
 
     methods: {
-        async addToWishList(itemId) {
-            await this.$store.commit('addToWishList', itemId)
+        // async addToWishList(itemId) {
+        //     await this.$store.commit('addToWishList', itemId)
             // this.$store.dispatch({type: 'setMsg', msg: 'New item added!'})
-        },
+        // },
 
         // removeItem(itemId) {
         //     this.$emit('removeItem', itemId)
@@ -37,9 +38,9 @@ export default {
         // AddItem(itemId) {
         //     this.$emit('removeItem', itemId)
         // },
-    },
-    components: {
-        // ItemDetails
+//     },
+//     components: {
+//         // ItemDetails
     },
 }
 </script>
