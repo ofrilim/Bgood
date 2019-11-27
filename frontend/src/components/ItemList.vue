@@ -1,7 +1,9 @@
 <template>
     <section>
         <h1>B-good Full List</h1>
-        <ItemPreview v-for="item in items" :key="item._id" ></ItemPreview>
+        <ul>
+            <ItemPreview v-for="item in items" :key="item._id" ></ItemPreview>
+        </ul>
     </section>
 </template>
 
