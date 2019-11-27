@@ -1,9 +1,9 @@
 
 <template>
-    <section>
+    <section class= "item-container">
         <router-link :to="`/item/${item._id}`">
-        <li>
-            <section class= "item-container">
+        <li class="preview-container item-preview">
+            <!-- <section > -->
                 <h2>{{item.name}}</h2>
                 <img src="item.imgUrl">
                 <h3>Price: ${{item.price}}</h3>
@@ -15,9 +15,9 @@
                 <!-- <button >Details</button> -->
                 <!-- <button @click="itemDetails(item._id)"> -->
 
-                <router-link :to="'/item/'+item._id">Details</router-link> -->
+                <!-- <router-link :to="'/item/'+item._id">Details</router-link> -->
                 <!-- </button> -->
-            </section>
+            <!-- </section> -->
         </li>
         </router-link>
     </section>
