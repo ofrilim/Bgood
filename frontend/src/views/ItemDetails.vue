@@ -7,5 +7,10 @@
 <script>
 export default {
     name: 'item-details',
+    // created(){
+    //     "$route.params.id"(){
+    //         console.log($route.params.id);            
+    //     }
+    // }
 }
 </script>

@@ -11,8 +11,14 @@ export default {
     },
     actions: {
         async loadItems(context){
-            context.state.items = await ItemService.query()
-            console.log('store items:', context.state.items);
+            try {
+                const items = await ItemService.query();
+                context.state.items = items;
+                console.log('store items:', context.state.items);
+            } catch(err) {
+                console.error(err);
+                
+            }
         }
     },
     getters: {
