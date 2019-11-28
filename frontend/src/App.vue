@@ -14,6 +14,9 @@ import AppWishList from "./components/AppWishList.vue";
 
 export default {
   name: 'App',
+  created(){
+        this.$store.dispatch('loadItems')
+  },
   components: {
     AppHeader,
     AppFooter,

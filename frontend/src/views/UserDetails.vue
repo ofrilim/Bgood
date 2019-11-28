@@ -2,10 +2,9 @@
     <section class="user-details" v-if="user">
         <h2>{{user.username}}'s Page</h2>
         <img :src="user.imgUrl"/>
-        <section class="user-items">
+        <section class="user-items flex">
+            <!-- <pre>{{userItems}}</pre> -->
             <item-preview v-for="item in userItems" :key="item._id" :item="item" >
-                <!-- <h1>{{item.name}}</h1>
-                <img :src="item.imgUrl"/> -->
             </item-preview>
         </section>
         <section class="user-wishlist-items"></section>
@@ -14,7 +13,6 @@
 </template>
 
 <script>
-// user sees wishlist items if userId===params.id
 // user sees items for sale if userId!==params.id
 
 import store from '../store/index.js'
@@ -25,21 +23,25 @@ export default {
     store: store,
     data(){
         return {
-            userItems: [],
+            userId: null,
+            // userSoldItems: []
         }
     },
     computed:{
         user(){
             return this.$store.getters.user
+        },
+        userItems(){
+            var items = this.$store.getters.items.filter(item => item.owner._id === this.userId)
+            // console.log('user items:', items);
+            return items
         }
     },
     created(){
-        const userId = this.$route.params.id
+        this.userId = this.$route.params.id
+        const userId = this.userId
         this.$store.dispatch({type: 'loadUser', userId})
         // change to agregation to bring the user items
-        this.userItems = this.$store.dispatch({type: 'loadUserItems', userId})
-        console.log(this.userItems);
-        
     },
     components:{
         ItemPreview
@@ -48,8 +50,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .wishlist-item{
-        width: 200px;
-        height: 400px;
-    }
+    // .wishlist-item{
+    //     width: 200px;
+    //     height: 400px;
+    // }
 </style>
