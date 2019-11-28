@@ -31,7 +31,6 @@ export default {
     },
     mutations: {
         setUser(state, {user}){
-            console.log('store user:', user);
             state.currUser = user
         },
         addToWishList(state, itemId) { // TOTO - define with DIFF (Liron comment)
@@ -43,18 +42,19 @@ export default {
         async loadUser(context, {userId}){
             const user = await UserService.getById(userId)
             context.commit({type: 'setUser', user})
-        }
+        },
     },
     getters: {
         user(state){
             return state.currUser;
         },
         wishlistItemsCount(state) {
-            // console.log("wishList: ", state.currUser.wishlistItems.length)
+            console.log("wishList: ", state.currUser.wishlistItems)
             return state.currUser.wishlistItems.length;
         },
+        
         wishedItemsList(state) {
-            // console.log("wishList: ", state.currUser.wishlistItems.length)
+            console.log("wishList-userStore: ", state.currUser.wishlistItems.length)
             return state.currUser.wishlistItems;
         }
     }

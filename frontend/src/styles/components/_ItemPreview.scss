@@ -6,8 +6,18 @@
 }
 
 .img-prev {
-    width: 100px;
-    height: 150px;
+    width: 50%;
+    max-height: 150px;
     padding: 3px;
+}
+
+.heart-btn {
+    color : red;
+    opacity: 0.5;
+    margin: 5px;
+    &:hover {
+        opacity: none;
+    }
+
 }
 

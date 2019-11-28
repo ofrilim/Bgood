@@ -15,6 +15,9 @@ import SignIn from '../src/views/SignIn.vue';
 
 export default {
   name: 'App',
+  created(){
+        this.$store.dispatch('loadItems')
+  },
   components: {
     AppHeader,
     AppFooter,

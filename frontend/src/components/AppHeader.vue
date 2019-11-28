@@ -26,11 +26,7 @@ export default {
         wishedItemsCount() {
             return this.$store.getters.wishlistItemsCount
         },
-        wishedItemsList() {
-          console.log("WishList!!!!")
-            return this.$store.getters.wishedItemsList
-        }
-    },
+           },
     methods: {
       clicked() {
         this.$store.commit('openWishList');
