@@ -28,20 +28,11 @@ export default {
     props: ['item'],
     computed: { // Sends the data back to the STORE-ACTIONS
     },
-
     methods: {
-        async addToWishList(itemId) {
-            await this.$store.commit('addToWishList', itemId)
-            this.$store.dispatch({type: 'setMsg', msg: 'New item added!'})
+        addToWishList(itemId) {
+            this.$emit('addToWishList', itemId)
+            this.$emit('addToWishList', itemId)
         },
-
-        // removeItem(itemId) {
-        //     this.$emit('removeItem', itemId)
-        // },
-        // AddItem(itemId) {
-        //     this.$emit('removeItem', itemId)
-        // },
-//     },
 //     components: {
 //         // ItemDetails
     },

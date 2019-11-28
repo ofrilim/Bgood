@@ -15,8 +15,8 @@ export default {
 
             state.currItem = item;
             console.log('store item:', state.currItem);
-            
-        }
+        },
+       
     },
     actions: {
         async loadItems(context){
