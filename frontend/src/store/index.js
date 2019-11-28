@@ -19,7 +19,7 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    open(state) {
+    toggleWishList(state) {
       return state.isOpenWishList;
     }
   },

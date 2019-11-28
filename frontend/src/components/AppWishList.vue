@@ -4,7 +4,7 @@
         <el-drawer
         class="wish-list-drawer"
         title="Wish List"
-        :visible.sync="open"
+        :visible.sync="toggleWishList"
         direction="ltr"
         size="50%">
           <ul>
@@ -26,8 +26,8 @@ export default {
     }
     },
     computed: {
-        open() {
-            return this.$store.getters.open
+        toggleWishList() {
+            return this.$store.getters.toggleWishList
         },
         wishedItemsUserList() { 
             console.log("wishlist-app wish", this.$store.getters.wishedItemsList)
