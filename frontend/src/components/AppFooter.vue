@@ -6,8 +6,8 @@
             </div>
             <div class="nav bold">
                 <router-link to="/about">About</router-link> | 
-                <router-link to="/">Contact Us</router-link> | 
-                <router-link to="/signin">Become a Seller</router-link>
+                <router-link to="/signin">Become a Seller</router-link> |
+                <router-link to="/">Contact Us</router-link>  
             </div>
             <small>Created With Love &copy; {{ new Date().getFullYear() }}</small>
         </div>
