@@ -4,20 +4,23 @@
         <!-- <img src="../assets/loading.gif" class="loading-img"/> -->
         <img :src="this.item.imgUrl" class="ratio-16-9"/>
         <section class="details-content container">
-                <h1>{{item.name}}</h1>
-                <h3>Price: ${{item.price}}</h3>
-                <h3>Category: {{item.category}}</h3>
-                <h3>Publishe at: {{item.createdAt}}</h3>
-                <h3>Condition: {{item.condition}}</h3>
-                <h3>Status: {{item.status}}</h3>
-                <h3>Additional information: {{item.description}}</h3>
+            <h1>{{item.name}}</h1>
+            <h3>Price: ${{item.price}}</h3>
+            <h3>Category: {{item.category}}</h3>
+            <h3>Publishe at: {{item.createdAt}}</h3>
+            <h3>Condition: {{item.condition}}</h3>
+            <h3>Status: {{item.status}}</h3>
+            <h3>Additional information: {{item.description}}</h3>
             <section class="seller-info container flex justify-center align-center">
                 <img :src="item.owner.imgUrl" class="avatar-img"/>
-                <p>seller: {{item.owner.name}}</p>
+                <p>seller: 
+                    <router-link :to="`/user/${item.owner._id}`">
+                        {{item.owner.name}}
+                    </router-link>
+                </p>
             </section>
             <h3>{{item.price}}</h3>
             <button @click="addToWishList(item._id)"><i class="fa fa-heart"></i></button>
-
         </section>
         <!-- <pre>{{this.item}}</pre> -->
     </section>
