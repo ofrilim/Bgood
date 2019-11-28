@@ -6,3 +6,12 @@
 .Details-title{
     color: $clr7;
 }
+
+.heart-btn {
+    color : red;
+    opacity: 0.5;
+    margin: 5px;
+    &:hover {
+        opacity: none;
+    }
+}

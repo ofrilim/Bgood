@@ -12,9 +12,9 @@
           <input class="header-search border-bottom" type="text"/>
           <span class="search pointer"><i class="fa fa-search"></i></span>
             <router-link to="/item">Item App</router-link> | 
-            <router-link to="/user/:id">SignIn</router-link> |
+            <router-link to="/user/:id">Sign In</router-link>
 
-            <button @click="clicked"><i class="fa fa-heart" ></i></button>
+            <button class="heart-btn-header" @click="clicked"><i class="fa fa-heart" ></i></button>
             <p>{{wishedItemsCount}}</p>
 
           </div>

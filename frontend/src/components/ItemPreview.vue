@@ -8,7 +8,13 @@
                 <h3>Price: ${{item.price}}</h3>
                 <h3>Seller: {{item.owner.name}}</h3> 
                 <img class="avatar-img" :src="item.owner.imgUrl"/>
+<<<<<<< HEAD
                 <button @click="addToWishList(item._id)"><i class="fa fa-heart"></i></button>
+=======
+                <button class="heart-btn" @click="addToWishList(item._id)"><i class="fa fa-heart"></i></button>
+
+
+>>>>>>> 4379143b005769957019d744f2e165527e7c6b27
                 <!-- <button >Details</button> -->
                 <!-- <button @click="itemDetails(item._id)"> -->
 
