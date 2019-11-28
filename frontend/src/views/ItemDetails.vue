@@ -49,7 +49,7 @@ export default {
          }
     },
     created(){
-        this.getCurrItem();
+            this.getCurrItem();
     },
     watch: {
         "$route.params.id"(){
