@@ -12,17 +12,12 @@
           <input class="header-search border-bottom" type="text"/>
           <span class="search pointer"><i class="fa fa-search"></i></span>
             <router-link to="/item">Item App</router-link> | 
-<<<<<<< HEAD
             <router-link to="/user/:id">SignIn</router-link> |
 
             <button @click="clicked"><i class="fa fa-heart" ></i></button>
             <p>{{wishedItemsCount}}</p>
 
           </div>
-=======
-            <router-link to="/user/:id">SignIn</router-link> | 
-        </div>
->>>>>>> ad2eb9cf1c6adb06ed7ef6961ae326609c0c2e1e
     </section>
 </template>
 
