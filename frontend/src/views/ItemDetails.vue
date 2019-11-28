@@ -14,7 +14,7 @@
                 <p>seller: {{item.owner.name}}</p>
             </section>
             <h3>{{this.item.price}}</h3>
-            <button>like</button>
+            <button><i class="fa fa-heart"></i></button>
         </section>
         <!-- <pre>{{this.item}}</pre> -->
     </section>
