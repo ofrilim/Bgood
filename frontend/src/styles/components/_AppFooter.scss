@@ -7,3 +7,11 @@
 .footer-content {
     height: 120px;
 }
+
+.member :hover {
+    border-bottom: $clr9 1px solid; 
+    padding: 5px; 
+    width: 170px;
+}
+
+
