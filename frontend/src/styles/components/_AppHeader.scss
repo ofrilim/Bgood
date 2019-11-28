@@ -1,17 +1,22 @@
 .app-header {
-    padding: 20px;
-    a {
-      color: #2c3e50;
-  
-      &.router-link-exact-active {
-        color: $clr1;
-      }
-      &:hover {
-        color: $clr1;
-      }
-    }
+    padding: 0px 20px;
   }
 
-  .logo {
-      font-size: 1.5rem;
-  }
+.logo {
+    font-size: 1.5rem;
+    &:hover {
+      color: $clr4;
+    }
+}
+
+.select {
+  padding: 20px;
+}
+
+.header-search {
+  width: 400px;
+}
+
+.app-header .search {
+  margin-left: 20px;
+}

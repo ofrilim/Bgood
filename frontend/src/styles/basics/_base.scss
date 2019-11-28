@@ -1,16 +1,16 @@
 html {
     font-family: Montserrat, sans-serif;
-    color: #2c3e50;
+    color: $clr9;
 }
 
-input {
+.input {
     padding: 5px;
     border: 1px solid rgb(192, 188, 188);
     border-radius: 5px;
 }
 
 button {
-    border: $clr3 1px solid;
+    border: $clr11 1px solid;
     padding: 10px 20px;
     border-radius: 5px;
 }
@@ -22,6 +22,12 @@ button {
 
 .nav a {
     padding: 25px;
+    &.router-link-exact-active {
+        color: $clr4;
+    }
+    &:hover {
+        color: $clr4;
+    }
 }
 
 
