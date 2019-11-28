@@ -2,7 +2,7 @@
     <section class="app-header border-bottom flex flex-between">
         <div class="left-nav bold">
           <router-link to="/"><h1 class="logo inline" title="Home Page">B-good</h1></router-link>
-          <select class="select pointer">Categiries
+          <select class="select pointer" title="Categories">Categiries
             <option>Clothes</option>
             <option>Accessories</option>
             <option>Shoes</option>
@@ -13,8 +13,11 @@
           <span class="search pointer"><i class="fa fa-search"></i></span>
             <router-link to="/item">Item App</router-link> | 
             <router-link to="/user/:id">SignIn</router-link> | 
-            <router-link to="/" title="WishList">WishList</router-link>
-          </div>
+        </div>
     </section>
 </template>
+
+
+
+
 

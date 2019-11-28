@@ -11,7 +11,7 @@ import ItemApp from "../views/ItemApp";
 export default {
   name: 'home',
   components: {
-    ItemApp
+    ItemApp,
   }
 }
 </script>
