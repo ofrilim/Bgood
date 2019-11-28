@@ -10,7 +10,7 @@
         </div>
         <div class="nav bold flex align-center">
           <input class="header-search border-bottom" type="text"/>
-          <span class="search"><i class="fas fa-search"></i></span>
+          <span class="search pointer"><i class="fa fa-search"></i></span>
             <router-link to="/item">Item App</router-link> | 
             <router-link to="/user/:id">SignIn</router-link> | 
             <router-link to="/" title="WishList">WishList</router-link>

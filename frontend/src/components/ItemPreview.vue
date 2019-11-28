@@ -8,9 +8,7 @@
                 <h3>Price: ${{item.price}}</h3>
                 <h3>Seller: {{item.owner.name}}</h3> 
                 <img class="avatar-img" :src="item.owner.imgUrl"/>
-
-                <!-- <button @click.stop="addToWishlist">like</button> -->
-                <!-- <button @click="addToWishList(item._id)">like</button> -->
+                <button @click="addToWishList(item._id)"><i class="fa fa-heart"></i></button>
                 <!-- <button >Details</button> -->
                 <!-- <button @click="itemDetails(item._id)"> -->
 
@@ -32,10 +30,10 @@ export default {
     },
 
     methods: {
-        // async addToWishList(itemId) {
-        //     await this.$store.commit('addToWishList', itemId)
-        //     this.$store.dispatch({type: 'setMsg', msg: 'New item added!'})
-        // },
+        async addToWishList(itemId) {
+            await this.$store.commit('addToWishList', itemId)
+            this.$store.dispatch({type: 'setMsg', msg: 'New item added!'})
+        },
 
         // removeItem(itemId) {
         //     this.$emit('removeItem', itemId)

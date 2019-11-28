@@ -5,7 +5,7 @@
     "username": "MCory",
     "password": "hJTUg",
     "email": "CMuroski@nec.com",
-    "imgUrl" : "`https://api.adorable.io/avatars/100/Luping@adorable.png`",
+    "imgUrl" : "https://api.adorable.io/avatars/100/Luping@adorable.png",
     "isAdmin" : false,
     "location": {
         "adress": "kjhkag",
@@ -15,11 +15,13 @@
         {
             "_id": "2505",
             "name": "ipsum vitae",
-            "imgUrl": ""    },
+            "imgUrl": "https://i.pinimg.com/236x/e3/1a/a7/e31aa7066bc6d063022cf7712eace7f6.jpg"
+            },
         {
             "_id": "2510",
             "name": "aliquam ipsum",
-            "imgUrl": ""    }        
+            "imgUrl": "https://i.pinimg.com/236x/e4/0c/f9/e40cf9939fb6a59e853fbee45bbf4652.jpg"
+            }        
         ]
     },
     {
