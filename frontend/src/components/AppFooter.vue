@@ -1,5 +1,5 @@
 <template>
-    <section class="footer flex flex-col justify-center border-top">
+    <section class="footer flex flex-col justify-center border-top center">
         <div class="footer-content flex flex-col flex-between">
             <div class="member">
                 <router-link to="/signin">Not a member yet ?</router-link>

@@ -9,7 +9,9 @@
 }
 
 .member :hover {
-    border-bottom: $clr9 1px solid; 
+    font-weight: bolder;
+    color: $clr4;
+    border-bottom: $clr7 1px solid; 
     padding: 5px; 
     width: 170px;
 }

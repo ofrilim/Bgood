@@ -11,13 +11,10 @@
         <div class="nav bold flex align-center">
           <input class="header-search border-bottom" type="text"/>
           <span class="search pointer"><i class="fa fa-search"></i></span>
-            <router-link to="/item">Item App</router-link> | 
-            <router-link to="/user/:id">Sign In</router-link>
-
-            <button class="heart-btn-header" @click="clicked"><i class="fa fa-heart" ></i></button>
-            <p>{{wishedItemsCount}}</p>
-
-          </div>
+          <router-link to="/item">Item App</router-link> | 
+          <router-link to="/signin">SignIn</router-link>
+          <button @click="clicked"><span class="heart"></span></button><span>{{wishedItemsCount}}</span>
+        </div>
     </section>
 </template>
 
@@ -29,11 +26,7 @@ export default {
         wishedItemsCount() {
             return this.$store.getters.wishlistItemsCount
         },
-        wishedItemsList() {
-          console.log("WishList!!!!")
-            return this.$store.getters.wishedItemsList
-        }
-    },
+           },
     methods: {
       clicked() {
         this.$store.commit('openWishList');
