@@ -2,7 +2,7 @@
     <section class="app-header border-bottom flex flex-between">
         <div class="left-nav bold">
           <router-link to="/"><h1 class="logo inline" title="Home Page">B-good</h1></router-link>
-          <select class="select pointer">Categiries
+          <select class="select pointer" title="Categories">Categiries
             <option>Clothes</option>
             <option>Accessories</option>
             <option>Shoes</option>
@@ -12,12 +12,17 @@
           <input class="header-search border-bottom" type="text"/>
           <span class="search pointer"><i class="fa fa-search"></i></span>
             <router-link to="/item">Item App</router-link> | 
+<<<<<<< HEAD
             <router-link to="/user/:id">SignIn</router-link> |
 
             <button @click="clicked"><i class="fa fa-heart" ></i></button>
             <p>{{wishedItemsCount}}</p>
 
           </div>
+=======
+            <router-link to="/user/:id">SignIn</router-link> | 
+        </div>
+>>>>>>> ad2eb9cf1c6adb06ed7ef6961ae326609c0c2e1e
     </section>
 </template>
 
@@ -35,8 +40,8 @@ export default {
         }
     },
     methods: {
-    clicked() {
-      this.$store.commit('openWishList');
+      clicked() {
+        this.$store.commit('openWishList');
     }
   }
 }
