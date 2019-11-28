@@ -1,14 +1,13 @@
-
 <template>
-    <section class= "item-container">
+    <section class="item-container">
         <router-link :to="`/item/${item._id}`">
         <li class="preview-container item-preview">
             <!-- <section > -->
                 <h2>{{item.name}}</h2>
-                <img class="img-prev" :src="item.imgUrl">
+                <img class="img-prev" :src="item.imgUrl"/>
                 <h3>Price: ${{item.price}}</h3>
                 <h3>Seller: {{item.owner.name}}</h3> 
-                <h3>{{item.owner.imgUrl}}</h3>
+                <img class="avatar-img" :src="item.owner.imgUrl"/>
 
                 <button>like</button>
                 <!-- <button @click="addToWishList(item._id)">like</button> -->

@@ -10,7 +10,7 @@
                 <h3>Status: {{item.status}}</h3>
                 <h3>Additional information: {{item.description}}</h3>
             <section class="seller-info container flex justify-center align-center">
-                <img :src="item.owner.imgUrl" class="seller-img"/>
+                <img :src="item.owner.imgUrl" class="avatar-img"/>
                 <p>seller: {{item.owner.name}}</p>
             </section>
             <h3>{{this.item.price}}</h3>
@@ -52,9 +52,5 @@ export default {
     }
     .seller-info{
         width: 100%;
-    }
-    .seller-img{
-        width: 55px;
-        border-radius: 40px;
     }
 </style>

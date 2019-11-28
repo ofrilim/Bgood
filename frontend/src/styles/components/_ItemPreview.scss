@@ -1,13 +1,8 @@
 .preview-container {
-    border: blue 1px solid;
-    // width: 20%;
+    border: $clr6 1px solid;
+    width: 20vw;
     margin: 5px;
     padding: 5px;
-}
-
-button {
-    // border: black 1px solid;
-    margin: 3px;
 }
 
 .img-prev {
@@ -15,3 +10,5 @@ button {
     height: 150px;
     padding: 3px;
 }
+
+

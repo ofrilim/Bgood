@@ -1,0 +1,17 @@
+.app-header {
+    padding: 20px;
+    a {
+      color: #2c3e50;
+  
+      &.router-link-exact-active {
+        color: $clr1;
+      }
+      &:hover {
+        color: $clr1;
+      }
+    }
+  }
+
+  .logo {
+      font-size: 1.5rem;
+  }
