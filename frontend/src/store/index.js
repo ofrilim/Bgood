@@ -15,11 +15,14 @@ export default new Vuex.Store({
   },
   mutations: {
     openWishList(state) {
+      console.log('store, mutation: ',state.isOpenWishList)
+
       state.isOpenWishList = !state.isOpenWishList
     }
   },
   getters: {
-    open(state) {
+    toggleWishList(state) {
+      console.log('store, getters: ',state.isOpenWishList)
       return state.isOpenWishList;
     }
   },

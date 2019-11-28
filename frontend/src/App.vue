@@ -11,13 +11,15 @@
 import AppHeader from './components/AppHeader.vue';
 import AppFooter from './components/AppFooter.vue';
 import AppWishList from "./components/AppWishList.vue";
+import SignIn from '../src/views/SignIn.vue';
 
 export default {
   name: 'App',
   components: {
     AppHeader,
     AppFooter,
-    AppWishList
+    AppWishList,
+    SignIn
   }
 }
 </script>
