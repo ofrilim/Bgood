@@ -2,8 +2,9 @@
     <section v-if="item" class="item-details container flex">
         <!-- <h1>item-details - </h1> -->
         <!-- <img src="../assets/loading.gif" class="loading-img"/> -->
-        <img :src="this.item.imgUrl" class="item-img"/>
+        <img :src="this.item.imgUrl" class="ratio-16-9"/>
         <section class="details-content container">
+                <h1>{{item.name}}</h1>
                 <h3>Price: ${{item.price}}</h3>
                 <h3>Category: {{item.category}}</h3>
                 <h3>Publishe at: {{item.createdAt}}</h3>
@@ -15,7 +16,8 @@
                 <p>seller: {{item.owner.name}}</p>
             </section>
             <h3>{{this.item.price}}</h3>
-            <button><i class="fa fa-heart"></i></button>
+            <button @click="addToWishList(item._id)"><i class="fa fa-heart"></i></button>
+
         </section>
         <!-- <pre>{{this.item}}</pre> -->
     </section>
@@ -39,6 +41,12 @@ export default {
             this.item = await this.$store.getters.item
             console.log('item:', this.item);
         },
+         addToWishList(itemId) {
+            this.$store.commit('setWishCount', itemId) // will be assigned to totalCount + diff
+            this.$store.commit('addToWishList', this.item) // will be assigned to currUser + diff
+
+            this.$store.dispatch({type: 'setMsg', msg: 'Item added successfully'})
+         }
     },
     created(){
         this.getCurrItem();
@@ -54,4 +62,6 @@ export default {
     .seller-info{
         width: 100%;
     }
+   
+   
 </style>
