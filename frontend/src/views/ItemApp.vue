@@ -23,7 +23,7 @@ export default {
         }
     },
     created(){
-        this.$store.dispatch('loadItems')
+        // this.$store.dispatch('loadItems')
         // console.log('app items:', items);
     }
 }

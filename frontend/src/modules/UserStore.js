@@ -31,7 +31,6 @@ export default {
     },
     mutations: {
         setUser(state, {user}){
-            console.log('store user:', user);
             state.currUser = user
         },
         addToWishList(state, itemId) { // TOTO - define with DIFF (Liron comment)
