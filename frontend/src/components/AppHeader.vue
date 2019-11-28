@@ -12,9 +12,32 @@
           <input class="header-search border-bottom" type="text"/>
           <span class="search pointer"><i class="fa fa-search"></i></span>
             <router-link to="/item">Item App</router-link> | 
-            <router-link to="/user/:id">SignIn</router-link> | 
-            <router-link to="/" title="WishList">WishList</router-link>
+            <router-link to="/user/:id">SignIn</router-link> |
+
+            <button @click="clicked"><i class="fa fa-heart" ></i></button>
+            <p>{{wishedItemsCount}}</p>
+
           </div>
     </section>
 </template>
 
+
+<script>
+
+export default {
+    computed: {
+        wishedItemsCount() {
+            return this.$store.getters.wishlistItemsCount
+        },
+        wishedItemsList() {
+          console.log("WishList!!!!")
+            return this.$store.getters.wishedItemsList
+        }
+    },
+    methods: {
+    clicked() {
+      this.$store.commit('openWishList');
+    }
+  }
+}
+</script>
