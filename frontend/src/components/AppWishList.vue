@@ -7,10 +7,13 @@
         :visible.sync="open"
         direction="ltr"
         size="50%">
-        <el-table :data="gridData">
-            <el-table-column property="date" label="Date" width="150"></el-table-column>
-            <el-table-column property="name" label="Name" width="200"></el-table-column>
-            </el-table>
+          <ul>
+            <li>
+
+            <!-- <li v-for="itemInWish in itemsInWish" :key="itemInWish._id" :itemInWish="itemInWish"> -->
+              {{wishedItemsUserList}}
+            </li>
+          </ul>
         </el-drawer>
     </section>
 </template>
@@ -19,36 +22,18 @@
 export default {
   data() {
     return {
-      dialog: false,
-      loading: false,
-      gridData: [{
-        date: '2016-05-02',
-        name: 'Peter Parker',
-        address: 'Queens, New York City'
-      }, {
-        date: '2016-05-04',
-        name: 'Peter Parker',
-        address: 'Queens, New York City'
-      }, {
-        date: '2016-05-01',
-        name: 'Peter Parker',
-        address: 'Queens, New York City'
-      }, {
-     date: '2016-05-03',
-        name: 'Peter Parker',
-        address: 'Queens, New York City'
-      }],
-      }
+      itemsInWish: []
+    }
     },
     computed: {
         open() {
             return this.$store.getters.open
         },
-         wishedItemsUserList() {
-            console.log("wishlist-app wish")
-            return this.$store.getters.wishedItemsList.name
+        wishedItemsUserList() { 
+            console.log("wishlist-app wish", this.$store.getters.wishedItemsList)
+            return this.$store.getters.wishedItemsList
         }
-    }
+      }
 }
 
 </script>
@@ -59,27 +44,5 @@ export default {
     right: 0;
     height: 80%;
     animation: 'rtl-drawer-in' .3s 1ms;
-
 }
-    // *** Backup for TEST ***
-   // // open: false,
-    //   dialog: false,
-    //   loading: false,
-    //   gridData: [{
-    //     date: '2016-05-02',
-    //     name: 'Peter Parker',
-    //     address: 'Queens, New York City'
-    //   }, {
-    //     date: '2016-05-04',
-    //     name: 'Peter Parker',
-    //     address: 'Queens, New York City'
-    //   }, {
-    //     date: '2016-05-01',
-    //     name: 'Peter Parker',
-    //     address: 'Queens, New York City'
-    //   }, {
-    //  date: '2016-05-03',
-    //     name: 'Peter Parker',
-    //     address: 'Queens, New York City'
-    //   }],
 </style>
