@@ -54,7 +54,7 @@ export default {
             return state.currUser.wishlistItems.length;
         },
         wishedItemsList(state) {
-            // console.log("wishList: ", state.currUser.wishlistItems.length)
+            console.log("wishList-userStore: ", state.currUser.wishlistItems.length)
             return state.currUser.wishlistItems;
         }
     }

@@ -19,7 +19,6 @@
 export default {
   data() {
     return {
-    //   open: false,
       dialog: false,
       loading: false,
       gridData: [{
@@ -39,10 +38,15 @@ export default {
         name: 'Peter Parker',
         address: 'Queens, New York City'
       }],
-    }},
+      }
+    },
     computed: {
         open() {
             return this.$store.getters.open
+        },
+         wishedItemsUserList() {
+            console.log("wishlist-app wish")
+            return this.$store.getters.wishedItemsList.name
         }
     }
 }
@@ -57,5 +61,25 @@ export default {
     animation: 'rtl-drawer-in' .3s 1ms;
 
 }
-
+    // *** Backup for TEST ***
+   // // open: false,
+    //   dialog: false,
+    //   loading: false,
+    //   gridData: [{
+    //     date: '2016-05-02',
+    //     name: 'Peter Parker',
+    //     address: 'Queens, New York City'
+    //   }, {
+    //     date: '2016-05-04',
+    //     name: 'Peter Parker',
+    //     address: 'Queens, New York City'
+    //   }, {
+    //     date: '2016-05-01',
+    //     name: 'Peter Parker',
+    //     address: 'Queens, New York City'
+    //   }, {
+    //  date: '2016-05-03',
+    //     name: 'Peter Parker',
+    //     address: 'Queens, New York City'
+    //   }],
 </style>
