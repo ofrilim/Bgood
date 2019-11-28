@@ -3,13 +3,13 @@
         <h2>{{user.username}}'s Page</h2>
         <img :src="user.imgUrl"/>
         <section class="user-items">
-            <!-- <item-preview v-for="item in items" :key="item._id" :item="item" > -->
+            <item-preview v-for="item in userItems" :key="item._id" :item="item" >
                 <!-- <h1>{{item.name}}</h1>
                 <img :src="item.imgUrl"/> -->
-            <!-- </item-preview> -->
+            </item-preview>
         </section>
         <section class="user-wishlist-items"></section>
-        <pre>{{user}}</pre>
+        <!-- <pre>{{user}}</pre> -->
     </section>
 </template>
 
@@ -23,6 +23,11 @@ import ItemPreview from '../components/ItemPreview.vue'
 export default {
     name: 'user-details',
     store: store,
+    data(){
+        return {
+            userItems: [],
+        }
+    },
     computed:{
         user(){
             return this.$store.getters.user
@@ -31,6 +36,10 @@ export default {
     created(){
         const userId = this.$route.params.id
         this.$store.dispatch({type: 'loadUser', userId})
+        // change to agregation to bring the user items
+        this.userItems = this.$store.dispatch({type: 'loadUserItems', userId})
+        console.log(this.userItems);
+        
     },
     components:{
         ItemPreview

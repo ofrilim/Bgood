@@ -27,11 +27,17 @@ export default {
                 console.error(err);
                 
             }
+        },
+        async loadUserItems(context, userId){
+            var userItems = await context.state.items.filter(item=>item.owner._id===userId)
+            console.log('store user items:', userItems);
+            
+            return userItems
         }
     },
     getters: {
         items(state){
-            return state.items;
+            return state.items
         },
         item(state){
             return state.currItem;
