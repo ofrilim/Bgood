@@ -11,3 +11,13 @@
     padding: 3px;
 }
 
+.heart-btn {
+    color : red;
+    opacity: 0.5;
+    margin: 5px;
+    &:hover {
+        opacity: none;
+    }
+
+}
+
