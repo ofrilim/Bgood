@@ -1,9 +1,10 @@
 <template>
     <section v-if="item" class="item-details container flex">
         <!-- <h1>item-details - </h1> -->
+        <!-- <img src="../assets/loading.gif" class="loading-img"/> -->
         <img :src="this.item.imgUrl" class="item-img"/>
         <section class="details-content container">
-              <h3>Price: ${{item.price}}</h3>
+                <h3>Price: ${{item.price}}</h3>
                 <h3>Category: {{item.category}}</h3>
                 <h3>Publishe at: {{item.createdAt}}</h3>
                 <h3>Condition: {{item.condition}}</h3>

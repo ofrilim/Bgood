@@ -10,7 +10,8 @@
                 <img class="avatar-img" :src="item.owner.imgUrl"/>
                 <!-- <button class="heart"><i class="fa fa-heart"></i></button> -->
                 <button @click="addToWishList(item._id)"><i class="fa fa-heart"></button>
-                
+
+
                 <!-- <button >Details</button> -->
                 <!-- <button @click="itemDetails(item._id)"> -->
 
@@ -32,10 +33,10 @@ export default {
     },
 
     methods: {
-        // async addToWishList(itemId) {
-        //     await this.$store.commit('addToWishList', itemId)
-            // this.$store.dispatch({type: 'setMsg', msg: 'New item added!'})
-        // },
+        async addToWishList(itemId) {
+            await this.$store.commit('addToWishList', itemId)
+            this.$store.dispatch({type: 'setMsg', msg: 'New item added!'})
+        },
 
         // removeItem(itemId) {
         //     this.$emit('removeItem', itemId)

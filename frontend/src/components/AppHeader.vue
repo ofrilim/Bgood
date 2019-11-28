@@ -6,7 +6,8 @@
         <div class="nav bold">
           <router-link to="/item">Item App</router-link> | 
           <router-link to="/about">About</router-link> | 
-          <router-link to="/">WishList</router-link>
+          <router-link to="/">WishList</router-link> <p>{{wishCount}}</p>
+           
         </div>
     </section>
 </template>
