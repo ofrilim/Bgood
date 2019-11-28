@@ -2,10 +2,12 @@
     <section class="user-details" v-if="user">
         <h2>{{user.username}}'s Page</h2>
         <img :src="user.imgUrl"/>
-        <section class="user-items flex">
-            <!-- <pre>{{userItems}}</pre> -->
-            <item-preview v-for="item in userItems" :key="item._id" :item="item" >
-            </item-preview>
+        <section class="user-items">
+            <h2>Items to sell -</h2>
+            <section class="user-item flex">
+                <item-preview v-for="item in userItems" :key="item._id" :item="item" >
+                </item-preview>
+            </section>
         </section>
         <section class="user-wishlist-items"></section>
         <!-- <pre>{{user}}</pre> -->
