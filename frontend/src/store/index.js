@@ -15,8 +15,8 @@ export default new Vuex.Store({
   },
   mutations: {
     openWishList(state) {
-      console.log('store, mutation: ',state.isOpenWishList)
       state.isOpenWishList = !state.isOpenWishList
+      console.log('store, mutation: ',state.isOpenWishList)
     }
   },
   getters: {

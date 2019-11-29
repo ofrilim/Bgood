@@ -1,5 +1,5 @@
 import ItemService from '../services/ItemService.js';
-import UserStore from './UserStore.js';
+// import UserStore from './UserStore.js';
 // import router from '../router/index';
 
 export default {
@@ -39,11 +39,11 @@ export default {
         item(state){
             return state.currItem;
         },
-        userItems(state){
-            const currUser = UserStore.getters.user
-            const itemsCopy = [...state.items]
-            const filteresItems = itemsCopy.filter(item => item.owner._id === currUser._id)
-            return filteresItems
-        }
+        // userItems(state){
+        //     const currUser = UserStore.getters.user
+        //     const itemsCopy = [...state.items]
+        //     const filteresItems = itemsCopy.filter(item => item.owner._id === currUser._id)
+        //     return filteresItems
+        // }
     }
 }
