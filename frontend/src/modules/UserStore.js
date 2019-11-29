@@ -7,14 +7,14 @@ export default {
         currUser: 
         {
             _id: "2385",
-            fullname: "Luping",
-            username: "MCory",
-            password: "hJTUg",
+            fullname: "Marilyn-Monroe",
+            username: "norma",
+            password: "jean",
             email: "CMuroski@nec.com",
-            imgUrl : "`https://api.adorable.io/avatars/100/Luping@adorable.png`",
+            imgUrl : "`http://cafe.themarker.com/media/t/984/737/file_0_big.jpg?1278782797`",
             isAdmin : false,
             location: {
-                adress: "kjhkag",
+                adress: "Los Angeles",
                 lat: 0,
                 lng: 0    },
             wishlistItems : [
@@ -33,7 +33,7 @@ export default {
         setUser(state, {user}){
             state.currUser = user
         },
-        addToWishList(state, itemId) { // TOTO - define with DIFF (Liron comment)
+        addToWishList(state, itemId) { // TODO - define with DIFF (Liron comment)
             const item = state.items.find(item => item._id === itemId)
             state.currUser.wishlistItems.unshift(item);
         }

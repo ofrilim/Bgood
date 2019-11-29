@@ -12,7 +12,8 @@
           <input class="header-search border-bottom" type="text"/>
           <span class="search pointer"><i class="fa fa-search"></i></span>
           <router-link to="/item">Item App</router-link> | 
-          <router-link to="/signin">SignIn</router-link>
+          <router-link to="/signin">SignIn</router-link> 
+          <!-- <router-link to="/usre/user._id">{{user}}'s Page</router-link> -->
           <button @click="clicked"><span class="heart"></span></button><span>{{wishedItemsCount}}</span>
         </div>
     </section>

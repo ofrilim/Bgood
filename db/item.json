@@ -46,7 +46,7 @@
     "description": "ante hendrerit orci lacus vestibulum libero massa",
     "createdAt" : 1574857047314,
     "imgUrl": "https://i.pinimg.com/236x/c6/0f/75/c60f75337e9073e5d1fef875f9664a6d.jpg",
-    "status": "available",
+    "status": "sold",
     "owner": {
         "_id": "2385",
         "name": "Luping",
@@ -100,7 +100,7 @@
     "description": "nunc consequat nunc augue quis magna vel",
     "createdAt" : 1574857047314,
     "imgUrl": "https://i.pinimg.com/236x/e4/0c/f9/e40cf9939fb6a59e853fbee45bbf4652.jpg",
-    "status": "available",
+    "status": "sold",
     "owner": {
         "_id": "2387",
         "name": "admin",
@@ -154,7 +154,7 @@
     "description": "odio sollicitudin lacus porta nec tempor mi",
     "createdAt" : 1574857047314,
     "imgUrl": "https://i.pinimg.com/236x/4e/4a/f4/4e4af4c40a7c33c49f71877f8ea33e55.jpg",
-    "status": "available",
+    "status": "sold",
     "owner": {
         "_id": "2388",
         "name": "Jackie",
@@ -262,7 +262,7 @@
     "description": "lorem vitae idrisus tortor sed dui",
     "createdAt" : 1574857047314,
     "imgUrl": "https://i.pinimg.com/236x/30/f1/25/30f12568015968704c6edff1fcaece23.jpg",
-    "status": "available",
+    "status": "sold",
     "owner": {
         "_id": "2389",
         "name": "Travis",
@@ -334,7 +334,7 @@
     "description": "ante magna porta dolor scelerisque tortor dolor",
     "createdAt" : 1574857047314,
     "imgUrl": "https://i.pinimg.com/236x/d5/bb/9b/d5bb9bb4e0f7838cf75236ffbf0f9a5a.jpg",
-    "status": "available",
+    "status": "sold",
     "owner": {
         "_id": "2386",
         "name": "Melody",
