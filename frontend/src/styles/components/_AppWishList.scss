@@ -1,10 +1,27 @@
 .wish-list-drawer {
     background-color: $clr2;
     right: 0;
-    height: 80%;
+    position: relative;
+    // height: 80%;
     // animation: 'rtl-drawer-in' 3s 1000ms;
 }
 
 .el-drawer__wrapper {
     width: 100%;
 }
+
+.wishList-table {
+    margin: 10%;
+    & th {
+        color:$clr7;
+    }
+    & title {
+        color: red;
+        width: 50%;
+    }
+}
+
+
+// .wishList-table th{
+//         color: red;
+// }

@@ -10,16 +10,23 @@
             </section>
             <!-- TODO - Change all data to the item's owner -->
             <section class="user-about">
-                Seller: {{user.userItems}}
+                Seller: {{user.username}}
                 <h1>Welcome to my page</h1>
                 <h2>Address: {{user.city}}, {{user.state}} </h2>
-                <img :src="user.imgUrl"/>
+                <img :src="user.imgUrl" class="avatar-img"/>
                 <!-- // TODO - Change 20 to soldCount: -->
                 <h2>Sold items: 20 <i class="fa fa-box-heart"></i></h2> 
                 <button>Contact Me</button> |
                 <button>Follow</button><br>
                 <!-- The HISTORY btn displays sold items: img+title+price+buyer.name -->
-                <button>History</button>
+                
+                <button>
+                    <ul class="hover flex flex-wrap flex-around">History
+                     <!-- <item-preview v-for="item in userItems" :key="item._id" :item="item" >
+                </item-preview> -->
+                    </ul>
+                </button>
+                
             </section>
         </section>
         <section class="user-wishlist-items"></section>
