@@ -1,10 +1,13 @@
 import UserService from "../services/UserService";
-
 // import UserService from '../services/UserService.js';
+
+// var localLoggedinUser = null; // loggedinUser
+// if (sessionStorage.user) localLoggedinUser = JSON.parse(sessionStorage.user);
 
 export default {
     state: {
-        currUser: 
+        users: [],
+        loggedinUser: 
         {
             _id: "2385",
             fullname: "Marilyn-Monroe",
@@ -29,13 +32,21 @@ export default {
                 ]
             }, 
     },
+    getters: {
+        users(state) {
+            return state.users;
+        },
+        loggedinUser(state) {
+            return state.loggedinUser
+        }
+    },
     mutations: {
         setUser(state, {user}){
-            state.currUser = user
+            state.loggedinUser = user
         },
         addToWishList(state, itemId) { // TODO - define with DIFF (Liron comment)
             const item = state.items.find(item => item._id === itemId)
-            state.currUser.wishlistItems.unshift(item);
+            state.loggedinUser.wishlistItems.unshift(item);
         }
     },
     actions: {
@@ -43,19 +54,43 @@ export default {
             const user = await UserService.getById(userId)
             context.commit({type: 'setUser', user})
         },
+
+        async login(context, {userId}) {
+            const user = await UserService.login(userId);
+            context.commit({type: 'setUser', user})
+            return user;
+        },
+        async signup(context, {userId}) {
+            const user = await UserService.signup(userId)
+            context.commit({type: 'setUser', user})
+            return user;
+        },
+        async logout(context) {
+            await UserService.logout()
+            context.commit({type: 'setUsers', users: []})
+            context.commit({type: 'setUser', user: null})
+        },
+        async removeUser(context, {userId}) {
+            await UserService.remove(userId);
+            context.commit({type: 'removeUser', userId})
+        },
+        async updateUser(context, {userId}) {
+            user = await UserService.update(userId);
+            context.commit({type: 'setUser', user})
+        }
     },
     getters: {
         user(state){
-            return state.currUser;
+            return state.loggedinUser;
         },
         wishlistItemsCount(state) {
-            console.log("wishList: ", state.currUser.wishlistItems)
-            return state.currUser.wishlistItems.length;
+            console.log("wishList: ", state.loggedinUser.wishlistItems)
+            return state.loggedinUser.wishlistItems.length;
         },
         
         wishedItemsList(state) {
-            console.log("wishList-userStore: ", state.currUser.wishlistItems.length)
-            return state.currUser.wishlistItems;
+            console.log("wishList-userStore: ", state.loggedinUser.wishlistItems.length)
+            return state.loggedinUser.wishlistItems;
         }
     }
 }

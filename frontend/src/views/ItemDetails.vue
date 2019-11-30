@@ -13,7 +13,7 @@
             <h3>Additional information: {{item.description}}</h3>
             <section class="seller-info container flex justify-center align-center">
                 <img :src="item.owner.imgUrl" class="avatar-img"/>
-                <router-link :to="`/user/${item.owner._id}`">Seller: {{item.owner.name}}</router-link> | 
+                <router-link :to="`/user/${item.owner._id}`">Uploaded by: {{item.owner.name}}</router-link> 
             </section>
             <h3>{{item.price}}</h3>
             <button @click="addToWishList(item._id)"><i class="fa fa-heart"></i></button>
@@ -41,7 +41,7 @@ export default {
         },
          addToWishList(itemId) {
             this.$store.commit('setWishCount', itemId) // will be assigned to totalCount + diff
-            this.$store.commit('addToWishList', this.item) // will be assigned to currUser + diff
+            this.$store.commit('addToWishList', this.item) // will be assigned to loggedinUser + diff
 
             this.$store.dispatch({type: 'setMsg', msg: 'Item added successfully'})
          }

@@ -40,9 +40,9 @@ export default {
             return state.currItem;
         },
         // userItems(state){
-        //     const currUser = UserStore.getters.user
+        //     const loggedinUser = UserStore.getters.user
         //     const itemsCopy = [...state.items]
-        //     const filteresItems = itemsCopy.filter(item => item.owner._id === currUser._id)
+        //     const filteresItems = itemsCopy.filter(item => item.owner._id === loggedinUser._id)
         //     return filteresItems
         // }
     }

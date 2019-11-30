@@ -6,10 +6,10 @@
                     <img class="img-prev" :src="item.imgUrl"/>
                 </router-link>
                 <h3>Price: ${{item.price}}</h3>
-                <router-link :to="`/user/${item.owner._id}`">Seller: {{item.owner.name}}</router-link> | 
+                <router-link :to="`/user/${item.owner._id}`">Uploaded by: {{item.owner.name}}</router-link> 
                 <!-- <h3>Seller: {{item.owner.name}}</h3>  -->
                 <img class="avatar-img" :src="item.owner.imgUrl"/>
-                <button @click="addToWishList(item._id)"><i class="fa fa-heart"></i></button>
+                <button @click="addToWishList(item._id); toggleWishHeart(isHeartClicked)"><i class="fa fa-heart"></i></button>
         </li>
     </section>
 </template>
@@ -24,7 +24,6 @@ export default {
     },
     methods: {
         addToWishList(itemId) {
-            this.$emit('addToWishList', itemId)
             this.$emit('addToWishList', itemId)
         },
 //     components: {
