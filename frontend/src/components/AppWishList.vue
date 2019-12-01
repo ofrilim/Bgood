@@ -37,7 +37,7 @@ export default {
             return this.$store.getters.toggleWishList
         },
         wishedItemsUserList() { 
-            console.log("wishlist-app wish", this.$store.getters.wishedItemsList)
+            // console.log("wishlist-app wish", this.$store.getters.wishedItemsList)
             return this.$store.getters.wishedItemsList
         },
         // *** LIRON: @click should be activated by clicking the table ***

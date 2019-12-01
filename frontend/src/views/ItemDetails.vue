@@ -18,6 +18,7 @@
             </section>
             <h3>{{item.price}}</h3>
             <button @click="addToWishList(item._id)"><i class="fa fa-heart"></i></button>
+            <router-link :to="`/item/edit/${item._id}`"><button>Edit Item</button></router-link>
         </section>
         <!-- <pre>{{this.item}}</pre> -->
     </section>
@@ -49,12 +50,7 @@ export default {
     },
     created(){
             this.getCurrItem();
-    },
-    watch: {
-        "$route.params.id"(){
-            this.getCurrItem();
-        }
-    },
+    }
 }
 </script>
 <style lang="scss" scoped>
