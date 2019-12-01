@@ -1,7 +1,24 @@
 <template>
     <section class="sign-in">
         <h2>Welcome!</h2>
-        <h3>Create account</h3>
+        <h3>Create an Account</h3>
+        <table>
+          <tr>
+            <th>Have a account?</th>
+            <th>New Member?</th>
+          </tr>
+          <tbody>
+            <tr>
+              <td>Email:</td>
+              <td>First Name:</td>
+            </tr>
+            <tr>
+              <td>Password:</td>
+              <td>Last Name:</td>
+            </tr>
+            <td></td>
+          </tbody>
+        </table>
     </section>
 </template>
 
