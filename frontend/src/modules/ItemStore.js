@@ -26,6 +26,10 @@ export default {
             const idx = state.items.findIndex(item => item._id === editedItem._id)
             if (idx === -1) state.items.unshift(editedItem)
             else state.items.splice(idx, 1, editedItem)
+        },
+        removeItem(state, {id}){
+            const idx = state.items.findIndex(item => item._id === id)
+            state.items.splice(idx, 1)
         }
     },
     actions: {
@@ -42,14 +46,17 @@ export default {
             context.commit({type: 'setCurrItem', item})
         },
         async saveItem(context, {item}){
-            console.log('item:', item);
-            
-            // var item = {...savedItem};
             const editedItem = await ItemService.update(item)
-            console.log('editedItem:', editedItem);
             context.commit({type: 'setItem', editedItem})
             return editedItem;
         },
+        async removeItem(context, {itemId}){
+            const id = await ItemService.remove(itemId)
+            context.commit({type: 'removeItem', id})
+            console.log('item deleted');
+            console.log('items:', context.state.items);
+            return id;
+        }
     },
     getters: {
         items(state){

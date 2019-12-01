@@ -19,24 +19,6 @@
       }
     },
     {
-      "_id": "2506",
-      "name": "vestibulum magna",
-      "category": "accessories",
-      "price": 18,
-      "size": "L",
-      "condition": "Used",
-      "wishCount": 8,
-      "description": "sit consequat sit fringilla mi tellus suspendisse",
-      "createdAt": 1574857047314,
-      "imgUrl": "https://i.pinimg.com/236x/26/c4/f4/26c4f496ce49611ed392568fa24e6136.jpg",
-      "status": "available",
-      "owner": {
-        "_id": "2387",
-        "name": "admin",
-        "imgUrl": "https://api.adorable.io/avatars/100/admin@adorable.png"
-      }
-    },
-    {
       "_id": "2507",
       "name": "sollicitudin tempor",
       "category": "clothes",
@@ -358,24 +340,6 @@
         "_id": "2386",
         "name": "Melody",
         "imgUrl": "https://api.adorable.io/avatars/100/Travis@adorable.png"
-      }
-    },
-    {
-      "_id": "kz-bgcT",
-      "name": "Nikes shoes",
-      "category": "shoes",
-      "price": 42,
-      "size": "40",
-      "condition": "Used",
-      "wishCount": 6,
-      "description": "nunc consequat nunc augue quis magna vel",
-      "imgUrl": "https://i.pinimg.com/236x/1d/40/4b/1d404b44c88f6137a12fe138df571b48.jpg",
-      "createdAt": 1574857047314,
-      "status": "available",
-      "owner": {
-        "_id": "2387",
-        "name": "admin",
-        "imgUrl": "https://api.adorable.io/avatars/100/admin@adorable.png"
       }
     }
   ],
