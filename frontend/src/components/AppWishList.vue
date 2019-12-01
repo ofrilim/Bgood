@@ -1,23 +1,25 @@
 <template>
-    <section class="wish-list">
+    <section class="wish-list center">
         <el-drawer
         class="wish-list-drawer"
-        title="Wish List"
+        title="My Wish-List"
         :visible.sync="toggleWishList"
         direction="ltr"
-        size="50%">
-          <table class="wishList-table">
-            <th class="title">I wish to buy</th>
-            <th class="price">It costs</th>
-            <th class="img">This will look greate on me</th>
-            <th class="owner">Uploaded by</th>
-            <tr>
-            <tr v-for="item in wishedItemsUserList" :key="item._id" :item="item">
-              <router-link :to="`/item/${item._id}`"><th>{{item.name}}</th></router-link>
-              <td>${{item.price}}</td>
-              <td>{{item.imgUrl}}</td>
-              <!-- <h2>Seller: {{item.owner.name}}</h2> -->
-            </tr>
+        size="100%">
+          <table class="wishList-table center" v-for="item in wishedItemsUserList" :key="item._id" :item="item">
+            <tb>  
+            <tr class="center"><i class="fa fa-star"></i></tr>
+            <br>
+            <div class="tooltip">
+              <tr><router-link class="title flex center" :to="`/item/${item._id}`">{{item.name}}</router-link>
+              </tr><span class="tooltiptext">for more details</span>
+            </div>
+            <br>
+            <tr class="price">Only for ${{item.price}}</tr>
+            <br>
+            <tr><button class="action-buy">I wish to buy</button></tr>
+            <tr><button class="action-remove">Remove</button></tr>
+            </tb>
             </table>
         </el-drawer>
     </section>

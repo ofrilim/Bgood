@@ -2,7 +2,7 @@
     <section v-if="item" class="item-details container flex">
         <!-- <h1>item-details - </h1> -->
         <!-- <img src="../assets/loading.gif" class="loading-img"/> -->
-        <img :src="this.item.imgUrl" class="ratio-16-9"/>
+        <img :src="this.item.imgUrl" class="ratio-16-9 img-details"/>
         <section class="details-content container">
             <h1>{{item.name}}</h1>
             <h3>Price: ${{item.price}}</h3>
@@ -12,6 +12,7 @@
             <h3>Status: {{item.status}}</h3>
             <h3>Additional information: {{item.description}}</h3>
             <section class="seller-info container flex justify-center align-center">
+                <!-- <img :src="user.userImg"/> -->
                 <img :src="item.owner.imgUrl" class="avatar-img"/>
                 <router-link :to="`/user/${item.owner._id}`">Uploaded by: {{item.owner.name}}</router-link> 
             </section>

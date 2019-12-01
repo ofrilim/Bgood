@@ -3,5 +3,14 @@
 }
 
 .user-item {
-    width: 60%;
+    width: 55%;
+}
+
+.user-about {
+    padding-left: 5%;
+    border-left: $clr2 0.2px solid;
+    & h1 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
 }

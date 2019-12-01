@@ -11,7 +11,7 @@
     "password": "hJTUg",
     "isSeller" : false,
     "isAdmin" : false,
-    "userImg" : "",
+    "userImg" : "https://www.listchallenges.com/f/items/a51a2b5f-572a-4d8e-95b6-fe16106117ee.jpg",
     "soldItemsCount" : 6,
     "wishlistItems" : []
     },
@@ -43,7 +43,7 @@
     "password": "12345",
     "isSeller" : true,
     "isAdmin" : true,
-    "userImg" : "",
+    "userImg" : "https://www.listchallenges.com/f/items/937a2364-a181-46a9-841e-66318b2f59a6.jpg",
     "soldItemsCount" : 10,
     "wishlistItems" : []
     },
