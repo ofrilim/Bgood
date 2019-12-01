@@ -1,0 +1,17 @@
+td {
+    width: 150px;
+    & button {
+        background-color: $clr2;
+        margin: 5px;
+    }
+}
+
+.sign-in-title {
+    margin: rem(30px) 0 rem(20px) 0;
+    font-size: rem(40px);
+}
+
+th {
+    padding: rem(10px);
+    font-size: rem(22px);
+}
