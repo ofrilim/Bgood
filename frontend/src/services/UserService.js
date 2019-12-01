@@ -18,9 +18,9 @@ function update(edited) {
     return HttpService.put(`user/${edited._id}`, edited)
 }
 
-function getById(id) {
-    return HttpService.get(`user/${id}`)
-}
+// function getById(id) {
+//     return HttpService.get(`user/${id}`)
+// }
 
 function remove(id) {
     return HttpService.delete(`user/${id}`)
