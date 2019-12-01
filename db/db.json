@@ -51,7 +51,7 @@
       "owner": {
         "_id": "2387",
         "name": "admin",
-        "imgUrl": "https://api.adorable.io/avatars/100/admin@adorable.png"
+        "imgUrl": "https://www.listchallenges.com/f/items/937a2364-a181-46a9-841e-66318b2f59a6.jpg"
       }
     },
     {
@@ -87,7 +87,7 @@
       "owner": {
         "_id": "2387",
         "name": "admin",
-        "imgUrl": "https://api.adorable.io/avatars/100/admin@adorable.png"
+        "imgUrl": "https://www.listchallenges.com/f/items/937a2364-a181-46a9-841e-66318b2f59a6.jpg"
       }
     },
     {
@@ -345,119 +345,79 @@
   ],
   "user": [
     {
-      "_id": "2385",
       "fullname": "Luping",
+      "tel": "(971)299-5808",
+      "address": "3511 Lacus Ave",
+      "city": "Glencoe",
+      "state": "WA",
+      "_id": "2385",
+      "email": "CMuroski@nec.com",
       "username": "MCory",
       "password": "hJTUg",
-      "email": "CMuroski@nec.com",
-      "imgUrl": "https://api.adorable.io/avatars/100/Luping@adorable.png",
       "isAdmin": false,
-      "location": {
-        "adress": "kjhkag",
-        "lat": 0,
-        "lng": 0
-      },
-      "wishlistItems": [
-        {
-          "_id": "2505",
-          "name": "ipsum vitae",
-          "imgUrl": "https://i.pinimg.com/236x/e3/1a/a7/e31aa7066bc6d063022cf7712eace7f6.jpg"
-        },
-        {
-          "_id": "2510",
-          "name": "aliquam ipsum",
-          "imgUrl": "https://i.pinimg.com/236x/e4/0c/f9/e40cf9939fb6a59e853fbee45bbf4652.jpg"
-        }
-      ]
+      "imgUrl": "https://www.listchallenges.com/f/items/a51a2b5f-572a-4d8e-95b6-fe16106117ee.jpg",
+      "soldItemsCount": 6,
+      "wishlistItems": []
     },
     {
-      "_id": "2386",
       "fullname": "Melody",
+      "tel": "(616)765-6853",
+      "address": "5069 Pulvinar Ave",
+      "city": "El Dorado",
+      "state": "AZ",
+      "_id": "2386",
+      "email": "SFoster@molestie.ly",
       "username": "DBroughton",
       "password": "IQnbd",
-      "email": "SFoster@molestie.ly",
-      "imgUrl": "",
       "isAdmin": false,
-      "location": {
-        "adress": "kjhkhg",
-        "lat": 0,
-        "lng": 0
-      },
-      "wishlistItems": [
-        {
-          "_id": "2510",
-          "name": "aliquam ipsum",
-          "imgUrl": ""
-        }
-      ]
+      "imgUrl": "",
+      "soldItemsCount": 3,
+      "wishlistItems": []
     },
     {
-      "_id": "2387",
       "fullname": "admin",
+      "tel": "(823)648-5507",
+      "address": "5511 Placerat Ave",
+      "city": "Rancho Cordova",
+      "state": "CA",
+      "_id": "2387",
+      "email": "LSobel@pulvinar.org",
       "username": "OHefner",
       "password": "12345",
-      "email": "LSobel@pulvinar.org",
-      "imgUrl": "",
-      "isAdmin": false,
-      "location": {
-        "adress": "kjhkahg",
-        "lat": 0,
-        "lng": 0
-      },
-      "wishlistItems": [
-        {
-          "_id": "2509",
-          "name": "consequat massa",
-          "imgUrl": ""
-        },
-        {
-          "_id": "2507",
-          "name": "sollicitudin tempor",
-          "imgUrl": ""
-        }
-      ]
+      "isAdmin": true,
+      "imgUrl": "https://www.listchallenges.com/f/items/937a2364-a181-46a9-841e-66318b2f59a6.jpg",
+      "soldItemsCount": 10,
+      "wishlistItems": []
     },
     {
-      "_id": "2510",
       "fullname": "Jackie",
+      "tel": "(501)222-0838",
+      "address": "6534 Augue Rd",
+      "city": "Decatur",
+      "state": "KY",
+      "_id": "2388",
+      "email": "iderp@scelerisque.com",
       "username": "ISchade",
       "password": "XsWRA",
-      "email": "iderp@scelerisque.com",
-      "imgUrl": "",
       "isAdmin": false,
-      "location": {
-        "adress": "kjhhaah",
-        "lat": 0,
-        "lng": 0
-      },
-      "wishlistItems": [
-        {
-          "_id": "2507",
-          "name": "sollicitudin tempor",
-          "imgUrl": ""
-        }
-      ]
+      "imgUrl": "",
+      "soldItemsCount": 0,
+      "wishlistItems": []
     },
     {
-      "_id": "2505",
       "fullname": "Travis",
+      "tel": "(608)671-4365",
+      "address": "9921 Porta Ln",
+      "city": "Honolulu",
+      "state": "OK",
+      "_id": "2389",
+      "email": "DSchwaderer@elementum.io",
       "username": "NRitchie",
       "password": "HVWLv",
-      "email": "DSchwaderer@elementum.io",
-      "imgUrl": "",
       "isAdmin": false,
-      "location": {
-        "adress": "kjhkhyry",
-        "lat": 0,
-        "lng": 0
-      },
-      "wishlistItems": [
-        {
-          "_id": "2506",
-          "name": "vestibulum magna",
-          "imgUrl": ""
-        }
-      ]
+      "imgUrl": "",
+      "soldItemsCount": 2,
+      "wishlistItems": []
     }
   ]
 }

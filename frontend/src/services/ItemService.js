@@ -9,7 +9,8 @@ export default {
     getById,
     update,
     remove,
-    add
+    add,
+    uploadImg
 }
 
 
@@ -26,12 +27,53 @@ function getById(id) {
 }
 
 function remove(id) {
+    console.log('remove service id:', id);
+    
     return HttpService.delete(`item/${id}`)
 }
 
-function add(added) {
-    return HttpService.post(`item`, added)
+function add(newItem, {_id, fullname, imgUrl }) {
+    newItem._id = _makeId();
+    newItem.wishCount = 0;
+    newItem.createdAt = Date.now();
+    newItem.status = 'available';
+    newItem.owner = {_id, name: fullname, imgUrl};
+    console.log('added new item:', newItem);
+    return HttpService.post(`item`, newItem)   
 }
+
+function uploadImg(ev) {
+    const CLOUD_NAME = 'dtkrff3dw'
+    const PRESET_NAME = 'e3wgawo9'
+    const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
+    // const CLOUDINARY_URL = `cloudinary://479428615458491:63lsLFAP5ZnZ_esAOfc5Y6TnR70@dtkrff3dw`
+
+    const formData = new FormData();
+    formData.append('file', ev.target.files[0])
+    formData.append('upload_preset', PRESET_NAME);
+
+    return fetch(UPLOAD_URL, {
+        method: 'POST',
+        body: formData
+    })
+        .then(res => res.json())
+        .then(res => {
+            console.log(res)
+            return res.url
+        })
+        .catch(err => console.error(err))
+}
+
+
+function _makeId(length=4) {
+    var txt = '3';
+    var possible = '0123456789';
+    for (var i = 0; i < length; i++) {
+        txt += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return txt;
+}
+
 
 // async function query(){
 //     try {// const items = await HttpService.get(BASE_URL);

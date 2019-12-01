@@ -41,7 +41,7 @@ export default {
             const itemId = this.$route.params.id
             this.$store.commit({type: 'setCurrItem', itemId})
             this.item = await this.$store.getters.item
-            console.log('item:', this.item);
+            console.log('details item:', this.item);
         },
         addToWishList(itemId) {
             this.$store.commit('setWishCount', itemId) // will be assigned to totalCount + diff

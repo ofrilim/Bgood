@@ -27,14 +27,14 @@ const routes = [
     component: ItemApp
   },
   {
-    path: '/item/:id',
-    name: 'item-details',
-    component: ItemDetails
-  },
-  {
     path: '/item/edit/:id?',
     name: 'item-edit',
     component: ItemEdit
+  },
+  {
+    path: '/item/:id',
+    name: 'item-details',
+    component: ItemDetails
   },
   {
     path: '/signin',
