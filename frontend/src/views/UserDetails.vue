@@ -1,12 +1,44 @@
 <template>
     <section class="user-details" v-if="user">
         <h2>{{user.username}}'s Page</h2>
-        <img :src="user.imgUrl"/>
-        <section class="user-items">
-            <h2>Items to sell -</h2>
-            <section class="user-item flex">
+        <h2>Available items:</h2>
+        <section class="user-items flex">
+
+            <section class="user-item flex flex-wrap">
                 <item-preview v-for="item in userItems" :key="item._id" :item="item" >
                 </item-preview>
+            </section>
+            
+            <!-- TODO - design this page and remove <BR> // Liron's comment-->
+            <section class="user-about">
+                <h1>Welcome to {{user.username}}'s page</h1>
+                <br>
+                <h2>Full Name: {{user.fullname}}</h2>
+                <h2>A member of B-good since {{Date.now()}}</h2> 
+                <h2>Sold items: {{user.soldItemsCount}} <i class="fa fa-box-heart"></i></h2> 
+                <br>
+                <h2>Address: {{user.city}}, {{user.state}} </h2>
+                <h2>Email: {{user.email}}</h2>
+                <h2>Mobile: {{user.tel}}</h2>
+                <br>
+                <img :src="user.userImg"/>
+                <br>
+                <br>
+                <button>Contact Me</button> |
+                <button>Follow</button><br>
+                <!-- The HISTORY btn displays sold items: img+title+price+buyer.name -->
+                <br>
+                <button>
+                    <ul class="hover flex flex-wrap flex-around">Sold items
+                     <!-- <item-preview v-for="item in userItems" :key="item._id" :item="item" >
+                </item-preview> -->
+                    </ul>
+                </button>
+                <br>
+                <br>
+                <button>Incomming Orders</button> 
+
+                
             </section>
         </section>
         <section class="user-wishlist-items"></section>

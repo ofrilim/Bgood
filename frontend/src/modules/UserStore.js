@@ -7,7 +7,7 @@ export default {
         currUser: 
         {
             _id: "2385",
-            fullname: "Marilyn-Monroe",
+            fullname: "Marilyn Monroe",
             username: "norma",
             password: "jean",
             email: "CMuroski@nec.com",
@@ -21,11 +21,15 @@ export default {
                 {
                     _id: "2505",
                     name: "ipsum vitae",
-                    imgUrl: ""    },
-                {
+                    price: 300,
+                    imgUrl: "https://i.pinimg.com/236x/e3/1a/a7/e31aa7066bc6d063022cf7712eace7f6.jpg",
+                    owner: "Luping"},
+                    {
                     _id: "2510",
                     name: "aliquam ipsum",
-                    imgUrl: ""    }        
+                    price: 250 ,
+                    imgUrl: "https://i.pinimg.com/236x/e4/0c/f9/e40cf9939fb6a59e853fbee45bbf4652.jpg",
+                    owner: "admin"}
                 ]
             }, 
     },

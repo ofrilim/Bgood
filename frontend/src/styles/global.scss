@@ -3,6 +3,7 @@
 @import 'setup/variables';
 @import 'setup/mixins';
 @import 'setup/functions';
+@import 'setup/tooltip';
 
 // BASICS
 @import 'basics/reset';
@@ -15,6 +16,7 @@
 @import 'components/AppFooter';
 @import 'components/ItemPreview';
 @import 'components/ItemDetails';
+@import 'components/UserDetails';
 @import 'components/AppWishList';
 
 // VIEWS
