@@ -6,11 +6,7 @@
                     <img class="img-prev" :src="item.imgUrl"/>
                 </router-link>
                 <h3>Price: ${{item.price}}</h3>
-<<<<<<< HEAD
-                <router-link :to="`/user/${item.owner._id}`">Seller: {{item.owner.name}}</router-link>
-=======
                 <router-link :to="`/user/${item.owner._id}`">Uploaded by: {{item.owner.name}}</router-link> 
->>>>>>> 845608cbd20a6f206162681157866d8081841d63
                 <!-- <h3>Seller: {{item.owner.name}}</h3>  -->
                 <img class="avatar-img" :src="item.owner.imgUrl"/>
                 <button @click="addToWishList(item._id); toggleWishHeart(isHeartClicked)"><i class="fa fa-heart"></i></button>

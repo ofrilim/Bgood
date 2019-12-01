@@ -14,11 +14,7 @@
             <section class="seller-info container flex justify-center align-center">
                 <!-- <img :src="user.userImg"/> -->
                 <img :src="item.owner.imgUrl" class="avatar-img"/>
-<<<<<<< HEAD
-                <router-link :to="`/user/${item.owner._id}`">Seller: {{item.owner.name}}</router-link>
-=======
                 <router-link :to="`/user/${item.owner._id}`">Uploaded by: {{item.owner.name}}</router-link> 
->>>>>>> 845608cbd20a6f206162681157866d8081841d63
             </section>
             <h3>{{item.price}}</h3>
             <button @click="addToWishList(item._id)"><i class="fa fa-heart"></i></button>
