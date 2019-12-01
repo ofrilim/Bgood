@@ -6,7 +6,6 @@ export default {
     getById,
     remove,
     add,
-
     // queryUsers
 }
     
@@ -36,6 +35,8 @@ async function getById(id) {
         } catch(error){
             console.error('inside userService -> couldnt get users');
     }
+}
+
 function add(added) {
     return HttpService.post(`user`, added)
 }
@@ -56,5 +57,4 @@ async function queryUsers(){
     } catch(error){
         console.error('inside userService -> couldnt get users');
     }
-}
 }
