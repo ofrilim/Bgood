@@ -7,25 +7,29 @@ export default {
         currUser: 
         {
             _id: "2385",
-            fullname: "Luping",
-            username: "MCory",
-            password: "hJTUg",
+            fullname: "Marilyn Monroe",
+            username: "norma",
+            password: "jean",
             email: "CMuroski@nec.com",
-            imgUrl : "`https://api.adorable.io/avatars/100/Luping@adorable.png`",
+            imgUrl : "`http://cafe.themarker.com/media/t/984/737/file_0_big.jpg?1278782797`",
             isAdmin : false,
             location: {
-                adress: "kjhkag",
+                adress: "Los Angeles",
                 lat: 0,
                 lng: 0    },
             wishlistItems : [
                 {
                     _id: "2505",
                     name: "ipsum vitae",
-                    imgUrl: ""    },
-                {
+                    price: 300,
+                    imgUrl: "https://i.pinimg.com/236x/e3/1a/a7/e31aa7066bc6d063022cf7712eace7f6.jpg",
+                    owner: "Luping"},
+                    {
                     _id: "2510",
                     name: "aliquam ipsum",
-                    imgUrl: ""    }        
+                    price: 250 ,
+                    imgUrl: "https://i.pinimg.com/236x/e4/0c/f9/e40cf9939fb6a59e853fbee45bbf4652.jpg",
+                    owner: "admin"}
                 ]
             }, 
     },
@@ -33,7 +37,7 @@ export default {
         setUser(state, {user}){
             state.currUser = user
         },
-        addToWishList(state, itemId) { // TOTO - define with DIFF (Liron comment)
+        addToWishList(state, itemId) { // TODO - define with DIFF (Liron comment)
             const item = state.items.find(item => item._id === itemId)
             state.currUser.wishlistItems.unshift(item);
         }
@@ -49,12 +53,12 @@ export default {
             return state.currUser;
         },
         wishlistItemsCount(state) {
-            console.log("wishList: ", state.currUser.wishlistItems)
+            // console.log("wishList: ", state.currUser.wishlistItems)
             return state.currUser.wishlistItems.length;
         },
         
         wishedItemsList(state) {
-            console.log("wishList-userStore: ", state.currUser.wishlistItems.length)
+            // console.log("wishList-userStore: ", state.currUser.wishlistItems.length)
             return state.currUser.wishlistItems;
         }
     }
