@@ -21,14 +21,18 @@ export default {
             // console.log('store item:', state.currItem);
         },
         setItem(state, {editedItem}){
-            console.log('editedItem:', editedItem);
-            
             const idx = state.items.findIndex(item => item._id === editedItem._id)
             if (idx === -1) state.items.unshift(editedItem)
             else state.items.splice(idx, 1, editedItem)
+            console.log('set item edited item:', editedItem);
+            
         },
-        removeItem(state, {id}){
-            const idx = state.items.findIndex(item => item._id === id)
+        removeItem(state, {itemId}){
+            console.log('mutation remove id:', itemId);
+
+            const idx = state.items.findIndex(item => item._id === itemId)
+            console.log('mutation remove idx:', idx);
+            
             state.items.splice(idx, 1)
         }
     },
@@ -37,6 +41,7 @@ export default {
             try {
                 const items = await ItemService.query();
                 context.commit({type: 'setItems', items})
+                console.log('items:', items);
             } catch(err) {
                 console.error(err);
             }
@@ -45,17 +50,21 @@ export default {
             let item = await ItemService.getById(itemId)
             context.commit({type: 'setCurrItem', item})
         },
-        async saveItem(context, {item}){
-            const editedItem = await ItemService.update(item)
+        async saveItem(context, {item, user}){
+            let editedItem = null;
+            if (item._id) editedItem = await ItemService.update(item)
+            else editedItem = await ItemService.add(item, user)             
             context.commit({type: 'setItem', editedItem})
             return editedItem;
         },
         async removeItem(context, {itemId}){
-            const id = await ItemService.remove(itemId)
-            context.commit({type: 'removeItem', id})
-            console.log('item deleted');
-            console.log('items:', context.state.items);
-            return id;
+            console.log('remove item action id:', itemId);
+            await ItemService.remove(itemId)
+            context.commit({type: 'removeItem', itemId})
+            // console.log('remove id:', id);
+
+            // console.log('items:', context.state.items);
+            return {};
         }
     },
     getters: {
