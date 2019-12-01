@@ -32,14 +32,14 @@ function remove(id) {
     return HttpService.delete(`item/${id}`)
 }
 
-function add(newItem, {_id, fullname, imgUrl }) {
+async function add(newItem, {_id, fullname, imgUrl }) {
     newItem._id = _makeId();
     newItem.wishCount = 0;
     newItem.createdAt = Date.now();
     newItem.status = 'available';
     newItem.owner = {_id, name: fullname, imgUrl};
     console.log('added new item:', newItem);
-    return HttpService.post(`item`, newItem)   
+    return await HttpService.post(`item`, newItem)   
 }
 
 function uploadImg(ev) {
@@ -58,7 +58,7 @@ function uploadImg(ev) {
     })
         .then(res => res.json())
         .then(res => {
-            console.log(res)
+            console.log('imgUrl:',res)
             return res.url
         })
         .catch(err => console.error(err))
@@ -74,38 +74,6 @@ function _makeId(length=4) {
     return txt;
 }
 
-
-// async function query(){
-//     try {// const items = await HttpService.get(BASE_URL);
-//     const items = await require('../../../db/item.json')
-//     // if (items && items.length) return items
-//     return items
-//     } catch(error){
-//         console.error('couldnt get items');
-//     }
-// }
-
-// async function update(newItem){
-//     const copy = JSON.parse(JSON.stringify(newItem)) 
-//     try {        
-//         const items = await require('../../../db/item.json')
-//         const idx = items.findIndex(item => item._id === copy._id)
-//         // console.log('service newItem:', copy);
-//         if (idx === -1) items.unshift(copy)
-//         else items.splice(idx, 1, copy)
-//         // _savetoysToFile(items)
-//         return copy
-//     } 
-//     catch (err) {
-//         console.error('Couldn\'t save item, try again');
-//     }
-// }
-
-// async function getById(itemId){
-//     const items = await require('../../../db/item.json')
-//     const item = items.find(item => item._id === itemId)
-//     return item
-// }
 
 
 // function _savetoysToFile(items) {

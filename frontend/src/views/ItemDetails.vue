@@ -20,15 +20,11 @@
             <button @click="addToWishList(item._id)"><i class="fa fa-heart"></i></button>
             <router-link :to="`/item/edit/${item._id}`"><button>Edit Item</button></router-link>
             <button @click="removeItem(item._id)">Delete</button>
-            <!-- <button @click="addItem">Add Item</button> -->
         </section>
-        <!-- <pre>{{this.item}}</pre> -->
     </section>
 </template>
 
 <script>
-// import store from '../store/index.js'
-
 export default {
     name: 'item-details',
     data(){
@@ -41,7 +37,6 @@ export default {
             const itemId = this.$route.params.id
             this.$store.commit({type: 'setCurrItem', itemId})
             this.item = await this.$store.getters.item
-            console.log('details item:', this.item);
         },
         addToWishList(itemId) {
             this.$store.commit('setWishCount', itemId) // will be assigned to totalCount + diff
@@ -50,7 +45,6 @@ export default {
             this.$store.dispatch({type: 'setMsg', msg: 'Item added successfully'})
         },
         async removeItem(itemId){
-            console.log('item id:', itemId);
             await this.$store.dispatch({type: 'removeItem', itemId})
             this.$router.push('/item/')
         }

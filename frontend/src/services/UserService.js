@@ -29,21 +29,3 @@ function remove(id) {
 function add(added) {
     return HttpService.post(`user`, added)
 }
-//     try {// const users = await HttpService.get(BASE_URL);
-//         const users = await require('../../../db/user.json')
-//         const user = users.find((user) => user._id === id)
-//         return user
-//         } catch(error){
-//             console.error('couldnt get users');
-//     }
-// }
-
-// async function queryUsers(){
-//     try {// const users = await HttpService.get(BASE_URL);
-//     const users = await require('../../../db/user.json')
-//     console.log('query users:', users);
-//     return users
-//     } catch(error){
-//         console.error('couldnt get users');
-//     }
-// }

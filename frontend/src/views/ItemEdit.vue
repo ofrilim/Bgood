@@ -58,10 +58,7 @@
                     <tr>
                         <td><label> Upload your image:</label></td>
                         <td><input class="frame" @change="uploadImg" type="file"></td>
-                        
-                        
                     </tr>
-                    
                     <button class="submit-btn btn" type="primary" @click.prevent="submitForm">Save Item</button>
                     <button class="reset-btn btn" @click.prevent="resetForm">Reset</button>
                 </tbody>
@@ -104,15 +101,17 @@ import ItemService from '../services/ItemService.js'
         async uploadImg(ev){
             const newImgUrl = await ItemService.uploadImg(ev)
             console.log('url:',newImgUrl);
-            
-            this.newItem.imgUrl = newImgUrl
+            this.newItem.imgUrl = ev
         },
 
         async submitForm(){
             const loggedInUser = this.$store.getters.user;
-            const item = await this.$store.dispatch({type: 'saveItem', item: this.newItem, user: loggedInUser});
-            this.newItem = this.resetForm();
-            this.$router.push(`/item/${item._id}`)
+            try {
+                if (!this.newItem.imgUrl) throw "image not uploaded";
+                const item = await this.$store.dispatch({type: 'saveItem', item: this.newItem, user: loggedInUser});
+                this.newItem = this.resetForm();
+                this.$router.push(`/item/${item._id}`)
+            } catch(err){console.error(err)}
         },
     },
     created(){

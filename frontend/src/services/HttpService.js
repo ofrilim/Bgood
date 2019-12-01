@@ -2,8 +2,8 @@ import router from '@/router'
 // import store from '@/store'
 
 const BASE_URL = process.env.NODE_ENV === 'production'
-    ? '/'
-    : '//localhost:3000/'
+    ? '/api'
+    : '//localhost:3000/api/'
 
 // const axios = require('axios')
 import Axios from 'axios';
