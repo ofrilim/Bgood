@@ -6,7 +6,7 @@ export default {
     getById,
     remove,
     add,
-    // queryUsers
+    queryUsers
 }
     
 function query() {
@@ -27,8 +27,8 @@ function remove(id) {
 
 async function getById(id) {
     try {
-        const users = await HttpService.get(BASE_URL);
-        const user = users.find((user) => user._id === id)
+        const user = await HttpService.get(`user/${id}`);
+        // const user = users.find((user) => user._id === id)
         // console.log('query users:', users);
         console.log('inside userService -> query user:', user);
         return user
@@ -51,7 +51,7 @@ function add(added) {
 
 async function queryUsers(){
     try {
-        const users = await HttpService.get(BASE_URL);
+        const users = await HttpService.get('user');
         console.log('inside userService, query users:', users);
         return users
     } catch(error){

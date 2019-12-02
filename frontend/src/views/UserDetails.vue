@@ -35,7 +35,8 @@
                 </button>
                 <br>
                 <br>
-                <button>Incomming Orders</button>             
+                <button @click="itemsInProcess">Incomming Orders</button> 
+                <section v-if="incomingOrders.length !== 0"><pre>{{this.incomingOrders}}</pre></section>            
             </section>
         </section>
         <section class="user-wishlist-items"></section>
@@ -55,12 +56,19 @@ export default {
     data(){
         return {
             userId: null,
+            incomingOrders: []
             // userSoldItems: []
         }
     },
     methods:{
         addItem(){
             
+        },
+        itemsInProcess(){
+            var items = this.$store.getters.items.filter(item => {
+                return item.owner._id === this.userId && item.status === "In process"})
+            if (items && items.length !== 0) this.incomingOrders = items
+            console.log('in process items:', items);
         }
     },
     computed:{
@@ -71,7 +79,7 @@ export default {
             var items = this.$store.getters.items.filter(item => item.owner._id === this.userId)
             // console.log('user items:', items);
             return items
-        }
+        },
     },
     created(){
         this.userId = this.$route.params.id

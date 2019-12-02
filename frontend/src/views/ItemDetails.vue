@@ -18,17 +18,15 @@
             </section>
             <h3>{{item.price}}</h3>
 
-            <button @click="addToWishList(item._id)"><i class="fa fa-heart"></i></button>
+            <button class="btn" @click="addToWishList(item._id)"><i class="fa fa-heart"></i></button>
             <br>
             <router-link :to="`/item/edit/${item._id}`"><button>Edit Item</button></router-link>
             <br>
-            <button @click="buyItem()">BUY</button>
+            <button class="btn" @click="buyItem">BUY</button>
             <br>
-            <h1 class="buy-msg">{{msg}}</h1>
-            <button @click="removeItem(item._id)">Delete</button>
-            <!-- <button @click="addItem">Add Item</button> -->
+            <h1 class="buy-msg" v-if="this.msg">{{msg}}</h1>
+            <button class="btn" @click="removeItem(item._id)">Delete</button>
         </section>
-        <!-- <pre>{{this.item}}</pre> -->
     </section>
 </template>
 
@@ -43,22 +41,13 @@ export default {
             status: 'available'
         }
     },
-    computed: {
-        item() {
-            return this.$store.getters.item
-        }
+    methods: {
         async buyItem() {
-            this.$store.dispatch({type: 'buyItem', item: this.item})
-        return this.msg = 'Item reserved successfully' 
-        // this.$store.dispatch({type: 'setMsg', msg: 'Item bougth successfully'})
+            const item = {...this.item}
+            item.status = "In process" 
+            await this.$store.dispatch({type: 'buyItem', item})
+            this.msg = 'Item reserved successfully'
         },
-
-        //  addToWishList(itemId) {
-        //     console.log("item._id - itemDetails: ", this.item._id)
-        //     this.$store.commit('setWishCount', itemId) // will be assigned to totalCount + diff
-        //     this.$store.commit('addToWishList', this.item) // will be assigned to loggedinUser + diff
-
-        //     this.$store.dispatch({type: 'setMsg', msg: 'Item added successfully'})
         async getCurrItem(){
             const itemId = this.$route.params.id
             this.$store.commit({type: 'setCurrItem', itemId})
@@ -76,6 +65,19 @@ export default {
             await this.$store.dispatch({type: 'removeItem', itemId})
             this.$router.push('/item/')
         }
+    },
+    computed: {
+        item() {
+            return this.$store.getters.item
+        },
+
+        //  addToWishList(itemId) {
+        //     console.log("item._id - itemDetails: ", this.item._id)
+        //     this.$store.commit('setWishCount', itemId) // will be assigned to totalCount + diff
+        //     this.$store.commit('addToWishList', this.item) // will be assigned to loggedinUser + diff
+        //     this.$store.dispatch({type: 'setMsg', msg: 'Item added successfully'})
+
+        
     },
     created(){
         this.$store.dispatch({type: 'loadItem', itemId: this.$route.params.id})

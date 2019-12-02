@@ -43,12 +43,6 @@ export default {
             
             state.items.splice(idx, 1)
         }
-        
-        // saveBuyStatus(state, {item}) {
-        //     // this.status.commit({type: 'buyItem', item})
-        //     const item = state.items.find((item) => item._id === itemId);
-        //     state.currItem.status = "in process";
-        // },
     },
     actions: {
         async loadItems(context){
@@ -75,11 +69,10 @@ export default {
             context.commit({type: 'setMsg', msg});
             setTimeout(()=>context.commit({type: 'setMsg', msg: null}), 2500);
         },
-        async buyItem(context, {editedItem}){
-            const status = await ItemService.update(status)
-            context.commit({type: 'setItem', status})
-            console.log("item actionStore/actions: ", editedItem)
-            return newStatus
+        async buyItem(context, {item}){
+            const editedItem = await ItemService.update(item)
+            context.commit({type: 'setItem', editedItem})
+            return {}
         },
         async removeItem(context, {itemId}){
             console.log('remove item action id:', itemId);
