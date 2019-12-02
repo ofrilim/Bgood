@@ -1,7 +1,5 @@
 import UserService from "../services/UserService";
 
-// import UserService from '../services/UserService.js';
-
 export default {
     state: {
         currUser: null,

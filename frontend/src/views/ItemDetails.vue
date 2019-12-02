@@ -17,11 +17,14 @@
         </div>
         <div>
             <button @click="addToWishList(item._id)"><span class="heart"></span></button>
+            <button class="btn" @click="buyItem">BUY</button>
             <router-link :to="`/item/edit/${item._id}`"><button>Edit Item</button></router-link>
             <button @click="removeItem(item._id)">Delete</button>
+            <h1 class="buy-msg" v-if="this.msg">{{msg}}</h1>
         </div>
     </section>
 </template>
+
 
 <script>
 export default {
@@ -29,7 +32,8 @@ export default {
     data() {
         return {
             item: null,
-            itemId: null
+            itemId: null,
+            msg: ''
         }
     },
      created(){
@@ -46,6 +50,12 @@ export default {
         async removeItem(itemId){
             await this.$store.dispatch({type: 'removeItem', itemId})
             this.$router.push('/item/')
+        },
+         async buyItem() {
+            const item = {...this.item}
+            item.status = "In process" 
+            await this.$store.dispatch({type: 'buyItem', item})
+            this.msg = 'Item reserved successfully'
         }
     },   
 }

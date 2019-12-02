@@ -1,10 +1,11 @@
 import ItemService from '../services/ItemService.js';
-// import router from '../router/index';
 
 export default {
     state: {
         items: [],
         currItem: null,
+        msg: '',
+        status: 'Available',
         filterBy: {
 
         }
@@ -18,6 +19,7 @@ export default {
             state.currItem = item;
         },
         setItem(state, {editedItem}){
+            console.log('editedItem:', editedItem);
             const idx = state.items.findIndex(item => item._id === editedItem._id)
             if (idx === -1) state.items.unshift(editedItem)
             else state.items.splice(idx, 1, editedItem)
@@ -46,6 +48,15 @@ export default {
             else editedItem = await ItemService.add(item, user)             
             context.commit({type: 'setItem', editedItem})
             return editedItem;
+        },
+        setMsg(context, {msg}) {
+            context.commit({type: 'setMsg', msg});
+            setTimeout(()=>context.commit({type: 'setMsg', msg: null}), 2500);
+        },
+        async buyItem(context, {item}){
+            const editedItem = await ItemService.update(item)
+            context.commit({type: 'setItem', editedItem})
+            return {}
         },
         async removeItem(context, {itemId}){
             await ItemService.remove(itemId)
