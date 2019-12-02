@@ -1,7 +1,5 @@
 <template>
     <section v-if="item" class="item-details container flex">
-        <!-- <h1>item-details - </h1> -->
-        <!-- <img src="../assets/loading.gif" class="loading-img"/> -->
         <img :src="this.item.imgUrl" class="ratio-16-9 img-details"/>
         <div class="details-content container">
             <h1>{{item.name}}</h1>
@@ -52,14 +50,3 @@ export default {
     },   
 }
 </script>
-
-<style lang="scss" scoped>
-    .item-img{
-        width: auto;
-        height: 85vh;
-        padding: 10px;
-    }
-    .seller-info{
-        width: 100%;
-    }
-</style>

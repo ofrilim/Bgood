@@ -34,7 +34,6 @@
                     <tr v-if="newItem.category === 'shoes'">
                         <td><label>Shoe Size: </label></td>
                         <td>
-                            <!-- <input type="number" class="frame" min="32" max="43" v-model="newItem.size" > -->
                             <select class="frame" v-model="newItem.size" placeholder="Choose Size">
                                 <option v-for="shoeSize in shoeSizes" :key="shoeSize.idx" :value="shoeSize">{{shoeSize}}</option>
                             </select>
@@ -68,7 +67,8 @@
 </template>
 
 <script>
-import ItemService from '../services/ItemService.js'
+import ItemService from '../services/ItemService.js';
+
   export default {
     name: 'item-edit',
     data() {
@@ -80,8 +80,8 @@ import ItemService from '../services/ItemService.js'
         }
     },
     created(){
-        this.loggedInUser = this.$store.getters.user;
         this.setCurrItem();
+        this.loggedInUser = this.$store.getters.user;
     },
     methods: {
         setCurrItem(){
