@@ -41,7 +41,7 @@ export default {
             this.$store.commit({type: 'setCurrItem', itemId: this.itemId})
             this.item = this.$store.getters.item
     },
-    metods:{
+    methods:{
         addToWishList(itemId) {
             this.$store.commit('setWishCount', itemId) // will be assigned to totalCount + diff
             this.$store.commit('addToWishList', this.item) // will be assigned to loggedinUser + diff

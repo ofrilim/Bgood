@@ -7,7 +7,7 @@
                 <!--  -->
                 <section class="user-item flex flex-wrap">
                     
-                    <section v-if="itemsInProcess === 'sell'">
+                    <section>
                         <item-preview v-for="item in userItems && item.status ==='Available'"  :key="item._id" :item="item"></item-preview>
                     </section>
 <!-- 
@@ -30,7 +30,7 @@
                 <br>
                 <br>
                 <button @click="itemsInProcess">
-                     <item-preview v-for="item in incomingOrders" :key="item._id" :item="item">Incomming Orders</item-preview>
+                     <!-- <item-preview v-for="item in incomingOrders" :key="item._id" :item="item">Incomming Orders</item-preview> -->
                 </button> 
                        
 

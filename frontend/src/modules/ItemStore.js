@@ -5,7 +5,7 @@ export default {
         items: [],
         currItem: null,
         msg: '',
-        status: 'Available',
+        // status: '',
         filterBy: {
 
         }
