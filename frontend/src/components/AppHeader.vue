@@ -25,7 +25,8 @@
 export default {
     computed: {
         wishedItemsCount() {
-            return this.$store.getters.wishlistItemsCount
+          if (!this.$store.getters.wishlistItemsCount) return '0'
+          return this.$store.getters.wishlistItemsCount
         },
            },
     methods: {

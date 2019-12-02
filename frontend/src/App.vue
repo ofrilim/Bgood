@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="text-center flex-row">
     <AppHeader/>
-    <AppWishList/>
+    <AppWishList v-if="this.$store.state.currUser"/>
     <router-view/>
     <AppFooter/>
   </div>

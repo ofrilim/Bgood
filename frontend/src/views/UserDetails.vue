@@ -1,6 +1,6 @@
 <template>
     <section class="user-details" v-if="user">
-        <h2>{{user.username}}'s Page</h2>
+        <h2>{{user.firstName}}'s Page</h2>
         <h2>Available items:</h2>
             <router-link to='/item/edit'><button class="add-btn btn">Add Item</button></router-link>
             <section class="user-items flex">
@@ -10,17 +10,17 @@
                 </section>            
             <!-- TODO - design this page and remove <BR> // Liron's comment-->
             <section class="user-about">
-                <h1>Welcome to {{user.username}}'s page</h1>
+                <h1>Welcome to {{user.firstName}}'s page</h1>
                 <br>
-                <h2>Full Name: {{user.fullname}}</h2>
-                <h2>A member of B-good since {{Date.now()}}</h2> 
-                <h2>Sold items: {{user.soldItemsCount}} <i class="fa fa-box-heart"></i></h2> 
+                <h2>Full Name: {{user.fullName}}</h2>
+                <!-- <h2>A member of B-good since {{Date.now()}}</h2>  -->
+                <!-- <h2>Sold items: {{user.soldItemsCount}} <i class="fa fa-box-heart"></i></h2>  -->
+                <h2>Sold items: {{user.wishListItems}} <i class="fa fa-box-heart"></i></h2> 
                 <br>
-                <h2>Address: {{user.city}}, {{user.state}} </h2>
+                <h2>Address: {{user.location}} </h2>
                 <h2>Email: {{user.email}}</h2>
-                <h2>Mobile: {{user.tel}}</h2>
                 <br>
-                <img :src="user.userImg"/>
+                <img :src="user.imgUrl"/>
                 <br>
                 <br>
                 <button>Contact Me</button> |
@@ -56,11 +56,6 @@ export default {
         return {
             userId: null,
             // userSoldItems: []
-        }
-    },
-    methods:{
-        addItem(){
-            
         }
     },
     computed:{

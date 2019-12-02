@@ -30,18 +30,13 @@ export default {
     data(){
         return {
             item: null,
+            itemId: null
         }
     },
-    methods:{
-        async getCurrItem(){
-            const itemId = this.$route.params.id
-            this.$store.commit({type: 'setCurrItem', itemId})
-            this.item = await this.$store.getters.item
-        },
+    metods:{
         addToWishList(itemId) {
             this.$store.commit('setWishCount', itemId) // will be assigned to totalCount + diff
             this.$store.commit('addToWishList', this.item) // will be assigned to loggedinUser + diff
-
             this.$store.dispatch({type: 'setMsg', msg: 'Item added successfully'})
         },
         async removeItem(itemId){
@@ -50,8 +45,10 @@ export default {
         }
     },
     created(){
-            this.getCurrItem();
-    }
+            this.itemId = this.$route.params.id
+            this.$store.commit({type: 'setCurrItem', itemId: this.itemId})
+            this.item = this.$store.getters.item
+    },
 }
 </script>
 <style lang="scss" scoped>

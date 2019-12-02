@@ -1,7 +1,6 @@
-// import HttpService from './HttpService'
-// const BASE_URL = (process.env.NODE_ENV !== 'development') ? '/api/item' : '//localhost:3000/api/item'
-
 import HttpService from './HttpService.js';
+
+// const BASE_URL = (process.env.NODE_ENV !== 'development') ? '/api/item' : '//localhost:3000/api/item'
 
 export default {
     query,
@@ -19,6 +18,8 @@ function query() {
 }
 
 function update(edited) {
+    console.log('service edited:', edited);
+    
     return HttpService.put(`item/${edited._id}`, edited)
 }
 
@@ -26,14 +27,13 @@ function getById(id) {
     return HttpService.get(`item/${id}`)
 }
 
-function remove(id) {
-    console.log('remove service id:', id);
-    
-    return HttpService.delete(`item/${id}`)
+async function remove(id) {
+    console.log('service remove id:', id);
+    await HttpService.delete(`item/${id}`)
+    return {}
 }
 
 async function add(newItem, {_id, fullname, imgUrl }) {
-    newItem._id = _makeId();
     newItem.wishCount = 0;
     newItem.createdAt = Date.now();
     newItem.status = 'available';
@@ -65,14 +65,14 @@ function uploadImg(ev) {
 }
 
 
-function _makeId(length=4) {
-    var txt = '3';
-    var possible = '0123456789';
-    for (var i = 0; i < length; i++) {
-        txt += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-    return txt;
-}
+// function _makeId(length=4) {
+//     var txt = '3';
+//     var possible = '0123456789';
+//     for (var i = 0; i < length; i++) {
+//         txt += possible.charAt(Math.floor(Math.random() * possible.length));
+//     }
+//     return txt;
+// }
 
 
 

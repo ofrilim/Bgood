@@ -1,6 +1,5 @@
 <template>
     <section class="item-edit-container">
-    <!-- <div style="margin: 20px;"></div> -->
         <form class="item-edit-form" ref="itemEdit">
             <table>
                 <tbody>
@@ -76,6 +75,7 @@ import ItemService from '../services/ItemService.js'
         labelPosition: 'top',
         newItem: {},
         shoeSizes: ['35-36', '36-37', '37-38', '38-39', '39-40', '40-41', '41-42'],
+        loggedInUser: null
         }
     },
     methods: {
@@ -83,7 +83,8 @@ import ItemService from '../services/ItemService.js'
             const itemId = this.$route.params.id;
             let item = this.resetForm();
             if (itemId) {
-                item = await ItemService.getById(itemId);
+                // item = await ItemService.getById(itemId);
+                item = this.$store.getters.item
             }
             this.newItem = JSON.parse(JSON.stringify(item));
         },
@@ -101,14 +102,13 @@ import ItemService from '../services/ItemService.js'
         async uploadImg(ev){
             const newImgUrl = await ItemService.uploadImg(ev)
             console.log('url:',newImgUrl);
-            this.newItem.imgUrl = ev
+            this.newItem.imgUrl = newImgUrl
         },
 
         async submitForm(){
-            const loggedInUser = this.$store.getters.user;
             try {
                 if (!this.newItem.imgUrl) throw "image not uploaded";
-                const item = await this.$store.dispatch({type: 'saveItem', item: this.newItem, user: loggedInUser});
+                const item = await this.$store.dispatch({type: 'saveItem', item: this.newItem, user: this.loggedInUser});
                 this.newItem = this.resetForm();
                 this.$router.push(`/item/${item._id}`)
             } catch(err){console.error(err)}
@@ -116,6 +116,8 @@ import ItemService from '../services/ItemService.js'
     },
     created(){
         this.setCurrItem();
+        this.loggedInUser = this.$store.getters.user;
+
     },
     // TODO: need to check the relevance of watch
     // watch:{
