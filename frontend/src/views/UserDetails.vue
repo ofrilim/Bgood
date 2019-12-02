@@ -19,8 +19,6 @@
                 <button class="btn">Contact Me</button>
             </section>
         </section>
-        <section class="user-wishlist-items"></section>
-        <!-- <pre>{{user}}</pre> -->
     </section>
 </template>
 
@@ -37,8 +35,6 @@ export default {
      created(){
         const userId = this.$route.params.id
         this.$store.dispatch({type: 'loadUser', userId })
-    },
-    methods:{
     },
     computed:{
         user(){

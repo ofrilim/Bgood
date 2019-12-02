@@ -6,8 +6,9 @@ export default {
     getById,
     remove,
     add,
-
 }
+    
+
 
 async function query() {
     try {
@@ -38,7 +39,8 @@ async function getById(id) {
 
 async function remove(id) {
     try {
-        return await HttpService.delete(`user/${id}`)
+        await HttpService.delete(`user/${id}`)
+        return {};
     } catch(error) {
         console.error(`inside userService -> couldnt remove user: ${id}`);
     }

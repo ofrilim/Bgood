@@ -1,6 +1,5 @@
 <template>
     <section class="item-edit-container">
-    <!-- <div style="margin: 20px;"></div> -->
         <form class="item-edit-form" ref="itemEdit">
             <table>
                 <tbody>
@@ -74,10 +73,10 @@ import ItemService from '../services/ItemService.js'
     name: 'item-edit',
     data() {
         return {
-            loggedInUser: null,
-            labelPosition: 'top',
-            newItem: {},
-            shoeSizes: ['35-36', '36-37', '37-38', '38-39', '39-40', '40-41', '41-42'],
+        labelPosition: 'top',
+        newItem: {},
+        shoeSizes: ['35-36', '36-37', '37-38', '38-39', '39-40', '40-41', '41-42'],
+        loggedInUser: null
         }
     },
     created(){
@@ -85,12 +84,10 @@ import ItemService from '../services/ItemService.js'
         this.setCurrItem();
     },
     methods: {
-        async setCurrItem(){
+        setCurrItem(){
             const itemId = this.$route.params.id;
             let item = this.resetForm();
-            if (itemId) {
-                item = await ItemService.getById(itemId);
-            }
+            if (itemId) item = this.$store.getters.item;
             this.newItem = JSON.parse(JSON.stringify(item));
         },
         resetForm() {
@@ -105,27 +102,19 @@ import ItemService from '../services/ItemService.js'
             }
         },
         async uploadImg(ev){
-            const newImgUrl = await ItemService.uploadImg(ev)            
+            const newImgUrl = await ItemService.uploadImg(ev)
             this.newItem.imgUrl = newImgUrl
         },
         async save(){
-            const item = await this.$store.dispatch({type: 'saveItem', item: this.newItem, user: this.loggedInUser});
-            this.newItem = this.resetForm();
-            this.$router.push(`/item/${item._id}`)
+            try {
+                if (!this.newItem.imgUrl) throw "image not uploaded";
+                const item = await this.$store.dispatch({type: 'saveItem', item: this.newItem, user: this.loggedInUser});
+                this.newItem = this.resetForm();
+                this.$router.push(`/item/${item._id}`)
+            } catch(err){
+                console.error(err)
+            }
         },
-    },
-    computed: {
-        // newItem() {
-        //     return this.$store.getters.item
-        // }
     }
-   
-    // TODO: need to check the relevance of watch
-    // watch:{
-    //     '$route.params.id'() {
-    //         this.newItem = {...this.item()}
-    //         console.log(this.newItem);
-    //     }
-    // }
   }
 </script>

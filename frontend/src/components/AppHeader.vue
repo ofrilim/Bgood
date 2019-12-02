@@ -23,9 +23,6 @@
 <script>
 
 export default {
-    computed: {
-       
-           },
     methods: {
       clicked() {
         this.$store.commit('openWishList');

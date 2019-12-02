@@ -22,7 +22,6 @@
             <router-link :to="`/item/edit/${item._id}`"><button>Edit Item</button></router-link>
             <button @click="removeItem(item._id)">Delete</button>
         </div>
-        <!-- <pre>{{this.item}}</pre> -->
     </section>
 </template>
 
@@ -31,29 +30,29 @@ export default {
     name: 'item-details',
     data() {
         return {
-            item: null
+            item: null,
+            itemId: null
         }
     },
-    created() {
-        const itemId = this.$route.params.id
-        this.$store.commit({type: 'setCurrItem', itemId})
-        this.item = this.$store.getters.item;
+     created(){
+            this.itemId = this.$route.params.id
+            this.$store.commit({type: 'setCurrItem', itemId: this.itemId})
+            this.item = this.$store.getters.item
     },
-    methods:{
+    metods:{
         addToWishList(itemId) {
             this.$store.commit('setWishCount', itemId) // will be assigned to totalCount + diff
             this.$store.commit('addToWishList', this.item) // will be assigned to loggedinUser + diff
-
             this.$store.dispatch({type: 'setMsg', msg: 'Item added successfully'})
         },
         async removeItem(itemId){
-            console.log('item id:', itemId);
             await this.$store.dispatch({type: 'removeItem', itemId})
             this.$router.push('/item/')
         }
-    }
+    },   
 }
 </script>
+
 <style lang="scss" scoped>
     .item-img{
         width: auto;
@@ -63,6 +62,4 @@ export default {
     .seller-info{
         width: 100%;
     }
-   
-   
 </style>

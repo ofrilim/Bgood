@@ -21,14 +21,9 @@ export default {
             const idx = state.items.findIndex(item => item._id === editedItem._id)
             if (idx === -1) state.items.unshift(editedItem)
             else state.items.splice(idx, 1, editedItem)
-            console.log('STORE SETITEM MUTATION: item IS:', editedItem);
         },
         removeItem(state, {itemId}){
-            console.log('mutation remove id:', itemId);
-
             const idx = state.items.findIndex(item => item._id === itemId)
-            console.log('mutation remove idx:', idx);
-            
             state.items.splice(idx, 1)
         }
     },
@@ -53,7 +48,6 @@ export default {
             return editedItem;
         },
         async removeItem(context, {itemId}){
-            console.log('remove item action id:', itemId);
             await ItemService.remove(itemId)
             context.commit({type: 'removeItem', itemId})
             return {};

@@ -2,7 +2,6 @@ import HttpService from './HttpService.js';
 
 export default {
     query,
-    // saveItem,
     getById,
     update,
     remove,
@@ -15,25 +14,25 @@ function query() {
     return HttpService.get('item')
 }
 
+function update(edited) {    
+    return HttpService.put(`item/${edited._id}`, edited)
+}
+
 function getById(id) {
     return HttpService.get(`item/${id}`)
 }
 
-function update(edited) {
-    return HttpService.put(`item/${edited._id}`, edited)
+async function remove(id) {
+    await HttpService.delete(`item/${id}`)
+    return {}
 }
 
-function remove(id) {    
-    return HttpService.delete(`item/${id}`)
-}
-
-function add(newItem) {
+async function add(newItem, {_id, fullName, imgUrl }) {
     newItem.wishCount = 0;
     newItem.createdAt = Date.now();
     newItem.status = 'available';
-    // newItem.owner = {_id, name: fullName, imgUrl};
-    console.log('added new item:', newItem);
-    return HttpService.post(`item`, newItem)   
+    newItem.owner = {_id, name: fullName, imgUrl};
+    return await HttpService.post(`item`, newItem)   
 }
 
 function uploadImg(ev) {
@@ -52,7 +51,7 @@ function uploadImg(ev) {
     })
         .then(res => res.json())
         .then(res => {
-            console.log(res)
+            console.log('imgUrl:',res)
             return res.url
         })
         .catch(err => console.error(err))
