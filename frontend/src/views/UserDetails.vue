@@ -19,29 +19,14 @@
 
             <!-- TODO - design this page and remove <BR> // Liron's comment-->
             <section class="user-about">
-                <h1>Welcome to {{user.username}}'s page</h1>
-                <br>
-                <h2>Full Name: {{user.fullname}}</h2>
-                <h2>A member of B-good since {{Date.now()}}</h2> 
-                <h2>Sold items: {{user.soldItemsCount}} <i class="fa fa-box-heart"></i></h2> 
-                <br>
-                <h2>Address: {{user.city}}, {{user.state}} </h2>
+                <h1>Welcome to {{user.firstName}}'s page</h1>
+                <h2>Name: {{user.fullName}}</h2>
                 <h2>Email: {{user.email}}</h2>
-                <h2>Mobile: {{user.tel}}</h2>
-                <br>
-                <img :src="user.userImg"/>
-                <br>
-                <br>
-                <button>Contact Me</button> |
-                <button>Follow</button><br>
-                <!-- The HISTORY btn displays sold items: img+title+price+buyer.name -->
-                <br>
-                <button>
-                    <ul class="hover flex flex-wrap flex-around">Sold items
-                     <!-- <item-preview v-for="item in userItems" :key="item._id" :item="item" >
-                </item-preview> -->
-                    </ul>
-                </button>
+                <h2>Address: {{user.location}} </h2>
+                <br/>
+                <img :src="user.imgUrl"/>
+                <br/>
+                <h2>Items in WishList: {{user.wishListItems}} <i class="fa fa-box-heart"></i></h2> 
                 <br>
                 <br>
                 <button @click="itemsInProcess">
@@ -52,28 +37,27 @@
                 <section v-if="incomingOrders.length !== 0">
                     <pre>{{this.incomingOrders}}</pre>
                     <button class="btn">Approve sell</button>
-                    </section>            
+                </section>            
+                <button class="btn">Contact Me</button>
             </section>
         </section>
-        <section class="user-wishlist-items"></section>
-        <!-- <pre>{{user}}</pre> -->
     </section>
 </template>
 
 <script>
-// user sees items for sale if userId!==params.id
-
-import store from '../store/index.js'
 import ItemPreview from '../components/ItemPreview.vue'
 
 export default {
     name: 'user-details',
-    store: store,
     data(){
         return {
             userId: null,
             incomingOrders: [],
         }
+    },
+    created(){
+        const userId = this.$route.params.id
+        this.$store.dispatch({type: 'loadUser', userId })
     },
     methods:{
         addItem(){
@@ -93,25 +77,11 @@ export default {
         },
         userItems(){
             var items = this.$store.getters.items.filter(item => item.owner._id === this.userId)
-            // console.log('user items:', items);
             return items
         },
-    },
-    created(){
-        this.userId = this.$route.params.id
-        const userId = this.userId
-        this.$store.dispatch({type: 'loadUser', userId})
-        // change to agregation to bring the user items
     },
     components:{
         ItemPreview
     },
 }
 </script>
-
-<style lang="scss" scoped>
-    // .wishlist-item{
-    //     width: 200px;
-    //     height: 400px;
-    // }
-</style>

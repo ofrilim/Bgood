@@ -1,6 +1,5 @@
 <template>
     <section class="item-edit-container">
-    <!-- <div style="margin: 20px;"></div> -->
         <form class="item-edit-form" ref="itemEdit">
             <table>
                 <tbody>
@@ -35,7 +34,6 @@
                     <tr v-if="newItem.category === 'shoes'">
                         <td><label>Shoe Size: </label></td>
                         <td>
-                            <!-- <input type="number" class="frame" min="32" max="43" v-model="newItem.size" > -->
                             <select class="frame" v-model="newItem.size" placeholder="Choose Size">
                                 <option v-for="shoeSize in shoeSizes" :key="shoeSize.idx" :value="shoeSize">{{shoeSize}}</option>
                             </select>
@@ -57,12 +55,10 @@
                     </tr>
                     <tr>
                         <td><label> Upload your image:</label></td>
-                        <td><input class="frame" @change="uploadImg" type="file"></td>
-                        
-                        
+                        <td><input class="frame" @change="uploadImg" type="file"></td>                        
                     </tr>
                     
-                    <button class="submit-btn btn" type="primary" @click.prevent="submitForm">Save Item</button>
+                    <button class="submit-btn btn" type="primary" @click.prevent="save">Save Item</button>
                     <button class="reset-btn btn" @click.prevent="resetForm">Reset</button>
                 </tbody>
             </table>
@@ -71,7 +67,8 @@
 </template>
 
 <script>
-import ItemService from '../services/ItemService.js'
+import ItemService from '../services/ItemService.js';
+
   export default {
     name: 'item-edit',
     data() {
@@ -79,15 +76,24 @@ import ItemService from '../services/ItemService.js'
         labelPosition: 'top',
         newItem: {},
         shoeSizes: ['35-36', '36-37', '37-38', '38-39', '39-40', '40-41', '41-42'],
+        loggedInUser: null
         }
     },
+    created(){
+        this.setCurrItem();
+        this.loggedInUser = this.$store.getters.user;
+    },
     methods: {
-        async setCurrItem(){
+        setCurrItem(){
             const itemId = this.$route.params.id;
             let item = this.resetForm();
+<<<<<<< HEAD
             if (itemId) {
-                item = await ItemService.getById(itemId);
+                item = this.$store.getters.item
             }
+=======
+            if (itemId) item = this.$store.getters.item;
+>>>>>>> 76ff155eb1b1783cf24ffb944f68302c22c471cc
             this.newItem = JSON.parse(JSON.stringify(item));
         },
         resetForm() {
@@ -103,27 +109,18 @@ import ItemService from '../services/ItemService.js'
         },
         async uploadImg(ev){
             const newImgUrl = await ItemService.uploadImg(ev)
-            console.log('url:',newImgUrl);
-            
             this.newItem.imgUrl = newImgUrl
         },
-
-        async submitForm(){
-            const loggedInUser = this.$store.getters.user;
-            const item = await this.$store.dispatch({type: 'saveItem', item: this.newItem, user: loggedInUser});
-            this.newItem = this.resetForm();
-            this.$router.push(`/item/${item._id}`)
+        async save(){
+            try {
+                if (!this.newItem.imgUrl) throw "image not uploaded";
+                const item = await this.$store.dispatch({type: 'saveItem', item: this.newItem, user: this.loggedInUser});
+                this.newItem = this.resetForm();
+                this.$router.push(`/item/${item._id}`)
+            } catch(err){
+                console.error(err)
+            }
         },
-    },
-    created(){
-        this.setCurrItem();
-    },
-    // TODO: need to check the relevance of watch
-    // watch:{
-    //     '$route.params.id'() {
-    //         this.newItem = {...this.item()}
-    //         console.log(this.newItem);
-    //     }
-    // }
+    }
   }
 </script>

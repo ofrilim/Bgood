@@ -9,11 +9,6 @@ import ItemList from '@/components/ItemList.vue'
 
 export default {
     name: 'item-app',
-    data(){
-        return {
-            // items: [],
-        }
-    },
     components:{
         ItemList
     },
@@ -22,9 +17,5 @@ export default {
             return this.$store.getters.items
         }
     },
-    created(){
-        // this.$store.dispatch('loadItems')
-        // console.log('app items:', items);
-    }
 }
 </script>
