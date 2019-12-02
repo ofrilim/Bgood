@@ -1,25 +1,26 @@
 <template>
-    <section v-if="item" class="item-details container flex">
-        <img :src="this.item.imgUrl" class="ratio-16-9 img-details"/>
-        <div class="details-content container">
-            <h1>{{item.name}}</h1>
-            <h3>Price: ${{item.price}}</h3>
-            <h3>Category: {{item.category}}</h3>
-            <h3>Publishe at: {{item.createdAt}}</h3>
-            <h3>Condition: {{item.condition}}</h3>
-            <h3>Status: {{item.status}}</h3>
-            <h3>Additional information: {{item.description}}</h3>
-            <div class="container">
-                <router-link :to="`/user/${item.owner._id}`">Uploaded by: {{item.owner.name}}</router-link> 
-                <br/>
-                <img :src="item.owner.imgUrl" class="avatar-img"/>
+    <section v-if="item" class="item-details flex-col">
+        <h1 class="item-title center">{{item.name}}</h1>
+        <div class="item-details-main flex frame">
+            <img :src="this.item.imgUrl" class="ratio-16-9 img-details radius"/>
+            <div class="details-content container">
+                <h3><span>Category : </span>{{item.category}}</h3>
+                <h3><span>Condition : </span>{{item.condition}}</h3>
+                <h3><span>Status : </span>{{item.status}}</h3>
+                <h3><span>Uploaded at : </span>{{item.createdAt}}</h3>
+                <h2><span>Price : </span>${{item.price}}</h2>
+                <h4><span>Additional information : </span>{{item.description}}</h4>
+                <div class="item-details-owner">
+                    <router-link :to="`/user/${item.owner._id}`"><span>Uploaded by : </span>{{item.owner.name}}</router-link> 
+                    <img :src="item.owner.imgUrl" class="avatar-img"/>
+                </div>
             </div>
         </div>
         <div>
             <button @click="addToWishList(item._id)"><span class="heart"></span></button>
             <button class="btn" @click="buyItem">BUY</button>
-            <router-link :to="`/item/edit/${item._id}`"><button>Edit Item</button></router-link>
-            <button @click="removeItem(item._id)">Delete</button>
+            <router-link :to="`/item/edit/${item._id}`"><button class="btn">Edit Item</button></router-link>
+            <button @click="removeItem(item._id)" class="btn">Delete</button>
             <h1 class="buy-msg" v-if="this.msg">{{msg}}</h1>
         </div>
     </section>

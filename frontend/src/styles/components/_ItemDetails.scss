@@ -1,11 +1,12 @@
 .item-details {
     margin: 2%;
+    height: 80%;
 }
 
 .img-details {
-    // width: 200px;
-    // height: 300px;
-    max-height: 350px;
+    max-height: 80%;
+    border-radius: 5px;
+    margin-left: 5%;
 }
 
 .Details-title{
@@ -36,4 +37,38 @@
 }
 .seller-info {
     width: 100%;
+}
+
+.img-container {
+    height: 80vh;
+    width: 50vw;
+}
+
+.item-title {
+    font-size: 1.4rem;
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+
+.details-content {
+    & h3 {
+        color: $clr7;
+        margin-top: 10px
+    }
+    & span {
+        font-weight: bolder;
+        }
+    & h2 {
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+    & h4 {
+        height: 80px;
+    }
+}
+
+.item-details-owner {
+    & img {
+        margin-left: 10px;
+    }
 }
