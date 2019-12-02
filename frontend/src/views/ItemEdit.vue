@@ -34,7 +34,6 @@
                     <tr v-if="newItem.category === 'shoes'">
                         <td><label>Shoe Size: </label></td>
                         <td>
-                            <!-- <input type="number" class="frame" min="32" max="43" v-model="newItem.size" > -->
                             <select class="frame" v-model="newItem.size" placeholder="Choose Size">
                                 <option v-for="shoeSize in shoeSizes" :key="shoeSize.idx" :value="shoeSize">{{shoeSize}}</option>
                             </select>
@@ -79,11 +78,10 @@ import ItemService from '../services/ItemService.js'
         }
     },
     methods: {
-        async setCurrItem(){
+        setCurrItem(){
             const itemId = this.$route.params.id;
             let item = this.resetForm();
             if (itemId) {
-                // item = await ItemService.getById(itemId);
                 item = this.$store.getters.item
             }
             this.newItem = JSON.parse(JSON.stringify(item));
