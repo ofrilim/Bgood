@@ -25,6 +25,8 @@
             <button @click="buyItem()">BUY</button>
             <br>
             <h1 class="buy-msg">{{msg}}</h1>
+            <button @click="removeItem(item._id)">Delete</button>
+            <!-- <button @click="addItem">Add Item</button> -->
         </section>
         <!-- <pre>{{this.item}}</pre> -->
     </section>
@@ -45,15 +47,11 @@ export default {
         item() {
             return this.$store.getters.item
         }
-    },
-    methods:{
         async buyItem() {
             this.$store.dispatch({type: 'buyItem', item: this.item})
-
-        return this.msg = 
-        'Item reserved successfully. Please wait to the seller\'s final approval' 
+        return this.msg = 'Item reserved successfully' 
         // this.$store.dispatch({type: 'setMsg', msg: 'Item bougth successfully'})
-        }
+        },
 
         //  addToWishList(itemId) {
         //     console.log("item._id - itemDetails: ", this.item._id)
@@ -61,7 +59,23 @@ export default {
         //     this.$store.commit('addToWishList', this.item) // will be assigned to loggedinUser + diff
 
         //     this.$store.dispatch({type: 'setMsg', msg: 'Item added successfully'})
-        //  }
+        async getCurrItem(){
+            const itemId = this.$route.params.id
+            this.$store.commit({type: 'setCurrItem', itemId})
+            this.item = await this.$store.getters.item
+            console.log('details item:', this.item);
+        },
+        addToWishList(itemId) {
+            this.$store.commit('setWishCount', itemId) // will be assigned to totalCount + diff
+            this.$store.commit('addToWishList', this.item) // will be assigned to loggedinUser + diff
+
+            this.$store.dispatch({type: 'setMsg', msg: 'Item added successfully'})
+        },
+        async removeItem(itemId){
+            console.log('item id:', itemId);
+            await this.$store.dispatch({type: 'removeItem', itemId})
+            this.$router.push('/item/')
+        }
     },
     created(){
         this.$store.dispatch({type: 'loadItem', itemId: this.$route.params.id})

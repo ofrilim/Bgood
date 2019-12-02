@@ -35,6 +35,14 @@ export default {
         setMsg(state, {msg}) {
             state.msg = msg;
         },
+        removeItem(state, {itemId}){
+            console.log('mutation remove id:', itemId);
+
+            const idx = state.items.findIndex(item => item._id === itemId)
+            console.log('mutation remove idx:', idx);
+            
+            state.items.splice(idx, 1)
+        }
         
         // saveBuyStatus(state, {item}) {
         //     // this.status.commit({type: 'buyItem', item})
@@ -47,6 +55,7 @@ export default {
             try {
                 const items = await ItemService.query();
                 context.commit({type: 'setItems', items})
+                console.log('items:', items);
             } catch(err) {
                 console.error(err);
             }
@@ -55,12 +64,10 @@ export default {
             let item = await ItemService.getById(itemId)
             context.commit({type: 'setCurrItem', item})
         },
-        async saveItem(context, {item}){
-            console.log('item:', item);
-            
-            // var item = {...savedItem};
-            const editedItem = await ItemService.update(item)
-            console.log('editedItem:', editedItem);
+        async saveItem(context, {item, user}){
+            let editedItem = null;
+            if (item._id) editedItem = await ItemService.update(item)
+            else editedItem = await ItemService.add(item, user)             
             context.commit({type: 'setItem', editedItem})
             return editedItem;
         },
@@ -74,6 +81,15 @@ export default {
             console.log("item actionStore/actions: ", editedItem)
             return newStatus
         },
+        async removeItem(context, {itemId}){
+            console.log('remove item action id:', itemId);
+            await ItemService.remove(itemId)
+            context.commit({type: 'removeItem', itemId})
+            // console.log('remove id:', id);
+
+            // console.log('items:', context.state.items);
+            return {};
+        }
     },
     getters: {
         items(state){

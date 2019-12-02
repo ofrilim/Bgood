@@ -2,13 +2,12 @@
     <section class="user-details" v-if="user">
         <h2>{{user.username}}'s Page</h2>
         <h2>Available items:</h2>
-        <section class="user-items flex">
-
-            <section class="user-item flex flex-wrap">
-                <item-preview v-for="item in userItems" :key="item._id" :item="item" >
-                </item-preview>
-            </section>
-            
+            <router-link to='/item/edit'><button class="add-btn btn">Add Item</button></router-link>
+            <section class="user-items flex">
+                <section class="user-item flex flex-wrap">
+                    <item-preview v-for="item in userItems" :key="item._id" :item="item" >
+                    </item-preview>
+                </section>            
             <!-- TODO - design this page and remove <BR> // Liron's comment-->
             <section class="user-about">
                 <h1>Welcome to {{user.username}}'s page</h1>
@@ -36,9 +35,7 @@
                 </button>
                 <br>
                 <br>
-                <button>Incomming Orders</button> 
-
-                
+                <button>Incomming Orders</button>             
             </section>
         </section>
         <section class="user-wishlist-items"></section>
@@ -59,6 +56,11 @@ export default {
         return {
             userId: null,
             // userSoldItems: []
+        }
+    },
+    methods:{
+        addItem(){
+            
         }
     },
     computed:{

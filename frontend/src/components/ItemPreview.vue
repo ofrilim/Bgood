@@ -26,8 +26,6 @@ export default {
         addToWishList(itemId) {
             this.$emit('addToWishList', itemId)
         },
-//     components: {
-//         // ItemDetails
     },
 }
 </script>
