@@ -1,18 +1,18 @@
 import router from '@/router'
+import Axios from 'axios';
 // import store from '@/store'
 
 const BASE_URL = process.env.NODE_ENV === 'production'
     ? '/'
     : '//localhost:3000/'
 
-// const axios = require('axios')
-import Axios from 'axios';
 var axios = Axios.create({
     withCredentials: true
-});
+})
 
 export default {
     get(endpoint, data){
+        // console.log('IN HTTPSERVICE GET FUNCTION',endpoint, data)
         return ajax(endpoint, 'GET', data)
     },
     post(endpoint, data){
@@ -34,7 +34,6 @@ async function ajax(endpoint, method='get', data=null) {
             method,
             data
         })
-        console.log('axios res data:', res.data);
         return res.data;
 
     } catch (err) {

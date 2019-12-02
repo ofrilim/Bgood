@@ -6,55 +6,49 @@ export default {
     getById,
     remove,
     add,
-    // queryUsers
-}
-    
-function query() {
-    return HttpService.get('user')
+
 }
 
-function update(edited) {
-    return HttpService.put(`user/${edited._id}`, edited)
+async function query() {
+    try {
+        const users = await HttpService.get('user')
+        return users;
+    } catch(error) {
+        console.error('inside userService => couldnt get users');
+    }
 }
 
-// function getById(id) {
-//     return HttpService.get(`user/${id}`)
-// }
-
-function remove(id) {
-    return HttpService.delete(`user/${id}`)
+async function update(edited) {
+    try {
+        const user = await HttpService.put(`user/${edited._id}`, edited)
+        return user;
+    } catch(error) {
+        console.error(`inside userService => couldnt update user: ${edited._id}`);
+    }
 }
 
 async function getById(id) {
     try {
-        const users = await HttpService.get(BASE_URL);
-        const user = users.find((user) => user._id === id)
-        // console.log('query users:', users);
-        console.log('inside userService -> query user:', user);
-        return user
-        } catch(error){
-            console.error('inside userService -> couldnt get users');
+        const user = await HttpService.get(`user/${id}`);
+        return user;
+    } catch(error) {
+        console.error(`inside userService -> couldnt getById user: ${id}`);
     }
 }
 
-function add(added) {
-    return HttpService.post(`user`, added)
-}
-//     try {// const users = await HttpService.get(BASE_URL);
-//         const users = await require('../../../db/user.json')
-//         const user = users.find((user) => user._id === id)
-//         return user
-//         } catch(error){
-//             console.error('couldnt get users');
-//     }
-// }
-
-async function queryUsers(){
+async function remove(id) {
     try {
-        const users = await HttpService.get(BASE_URL);
-        console.log('inside userService, query users:', users);
-        return users
-    } catch(error){
-        console.error('inside userService -> couldnt get users');
+        return await HttpService.delete(`user/${id}`)
+    } catch(error) {
+        console.error(`inside userService -> couldnt remove user: ${id}`);
+    }
+}
+
+async function add(added) {
+    try {
+        const user = await HttpService.post(`user`, added)
+        return user;
+    } catch(error) {
+        console.error('inside userService -> couldnt add user');
     }
 }

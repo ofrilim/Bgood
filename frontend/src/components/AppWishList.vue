@@ -6,7 +6,7 @@
         :visible.sync="toggleWishList"
         direction="ltr"
         size="100%">
-          <table class="wishList-table center" v-for="item in wishedItemsUserList" :key="item._id" :item="item">
+          <!-- <table class="wishList-table center" v-for="item in wishedItemsUserList" :key="item._id" :item="item">
             <tb>  
             <tr class="center"><i class="fa fa-star"></i></tr>
             <br>
@@ -20,7 +20,7 @@
             <tr><button class="action-buy">I wish to buy</button></tr>
             <tr><button class="action-remove">Remove</button></tr>
             </tb>
-            </table>
+            </table> -->
         </el-drawer>
     </section>
 </template>
@@ -35,10 +35,6 @@ export default {
     computed: {
         toggleWishList() {
             return this.$store.getters.toggleWishList
-        },
-        wishedItemsUserList() { 
-            // console.log("wishlist-app wish", this.$store.getters.wishedItemsList)
-            return this.$store.getters.wishedItemsList
         },
         // *** LIRON: @click should be activated by clicking the table ***
         // closeWishList() {

@@ -3,7 +3,7 @@
         <!-- <h1>item-details - </h1> -->
         <!-- <img src="../assets/loading.gif" class="loading-img"/> -->
         <img :src="this.item.imgUrl" class="ratio-16-9 img-details"/>
-        <section class="details-content container">
+        <div class="details-content container">
             <h1>{{item.name}}</h1>
             <h3>Price: ${{item.price}}</h3>
             <h3>Category: {{item.category}}</h3>
@@ -11,38 +11,35 @@
             <h3>Condition: {{item.condition}}</h3>
             <h3>Status: {{item.status}}</h3>
             <h3>Additional information: {{item.description}}</h3>
-            <section class="seller-info container flex justify-center align-center">
-                <!-- <img :src="user.userImg"/> -->
-                <img :src="item.owner.imgUrl" class="avatar-img"/>
+            <div class="container">
                 <router-link :to="`/user/${item.owner._id}`">Uploaded by: {{item.owner.name}}</router-link> 
-            </section>
-            <h3>{{item.price}}</h3>
-            <button @click="addToWishList(item._id)"><i class="fa fa-heart"></i></button>
+                <br/>
+                <img :src="item.owner.imgUrl" class="avatar-img"/>
+            </div>
+        </div>
+        <div>
+            <button @click="addToWishList(item._id)"><span class="heart"></span></button>
             <router-link :to="`/item/edit/${item._id}`"><button>Edit Item</button></router-link>
             <button @click="removeItem(item._id)">Delete</button>
-            <!-- <button @click="addItem">Add Item</button> -->
-        </section>
+        </div>
         <!-- <pre>{{this.item}}</pre> -->
     </section>
 </template>
 
 <script>
-// import store from '../store/index.js'
-
 export default {
     name: 'item-details',
-    data(){
+    data() {
         return {
-            item: null,
+            item: null
         }
     },
+    created() {
+        const itemId = this.$route.params.id
+        this.$store.commit({type: 'setCurrItem', itemId})
+        this.item = this.$store.getters.item;
+    },
     methods:{
-        async getCurrItem(){
-            const itemId = this.$route.params.id
-            this.$store.commit({type: 'setCurrItem', itemId})
-            this.item = await this.$store.getters.item
-            console.log('details item:', this.item);
-        },
         addToWishList(itemId) {
             this.$store.commit('setWishCount', itemId) // will be assigned to totalCount + diff
             this.$store.commit('addToWishList', this.item) // will be assigned to loggedinUser + diff
@@ -54,9 +51,6 @@ export default {
             await this.$store.dispatch({type: 'removeItem', itemId})
             this.$router.push('/item/')
         }
-    },
-    created(){
-            this.getCurrItem();
     }
 }
 </script>

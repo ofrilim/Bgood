@@ -57,12 +57,10 @@
                     </tr>
                     <tr>
                         <td><label> Upload your image:</label></td>
-                        <td><input class="frame" @change="uploadImg" type="file"></td>
-                        
-                        
+                        <td><input class="frame" @change="uploadImg" type="file"></td>                        
                     </tr>
                     
-                    <button class="submit-btn btn" type="primary" @click.prevent="submitForm">Save Item</button>
+                    <button class="submit-btn btn" type="primary" @click.prevent="save">Save Item</button>
                     <button class="reset-btn btn" @click.prevent="resetForm">Reset</button>
                 </tbody>
             </table>
@@ -76,10 +74,15 @@ import ItemService from '../services/ItemService.js'
     name: 'item-edit',
     data() {
         return {
-        labelPosition: 'top',
-        newItem: {},
-        shoeSizes: ['35-36', '36-37', '37-38', '38-39', '39-40', '40-41', '41-42'],
+            loggedInUser: null,
+            labelPosition: 'top',
+            newItem: {},
+            shoeSizes: ['35-36', '36-37', '37-38', '38-39', '39-40', '40-41', '41-42'],
         }
+    },
+    created(){
+        this.loggedInUser = this.$store.getters.user;
+        this.setCurrItem();
     },
     methods: {
         async setCurrItem(){
@@ -102,22 +105,21 @@ import ItemService from '../services/ItemService.js'
             }
         },
         async uploadImg(ev){
-            const newImgUrl = await ItemService.uploadImg(ev)
-            console.log('url:',newImgUrl);
-            
+            const newImgUrl = await ItemService.uploadImg(ev)            
             this.newItem.imgUrl = newImgUrl
         },
-
-        async submitForm(){
-            const loggedInUser = this.$store.getters.user;
-            const item = await this.$store.dispatch({type: 'saveItem', item: this.newItem, user: loggedInUser});
+        async save(){
+            const item = await this.$store.dispatch({type: 'saveItem', item: this.newItem, user: this.loggedInUser});
             this.newItem = this.resetForm();
             this.$router.push(`/item/${item._id}`)
         },
     },
-    created(){
-        this.setCurrItem();
-    },
+    computed: {
+        // newItem() {
+        //     return this.$store.getters.item
+        // }
+    }
+   
     // TODO: need to check the relevance of watch
     // watch:{
     //     '$route.params.id'() {

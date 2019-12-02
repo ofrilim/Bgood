@@ -1,15 +1,15 @@
 <template>
     <section class="item-container">
         <li class="preview-container item-preview center">
-                <h2>{{item.name}}</h2>
-                <router-link :to="`/item/${item._id}`">
-                    <img class="img-prev" :src="item.imgUrl"/>
-                </router-link>
-                <h3>Price: ${{item.price}}</h3>
-                <router-link :to="`/user/${item.owner._id}`">Uploaded by: {{item.owner.name}}</router-link> 
-                <!-- <h3>Seller: {{item.owner.name}}</h3>  -->
-                <img class="avatar-img" :src="item.owner.imgUrl"/>
-                <button @click="addToWishList(item._id); toggleWishHeart(isHeartClicked)"><i class="fa fa-heart"></i></button>
+            <h2>{{item.name}}</h2>
+            <router-link :to="`/item/${item._id}`">
+                <img class="img-prev" :src="item.imgUrl"/>
+            </router-link>
+            <h3>Price: ${{item.price}}</h3>
+            <router-link :to="`/user/${item.owner._id}`">Uploaded by: {{item.owner.name}}</router-link> 
+            <!-- <h3>Seller: {{item.owner.name}}</h3>  -->
+            <img class="avatar-img" :src="item.owner.imgUrl"/>
+            <button @click="addToWishList(item._id)"><i class="fa fa-heart"></i></button>
         </li>
     </section>
 </template>
