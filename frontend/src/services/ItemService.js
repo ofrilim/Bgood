@@ -1,10 +1,7 @@
 import HttpService from './HttpService.js';
 
-// const BASE_URL = (process.env.NODE_ENV !== 'development') ? '/api/item' : '//localhost:3000/api/item'
-
 export default {
     query,
-    // saveItem,
     getById,
     update,
     remove,
@@ -17,9 +14,7 @@ function query() {
     return HttpService.get('item')
 }
 
-function update(edited) {
-    console.log('service edited:', edited);
-    
+function update(edited) {    
     return HttpService.put(`item/${edited._id}`, edited)
 }
 
@@ -28,17 +23,15 @@ function getById(id) {
 }
 
 async function remove(id) {
-    console.log('service remove id:', id);
     await HttpService.delete(`item/${id}`)
     return {}
 }
 
-async function add(newItem, {_id, fullname, imgUrl }) {
+async function add(newItem, {_id, fullName, imgUrl }) {
     newItem.wishCount = 0;
     newItem.createdAt = Date.now();
     newItem.status = 'available';
-    newItem.owner = {_id, name: fullname, imgUrl};
-    console.log('added new item:', newItem);
+    newItem.owner = {_id, name: fullName, imgUrl};
     return await HttpService.post(`item`, newItem)   
 }
 
@@ -63,19 +56,3 @@ function uploadImg(ev) {
         })
         .catch(err => console.error(err))
 }
-
-
-// function _makeId(length=4) {
-//     var txt = '3';
-//     var possible = '0123456789';
-//     for (var i = 0; i < length; i++) {
-//         txt += possible.charAt(Math.floor(Math.random() * possible.length));
-//     }
-//     return txt;
-// }
-
-
-
-// function _savetoysToFile(items) {
-//     // fs.writeFileSync('data/item.json', JSON.stringify(items, null, 2));
-// }

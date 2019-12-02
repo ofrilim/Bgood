@@ -14,7 +14,7 @@
           <router-link to="/item">Item App</router-link> | 
           <router-link to="/signin">SignIn</router-link> 
           <!-- <router-link to="/usre/user._id">{{user}}'s Page</router-link> -->
-          <button @click="clicked"><span class="heart"></span></button><span>{{wishedItemsCount}}</span>
+          <button @click="clicked"><span class="heart"></span></button>
         </div>
     </section>
 </template>
@@ -23,12 +23,6 @@
 <script>
 
 export default {
-    computed: {
-        wishedItemsCount() {
-          if (!this.$store.getters.wishlistItemsCount) return '0'
-          return this.$store.getters.wishlistItemsCount
-        },
-           },
     methods: {
       clicked() {
         this.$store.commit('openWishList');

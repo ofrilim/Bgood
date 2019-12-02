@@ -55,9 +55,10 @@
                     </tr>
                     <tr>
                         <td><label> Upload your image:</label></td>
-                        <td><input class="frame" @change="uploadImg" type="file"></td>
+                        <td><input class="frame" @change="uploadImg" type="file"></td>                        
                     </tr>
-                    <button class="submit-btn btn" type="primary" @click.prevent="submitForm">Save Item</button>
+                    
+                    <button class="submit-btn btn" type="primary" @click.prevent="save">Save Item</button>
                     <button class="reset-btn btn" @click.prevent="resetForm">Reset</button>
                 </tbody>
             </table>
@@ -66,7 +67,8 @@
 </template>
 
 <script>
-import ItemService from '../services/ItemService.js'
+import ItemService from '../services/ItemService.js';
+
   export default {
     name: 'item-edit',
     data() {
@@ -77,13 +79,21 @@ import ItemService from '../services/ItemService.js'
         loggedInUser: null
         }
     },
+    created(){
+        this.setCurrItem();
+        this.loggedInUser = this.$store.getters.user;
+    },
     methods: {
         setCurrItem(){
             const itemId = this.$route.params.id;
             let item = this.resetForm();
+<<<<<<< HEAD
             if (itemId) {
                 item = this.$store.getters.item
             }
+=======
+            if (itemId) item = this.$store.getters.item;
+>>>>>>> 76ff155eb1b1783cf24ffb944f68302c22c471cc
             this.newItem = JSON.parse(JSON.stringify(item));
         },
         resetForm() {
@@ -99,30 +109,18 @@ import ItemService from '../services/ItemService.js'
         },
         async uploadImg(ev){
             const newImgUrl = await ItemService.uploadImg(ev)
-            console.log('url:',newImgUrl);
             this.newItem.imgUrl = newImgUrl
         },
-
-        async submitForm(){
+        async save(){
             try {
                 if (!this.newItem.imgUrl) throw "image not uploaded";
                 const item = await this.$store.dispatch({type: 'saveItem', item: this.newItem, user: this.loggedInUser});
                 this.newItem = this.resetForm();
                 this.$router.push(`/item/${item._id}`)
-            } catch(err){console.error(err)}
+            } catch(err){
+                console.error(err)
+            }
         },
-    },
-    created(){
-        this.setCurrItem();
-        this.loggedInUser = this.$store.getters.user;
-
-    },
-    // TODO: need to check the relevance of watch
-    // watch:{
-    //     '$route.params.id'() {
-    //         this.newItem = {...this.item()}
-    //         console.log(this.newItem);
-    //     }
-    // }
+    }
   }
 </script>

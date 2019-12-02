@@ -1,5 +1,4 @@
 import ItemService from '../services/ItemService.js';
-// import UserStore from './UserStore.js';
 // import router from '../router/index';
 
 export default {
@@ -14,8 +13,8 @@ export default {
         setItems(state, {items}){
             state.items = items;
         },
-        setCurrItem(state, {itemId}){
-            const item = state.items.find((item) => item._id === itemId);
+        setCurrItem(state, { itemId }){
+            const item = state.items.find(item => item._id === itemId)
             state.currItem = item;
         },
         setItem(state, {editedItem}){
@@ -41,7 +40,7 @@ export default {
             let item = await ItemService.getById(itemId)
             context.commit({type: 'setCurrItem', item})
         },
-        async saveItem(context, {item, user}){
+        async saveItem(context, { item, user }){
             let editedItem = null;
             if (item._id) editedItem = await ItemService.update(item)
             else editedItem = await ItemService.add(item, user)             
