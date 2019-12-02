@@ -34,12 +34,12 @@ export default {
             }, 
     },
     mutations: {
-        setUser(state, {user}){
-            state.currUser = user
-        },
-        addToWishList(state, itemId) { // TODO - define with DIFF (Liron comment)
-            const item = state.items.find(item => item._id === itemId)
-            state.currUser.wishlistItems.unshift(item);
+        setUser(state, {currUser}){
+            state.currUser = currUser
+        // },
+        // addToWishList(state, itemId) { // TODO - define with DIFF (Liron comment)
+        //     const item = state.items.find(item => item._id === itemId)
+        //     state.currUser.wishlistItems.unshift(item);
         }
     },
     actions: {
@@ -51,15 +51,15 @@ export default {
     getters: {
         user(state){
             return state.currUser;
-        },
-        wishlistItemsCount(state) {
-            // console.log("wishList: ", state.currUser.wishlistItems)
-            return state.currUser.wishlistItems.length;
-        },
+        // },
+        // wishlistItemsCount(state) {
+        //     // console.log("wishList: ", state.currUser.wishlistItems)
+        //     return state.currUser.wishlistItems.length;
+        // },
         
-        wishedItemsList(state) {
-            // console.log("wishList-userStore: ", state.currUser.wishlistItems.length)
-            return state.currUser.wishlistItems;
+        // wishedItemsList(state) {
+        //     // console.log("wishList-userStore: ", state.currUser.wishlistItems.length)
+        //     return state.currUser.wishlistItems;
         }
     }
 }

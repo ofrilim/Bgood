@@ -17,8 +17,14 @@
                 <router-link :to="`/user/${item.owner._id}`">Uploaded by: {{item.owner.name}}</router-link> 
             </section>
             <h3>{{item.price}}</h3>
+
             <button @click="addToWishList(item._id)"><i class="fa fa-heart"></i></button>
+            <br>
             <router-link :to="`/item/edit/${item._id}`"><button>Edit Item</button></router-link>
+            <br>
+            <button @click="buyItem()">BUY</button>
+            <br>
+            <h1 class="buy-msg">{{msg}}</h1>
         </section>
         <!-- <pre>{{this.item}}</pre> -->
     </section>
@@ -31,28 +37,38 @@ export default {
     name: 'item-details',
     data(){
         return {
-            item: null,
+            msg: '',
+            status: 'available'
+        }
+    },
+    computed: {
+        item() {
+            return this.$store.getters.item
         }
     },
     methods:{
-        async getCurrItem(){
-            const itemId = this.$route.params.id
-            this.$store.commit({type: 'setCurrItem', itemId})
-            this.item = await this.$store.getters.item
-            console.log('item:', this.item);
-        },
-         addToWishList(itemId) {
-            this.$store.commit('setWishCount', itemId) // will be assigned to totalCount + diff
-            this.$store.commit('addToWishList', this.item) // will be assigned to loggedinUser + diff
+        async buyItem() {
+            this.$store.dispatch({type: 'buyItem', item: this.item})
 
-            this.$store.dispatch({type: 'setMsg', msg: 'Item added successfully'})
-         }
+        return this.msg = 
+        'Item reserved successfully. Please wait to the seller\'s final approval' 
+        // this.$store.dispatch({type: 'setMsg', msg: 'Item bougth successfully'})
+        }
+
+        //  addToWishList(itemId) {
+        //     console.log("item._id - itemDetails: ", this.item._id)
+        //     this.$store.commit('setWishCount', itemId) // will be assigned to totalCount + diff
+        //     this.$store.commit('addToWishList', this.item) // will be assigned to loggedinUser + diff
+
+        //     this.$store.dispatch({type: 'setMsg', msg: 'Item added successfully'})
+        //  }
     },
     created(){
-            this.getCurrItem();
+        this.$store.dispatch({type: 'loadItem', itemId: this.$route.params.id})
     }
 }
 </script>
+
 <style lang="scss" scoped>
     .item-img{
         width: auto;
@@ -62,6 +78,4 @@ export default {
     .seller-info{
         width: 100%;
     }
-   
-   
 </style>
