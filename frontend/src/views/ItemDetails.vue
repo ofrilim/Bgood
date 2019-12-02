@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <div>
+        <div class="flex">
             <button @click="addToWishList(item._id)"><span class="heart"></span></button>
             <h1 class="buy-msg" v-if="this.msg">{{msg}}</h1>
         </div>
