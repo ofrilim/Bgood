@@ -11,21 +11,19 @@
             <h3>Condition: {{item.condition}}</h3>
             <h3>Status: {{item.status}}</h3>
             <h3>Additional information: {{item.description}}</h3>
+            <button class="btn" @click="addToWishList(item._id)"><i class="fa fa-heart"></i></button>
+            <button class="btn" @click="buyItem">BUY</button>
+            <br>
             <section class="seller-info container flex justify-center align-center">
                 <!-- <img :src="user.userImg"/> -->
                 <img :src="item.owner.imgUrl" class="avatar-img"/>
                 <router-link :to="`/user/${item.owner._id}`">Uploaded by: {{item.owner.name}}</router-link> 
             </section>
-            <h3>{{item.price}}</h3>
 
-            <button class="btn" @click="addToWishList(item._id)"><i class="fa fa-heart"></i></button>
-            <br>
-            <router-link :to="`/item/edit/${item._id}`"><button>Edit Item</button></router-link>
-            <br>
-            <button class="btn" @click="buyItem">BUY</button>
-            <br>
             <h1 class="buy-msg" v-if="this.msg">{{msg}}</h1>
-            <button class="btn" @click="removeItem(item._id)">Delete</button>
+            <br>
+            <router-link class="btn" :to="`/item/edit/${item._id}`"><button>Edit Item</button></router-link>
+            <button class="btn" @click="removeItem(item._id)">Delete Item</button>
         </section>
     </section>
 </template>
@@ -38,7 +36,7 @@ export default {
     data(){
         return {
             msg: '',
-            status: 'available'
+            // status: 'available'
         }
     },
     methods: {

@@ -4,10 +4,19 @@
         <h2>Available items:</h2>
             <router-link to='/item/edit'><button class="add-btn btn">Add Item</button></router-link>
             <section class="user-items flex">
+                <!--  -->
                 <section class="user-item flex flex-wrap">
-                    <item-preview v-for="item in userItems" :key="item._id" :item="item" >
-                    </item-preview>
-                </section>            
+                    
+                    <section v-if="itemsInProcess === 'sell'">
+                        <item-preview v-for="item in userItems && item.status ==='Available'"  :key="item._id" :item="item"></item-preview>
+                    </section>
+<!-- 
+                    <section v-if="itemsInProcess">
+                        <item-preview v-for="item in userItems" :key="item._id" :item="item"></item-preview>
+                    </section> -->
+
+                </section>
+
             <!-- TODO - design this page and remove <BR> // Liron's comment-->
             <section class="user-about">
                 <h1>Welcome to {{user.username}}'s page</h1>
@@ -35,8 +44,15 @@
                 </button>
                 <br>
                 <br>
-                <button @click="itemsInProcess">Incomming Orders</button> 
-                <section v-if="incomingOrders.length !== 0"><pre>{{this.incomingOrders}}</pre></section>            
+                <button @click="itemsInProcess">
+                     <item-preview v-for="item in incomingOrders" :key="item._id" :item="item">Incomming Orders</item-preview>
+                </button> 
+                       
+
+                <section v-if="incomingOrders.length !== 0">
+                    <pre>{{this.incomingOrders}}</pre>
+                    <button class="btn">Approve sell</button>
+                    </section>            
             </section>
         </section>
         <section class="user-wishlist-items"></section>
@@ -56,8 +72,7 @@ export default {
     data(){
         return {
             userId: null,
-            incomingOrders: []
-            // userSoldItems: []
+            incomingOrders: [],
         }
     },
     methods:{
@@ -65,6 +80,7 @@ export default {
             
         },
         itemsInProcess(){
+            this.itemsToShow = 'process';
             var items = this.$store.getters.items.filter(item => {
                 return item.owner._id === this.userId && item.status === "In process"})
             if (items && items.length !== 0) this.incomingOrders = items
