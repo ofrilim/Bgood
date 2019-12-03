@@ -2,7 +2,7 @@
 .grid-container {
     margin: rem(60px);
     display: grid;
-    grid-gap: 15px;
+    grid-gap: rem(15px);
     grid-template-columns: repeat(auto-fill, minmax(rem(210px), 2fr));
     
 }
@@ -20,6 +20,9 @@ img.img-preview {
 
 img.img-preview:hover {
     opacity: 0.7;
+    &.preview-heart {
+        opacity: 1;
+    }
 }
 
 .preview-content {
@@ -32,16 +35,9 @@ img.img-preview:hover {
 }
 
 .by {
-    margin: 5px;
+    margin: rem(5px);
 }
 
-.fa-heart {
-    // position: absolute;
-    font-size: 25px;
-    size: 10px;
-    color: $clr4;
-    background-color: $clr1;
-    border: $clr11 1px solid;
-    padding: 7px;
-    border-radius: 100%;
+.preview-heart {
+    position: absolute;
 }
