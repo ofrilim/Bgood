@@ -1,24 +1,33 @@
 <template>
-    <section v-if="item" class="item-details container flex">
-        <div class="img-container">
-            <!-- <img :src="this.item.imgUrl" class="img-details"/> -->
-            <img :src="this.item.imgUrl" class="img-details"/>
-        </div>
-        <div class="details-content container">
-            <h1>{{item.name}}</h1>
-            <h3>Price: ${{item.price}}</h3>
-            <h3>Category: {{item.category}}</h3>
-            <h3>Publishe at: {{item.createdAt}}</h3>
-            <h3>Condition: {{item.condition}}</h3>
-            <h3>Status: {{item.status}}</h3>
-            <h3>Additional information: {{item.description}}</h3>
-            <div class="container">
-                <router-link :to="`/user/${item.owner._id}`">Uploaded by: {{item.owner.name}}</router-link> 
-                <br/>
-                <img :src="item.owner.imgUrl" class="avatar-img"/>
+    
+    <section v-if="item" class="item-details flex-col">
+        <!-- <div class="item-details-main flex justify-center"> -->
+            <img :src="this.item.imgUrl" class="ratio-16-9 img-details radius"/>
+            <div class="details-content container flex-col">
+                <h1 class="item-title center">{{item.name}}</h1>
+                <div class="flex flex-between">
+                    <h3 ><span>Category : </span>{{item.category}}</h3>
+                    <button class="btn" @click="buyItem">BUY</button>
+                </div>
+                <h3><span>Condition : </span>{{item.condition}}</h3>
+                <h3><span>Status : </span>{{item.status}}</h3>
+                <h3><span>Uploaded at : </span>{{item.createdAt}}</h3>
+                <br>
+                <h3><span>Price : </span>${{item.price}}</h3>
+                <br>
+                <br>
+                <h4><span>Additional information : </span>{{item.description}}</h4>
+                <div class="item-details-owner flex flex-between">
+                    <div class="container">
+                    <router-link :to="`/user/${item.owner._id}`"><span>Uploaded by : </span>{{item.owner.name}}
+                        <img :src="item.owner.imgUrl" class="avatar-img"/>
+                    </router-link> 
+                    <router-link :to="`/item/edit/${item._id}`"><button class="btn">Edit Item</button></router-link>
+                    <button @click="removeItem(item._id)" class="btn">Delete</button>
+                </div>
             </div>
         </div>
-        <div>
+        <div class="flex">
             <button @click="addToWishList(item._id)"><span class="heart"></span></button>
             <button class="btn" @click="buyItem">BUY</button>
             <router-link :to="`/item/edit/${item._id}`"><button class="btn">Edit</button></router-link>
@@ -61,11 +70,11 @@ export default {
             this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully'})
             // 'Item reserved successfully'
         },
-        computed: {
-            msg(){
-                return this.$store.getters.msg
-            }
-        },
+    },
+    computed: {
+        msg(){
+            return this.$store.getters.msg
+        }
     },   
 }
 </script>
