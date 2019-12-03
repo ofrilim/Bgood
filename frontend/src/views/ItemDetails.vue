@@ -1,39 +1,40 @@
 <template>
     
     <section v-if="item" class="item-details flex-col">
-        <!-- <div class="item-details-main flex justify-center"> -->
+        <div class="item-details-main flex justify-center">
             <img :src="this.item.imgUrl" class="ratio-16-9 img-details radius"/>
             <div class="details-content container flex-col">
                 <h1 class="item-title center">{{item.name}}</h1>
                 <div class="flex flex-between">
                     <h3 ><span>Category : </span>{{item.category}}</h3>
-                    <button class="btn" @click="buyItem">BUY</button>
+                    <div>
+                        <button class="btn" @click="buyItem">BUY</button>
+                        <button @click="addToWishList(item._id)"><span class="heart"></span></button>
+                    </div>
                 </div>
                 <h3><span>Condition : </span>{{item.condition}}</h3>
                 <h3><span>Status : </span>{{item.status}}</h3>
                 <h3><span>Uploaded at : </span>{{item.createdAt}}</h3>
-                <br>
                 <h3><span>Price : </span>${{item.price}}</h3>
-                <br>
-                <br>
                 <h4><span>Additional information : </span>{{item.description}}</h4>
                 <div class="item-details-owner flex flex-between">
                     <div class="container">
-                    <router-link :to="`/user/${item.owner._id}`"><span>Uploaded by : </span>{{item.owner.name}}
-                        <img :src="item.owner.imgUrl" class="avatar-img"/>
-                    </router-link> 
-                    <router-link :to="`/item/edit/${item._id}`"><button class="btn">Edit Item</button></router-link>
-                    <button @click="removeItem(item._id)" class="btn">Delete</button>
+                        <router-link :to="`/user/${item.owner._id}`"><span>Uploaded by : </span>{{item.owner.name}}
+                            <img :src="item.owner.imgUrl" class="avatar-img"/>
+                        </router-link> 
+                        <router-link :to="`/item/edit/${item._id}`"><button class="btn">Edit Item</button></router-link>
+                        <button @click="removeItem(item._id)" class="btn">Delete</button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="flex">
-            <button @click="addToWishList(item._id)"><span class="heart"></span></button>
+
+        <!-- <div class="flex">
             <button class="btn" @click="buyItem">BUY</button>
             <router-link :to="`/item/edit/${item._id}`"><button class="btn">Edit</button></router-link>
             <button class="btn" @click="removeItem(item._id)">Delete</button>
             <h1 class="buy-msg" v-if="msg">{{msg}}</h1>
-        </div>
+        </div> -->
     </section>
 </template>
 
