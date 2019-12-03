@@ -36,6 +36,14 @@ body {
     }
 }
 
+.heart-btn {
+    color : red;
+    opacity: 0.5;
+    margin: 5px;
+    &:hover {
+        opacity: none;
+    }
+}
 
 /* === HEART === */
 .heart { background-color: $clr4; display: inline-block; height: 15px; margin: 0 8px;
