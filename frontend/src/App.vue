@@ -2,7 +2,9 @@
   <div id="app" class="appVue text-center flex-row">
     <AppHeader/>
     <AppWishList v-if="this.$store.state.currUser"/>
-    <router-view/>
+    <main>
+      <router-view/>
+    </main>
     <AppFooter/>
   </div>
 </template>
@@ -24,4 +26,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+main {
+  padding-top: 70px;
+}
+</style>
 

@@ -15,9 +15,10 @@ body {
 }
 
 .btn {
+    font-size: 1rem;
     border: $clr11 1px solid;
     padding: 8px 15px;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .avatar-img {
@@ -34,6 +35,10 @@ body {
     &:hover {
         color: $clr4;
     }
+}
+
+img {
+    width: 100%;
 }
 
 .fa-heart {
