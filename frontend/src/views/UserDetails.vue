@@ -27,7 +27,7 @@
                 <item-preview v-for="item in userItems" :key="item._id" :item="item">
                     <button class="btn" v-if="itemsFilter === 'In process'" @click="markAsSold(item)">Approve sell</button>
                 </item-preview>
-            </section>
+                </section>
             <h1 class="sold-msg" v-if="this.msg">{{msg}}</h1>
         </section>
     </section>

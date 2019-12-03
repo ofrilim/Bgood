@@ -15,6 +15,7 @@
                     <img class="avatar-img pointer" :src="item.owner.imgUrl"/><small class="by">By: {{item.owner.name}}</small>
                 </div>
                 </router-link>
+            <slot></slot>
             </div>
         </li>
     </section>
