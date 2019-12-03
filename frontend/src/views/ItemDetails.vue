@@ -45,7 +45,6 @@ export default {
         return {
             item: null,
             itemId: null,
-            // msg: ''  
         }
     },
      created(){
@@ -68,7 +67,6 @@ export default {
             baughtItem.status = "In process" 
             await this.$store.dispatch({type: 'saveItem', item: baughtItem})
             this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully'})
-            // 'Item reserved successfully'
         },
     },
     computed: {
