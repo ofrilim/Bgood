@@ -1,7 +1,7 @@
 <template>
     
     <section v-if="item" class="item-details flex-col">
-        <!-- <div class="item-details-main flex justify-center"> -->
+        <div class="item-details-main flex justify-center">
             <img :src="this.item.imgUrl" class="ratio-16-9 img-details radius"/>
             <div class="details-content container flex-col">
                 <h1 class="item-title center">{{item.name}}</h1>
@@ -24,16 +24,17 @@
                     </router-link> 
                     <router-link :to="`/item/edit/${item._id}`"><button class="btn">Edit Item</button></router-link>
                     <button @click="removeItem(item._id)" class="btn">Delete</button>
+                     </div>
                 </div>
             </div>
         </div>
-        <div class="flex">
+        <!-- <div class="flex">
             <button @click="addToWishList(item._id)"><span class="heart"></span></button>
             <button class="btn" @click="buyItem">BUY</button>
             <router-link :to="`/item/edit/${item._id}`"><button class="btn">Edit</button></router-link>
             <button class="btn" @click="removeItem(item._id)">Delete</button>
             <h1 class="buy-msg" v-if="msg">{{msg}}</h1>
-        </div>
+        </div> -->
     </section>
 </template>
 

@@ -10,11 +10,11 @@
         </div>
         <div class="nav bold flex align-center">
           <input class="header-search border-bottom" type="text"/>
-          <span class="search pointer"><i class="fa fa-search"></i></span>
+          <span class="search pointer"><i class="fa fa-search"  title="Serch"></i></span>
           <router-link to="/item">Item App</router-link> | 
           <router-link to="/signin">SignIn</router-link> 
           <!-- <router-link to="/usre/user._id">{{user}}'s Page</router-link> -->
-          <button @click="clicked"><span class="heart"></span></button>
+          <i class="fa fa-heart" @click="clicked" title="Wish List"></i>
         </div>
     </section>
 </template>

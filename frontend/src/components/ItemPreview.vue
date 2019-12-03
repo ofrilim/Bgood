@@ -2,9 +2,9 @@
     <section>
         <li class="preview">
             <router-link :to="`/item/${item._id}`">
+                <i class="fa fa-heart preview-heart" @click.stop="addToWishList(item._id)"></i>
                 <img class="img-preview" :src="item.imgUrl"/>
             </router-link>
-            <i class="fa fa-heart" @click="addToWishList(item._id)"></i>
             <div class="preview-content flex flex-col">
                 <h2 class="preview-name bold">{{item.name}}</h2>
                 <div class="flex flex-between">
@@ -30,6 +30,7 @@ export default {
     },
     methods: {
         addToWishList(itemId) {
+            console.log('hi')
             this.$emit('addToWishList', itemId)
         },
     },
