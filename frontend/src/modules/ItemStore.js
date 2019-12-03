@@ -4,7 +4,7 @@ export default {
     state: {
         items: [],
         currItem: null,
-        msg: '',
+        msg: null,
         status: 'Available',
         filterBy: {
 
@@ -27,7 +27,11 @@ export default {
         removeItem(state, {itemId}){
             const idx = state.items.findIndex(item => item._id === itemId)
             state.items.splice(idx, 1)
+        },
+        setMsg(state, {msg}){
+            state.msg = msg;
         }
+        
     },
     actions: {
         async loadItems(context){
@@ -71,5 +75,8 @@ export default {
         item(state){
             return state.currItem;
         },
+        msg(state){
+            return state.msg
+        }
     }
 }

@@ -1,16 +1,49 @@
-.user-details {
-    margin: 20px;
+.user-details-container {
+    margin: 0 auto;
+    padding: 2rem;
+    justify-content: space-around;
+
+    // max-width: 800px;
+}
+.user-details{
+    &h1{
+        font-size: 2rem
+    }
+}
+.user-img{
+        height: 200px;
+        padding: 15px;
+        border-radius: 5000px;
 }
 
-.user-item {
-    width: 55%;
+.details{
+    max-width: 50vw;
+    height: 50vh;
+}
+
+.user-items {
+    width: 100%;
 }
 
 .user-about {
     padding-left: 5%;
-    border-left: $clr2 0.2px solid;
+    text-align: center;
+    // border-left: $clr2 0.2px solid;
     & h1 {
         font-size: 1.5rem;
         margin-bottom: 20px;
     }
+}
+
+.user-details-container button{
+    width: 100px;
+    margin: 10px;
+}
+
+.user-details-btns {
+    justify-content: center;
+}
+
+.items-container{
+    width: 50%
 }

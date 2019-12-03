@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="text-center flex-row">
+  <div id="app" class="appVue text-center flex-row">
     <AppHeader/>
     <AppWishList v-if="this.$store.state.currUser"/>
     <router-view/>
