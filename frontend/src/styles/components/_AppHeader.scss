@@ -1,8 +1,12 @@
 .app-header {
-    padding: 0 rem(20px);
-    box-shadow: 0 1px rem(6px) 0 rgba(32,33,36,0.28);
-    height: 20%;
-  }
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background-color: #fff;
+  padding: 0 rem(20px);
+  box-shadow: 0 1px rem(6px) 0 rgba(32,33,36,0.28);
+  z-index: 10;
+}
 
 .logo {
     font-size: rem(24px);
@@ -12,7 +16,7 @@
 }
 
 .select {
-  padding: rem(20px);
+  padding: 0 20px;
 }
 
 .header-search {
