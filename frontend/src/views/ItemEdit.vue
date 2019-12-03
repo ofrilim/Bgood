@@ -87,13 +87,7 @@ import ItemService from '../services/ItemService.js';
         setCurrItem(){
             const itemId = this.$route.params.id;
             let item = this.resetForm();
-<<<<<<< HEAD
-            if (itemId) {
-                item = this.$store.getters.item
-            }
-=======
             if (itemId) item = this.$store.getters.item;
->>>>>>> 76ff155eb1b1783cf24ffb944f68302c22c471cc
             this.newItem = JSON.parse(JSON.stringify(item));
         },
         resetForm() {
