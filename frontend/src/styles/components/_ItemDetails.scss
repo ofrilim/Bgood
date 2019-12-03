@@ -1,11 +1,13 @@
 .item-details {
-    margin: 2%;
+    // margin: 2%;
 }
 
+.img-container {
+    height: 80vh;
+    width: 50vw;
+}
 .img-details {
-    // width: 200px;
-    // height: 300px;
-    max-height: 350px;
+    max-height: 100%;
 }
 
 .Details-title{

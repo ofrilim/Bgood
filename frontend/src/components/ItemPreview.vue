@@ -10,6 +10,7 @@
             <!-- <h3>Seller: {{item.owner.name}}</h3>  -->
             <img class="avatar-img" :src="item.owner.imgUrl"/>
             <button @click="addToWishList(item._id)"><i class="fa fa-heart"></i></button>
+            <slot></slot>
         </li>
     </section>
 </template>

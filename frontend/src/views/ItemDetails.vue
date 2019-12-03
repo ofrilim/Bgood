@@ -1,6 +1,9 @@
 <template>
     <section v-if="item" class="item-details container flex">
-        <img :src="this.item.imgUrl" class="ratio-16-9 img-details"/>
+        <div class="img-container">
+            <!-- <img :src="this.item.imgUrl" class="img-details"/> -->
+            <img :src="this.item.imgUrl" class="img-details"/>
+        </div>
         <div class="details-content container">
             <h1>{{item.name}}</h1>
             <h3>Price: ${{item.price}}</h3>
@@ -18,9 +21,9 @@
         <div>
             <button @click="addToWishList(item._id)"><span class="heart"></span></button>
             <button class="btn" @click="buyItem">BUY</button>
-            <router-link :to="`/item/edit/${item._id}`"><button>Edit Item</button></router-link>
-            <button @click="removeItem(item._id)">Delete</button>
-            <h1 class="buy-msg" v-if="this.msg">{{msg}}</h1>
+            <router-link :to="`/item/edit/${item._id}`"><button class="btn">Edit</button></router-link>
+            <button class="btn" @click="removeItem(item._id)">Delete</button>
+            <h1 class="buy-msg" v-if="msg">{{msg}}</h1>
         </div>
     </section>
 </template>
@@ -33,7 +36,7 @@ export default {
         return {
             item: null,
             itemId: null,
-            msg: ''
+            // msg: ''  
         }
     },
      created(){
@@ -52,11 +55,17 @@ export default {
             this.$router.push('/item/')
         },
          async buyItem() {
-            const item = {...this.item}
-            item.status = "In process" 
-            await this.$store.dispatch({type: 'buyItem', item})
-            this.msg = 'Item reserved successfully'
-        }
+            const baughtItem = {...this.item}
+            baughtItem.status = "In process" 
+            await this.$store.dispatch({type: 'saveItem', item: baughtItem})
+            this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully'})
+            // 'Item reserved successfully'
+        },
+        computed: {
+            msg(){
+                return this.$store.getters.msg
+            }
+        },
     },   
 }
 </script>
