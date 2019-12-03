@@ -72,29 +72,46 @@
           firstName: '',
           lastName: '',
           email: '',
-          password: ''
+          password: '',
+          isAdmin: 'null'
         }
       }
     },
     methods: {
-      signIn() {
-        if (!this.member.memberEmail) return;
+      async signIn() {
+        let email = this.member.memberEmail
+        let password = this.member.memberPassword
+        if (!this.member.memberEmail || !this.member.memberPassword) 
+          return this.msg = 'Please enter valid login username/password';
+        await this.$store.dispatch('signIn', {email, password})
+        this.$router.push('/user/:id')
+
         console.log('signed In!');
         console.log('userEmail is: ', this.member.memberEmail);
         console.log('userPassword is: ', this.member.memberPassword);
-        this.$router.push('/user/:id')
       },
-      register() {
+      async register() {
         console.log('register!');
         console.log('userEmail is: ', this.newMember.firstName);
         console.log('userPassword is: ', this.newMember.lastName);
         console.log('userEmail is: ', this.newMember.email);
         console.log('userPassword is: ', this.newMember.password);
+
+        let data = {
+          firstName: this.newMember.firstName,
+          lastName: this.newMember.lastName,
+          email: this.newMember.email,
+          password: this.newMember.password,
+          isAdmin: this.newMember.isAdmin
+        }
+        if(!this.newMember.firstName || !this.newMember.lastName ||!this.newMember.email ||!this.newMember.isAdmin) 
+          return this.msg = 'Please fill up all form fields'
+        await this.$store.dispatch('register', data)
         this.$router.push('/user/:id')
       }
     }
+// "_id" : "5de41bbe77a3f6bbaad48780" - user with attr ADMIN=null.
 }
 </script>
-
 
 
