@@ -61,7 +61,7 @@ export default {
             return state.currUser;
         },
         wishListItems(state) {
-            console.log("STORE GETTERS: ", state.currUser.wishListItems)
+            // console.log("STORE GETTERS: ", state.currUser.wishListItems)
             return state.currUser.wishListItems;
         }, 
         loggedInUser(state) {
