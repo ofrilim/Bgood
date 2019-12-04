@@ -6,6 +6,8 @@ export default {
     getById,
     remove,
     add,
+    signIn,
+    logout
 }
     
 
@@ -53,4 +55,24 @@ async function add(added) {
     } catch(error) {
         console.error('inside userService -> couldnt add user');
     }
+}
+
+async function signIn(userCred) {
+    console.log('service sign in user cred:', userCred);
+    const user = await HttpService.post('auth/login', userCred)
+    console.log('service sign in user:', user);
+    return _handleLogin(user)
+}
+// async function signup(userCred) {
+//     const user = await HttpService.post('auth/signup', userCred)
+//     return _handleLogin(user)
+// }
+async function logout() {
+    await HttpService.post('auth/logout');
+    sessionStorage.clear();
+}
+
+function _handleLogin(user) {
+    sessionStorage.setItem('user', JSON.stringify(user))
+    return user;
 }
