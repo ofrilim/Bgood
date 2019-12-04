@@ -69,11 +69,16 @@ export default {
             return this.$store.getters.user
         },
         userItems(){            
+<<<<<<< HEAD
             var items = this.$store.getters.items
             // console.log('user own items details user:', user.ownItems);
             return items.filter(item => {
                 return item.byUser._id === this.user._id &&
                         item.status === this.itemsFilter
+=======
+            return this.$store.getters.user.ownItems.filter(item => {
+                return item.status === this.itemsFilter
+>>>>>>> fe1732925f406d5ccf92337ed85c252a5cd05a46
                 })
         },
     },
