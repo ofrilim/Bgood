@@ -9,10 +9,10 @@
 }
 
 .logo {
-    font-size: rem(24px);
-    &:hover {
-      color: $clr4;
-    }
+  font-size: rem(24px);
+  &:hover {
+    color: $clr4;
+  }
 }
 
 .select {
@@ -22,13 +22,4 @@
 .header-search {
   padding-top: rem(20px);
   width: 400px;
-}
-
-.app-header .search {
-  margin-left: rem(20px);
-}
-
-.heart-btn-header {
-  color : red;
-  margin: rem(5px);
 }

@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import VueBus from 'vue-bus';
 import App from './App.vue'
 import ElementUI from 'element-ui'
 import './registerServiceWorker'
@@ -10,6 +11,7 @@ import './styles/global.scss';
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);
+Vue.use(VueBus);
 
 new Vue({
   router,

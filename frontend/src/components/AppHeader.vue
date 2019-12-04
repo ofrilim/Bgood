@@ -27,11 +27,10 @@
 
 
 <script>
-
 export default {
-  methods: {
+    methods: {
     clicked() {
-      this.$store.commit('openWishList');
+      this.$bus.emit('toggleWishList')
     },
     logout() {
       this.$store.dispatch('logout');

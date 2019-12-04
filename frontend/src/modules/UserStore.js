@@ -4,7 +4,6 @@ export default {
     state: {
         currUser: null,
         loggedInUser: null
-        
     },
     mutations: {
         setUser(state, {user}){
@@ -24,7 +23,6 @@ export default {
             if (user) state.loggedInUser = user;
             else state.loggedInUser = null;
             console.log('state logged in user:', state.loggedInUser);
-            
         }
     },
     actions: {
@@ -47,7 +45,6 @@ export default {
         async loadUser(context, { userId }){
             const user = await UserService.getById(userId)
             console.log('store user:', user);
-            
             context.commit({ type: 'setUser', user })
         },
         async removeUser(context, {userId}) {
@@ -60,15 +57,15 @@ export default {
         }
     },
     getters: {
-        user(state){
+        user(state) {
             return state.currUser;
+        },
+        wishListItems(state) {
+            console.log("STORE GETTERS: ", state.currUser.wishListItems)
+            return state.currUser.wishListItems;
         }, 
         loggedInUser(state) {
             return state.loggedInUser
         },
-        wishedItemsList(state) {
-            // console.log("wishList-userStore: ", state.currUser.wishlistItems.length)
-            return state.currUser.wishlistItems;
-        }
     }
 }

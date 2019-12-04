@@ -1,46 +1,51 @@
 <template>
-    <section class="wish-list center">
+    <section class="wish-list">
         <el-drawer
         class="wish-list-drawer"
-        title="My Wish-List"
         :visible.sync="toggleWishList"
         direction="ltr"
         size="100%">
-          <!-- <table class="wishList-table center" v-for="item in wishedItemsUserList" :key="item._id" :item="item">
-            <tb>  
-            <tr class="center"><i class="fa fa-star"></i></tr>
-            <br>
-            <div class="tooltip">
-              <tr><router-link class="title flex center" :to="`/item/${item._id}`">{{item.name}}</router-link>
-              </tr><span class="tooltiptext">for more details</span>
-            </div>
-            <br>
-            <tr class="price">Only for ${{item.price}}</tr>
-            <br>
-            <tr><button class="action-buy">I wish to buy</button></tr>
-            <tr><button class="action-remove">Remove</button></tr>
-            </tb>
-            </table> -->
+        <h1 class="title center">Your Wish List <i class="fa fa-heart"></i></h1>
+        <div v-if="itemsInWish">
+          <ul class="wishList-ul center" v-for="item in itemsInWish" :key="item._id" :item="item">
+            <li class="grid">
+              <router-link :to="`/item/${item._id}`"><img :src="item.imgUrl"/></router-link>
+              <div class="content grid">
+                <h2>{{item.name}}</h2>
+                <h2 class="price">$ {{item.price}}</h2>
+                <h2>Seller: {{item.ownerName}}</h2>
+              </div>
+              <div class="btns flex flex-col justify-center flex-evenly">
+                <button class="btn action-buy">Buy</button>
+                <button class="btn action-remove">Remove</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <h1 v-else>No items in your Wish List</h1>
         </el-drawer>
     </section>
 </template>
+
 
 <script>
 export default {
   data() {
     return {
-      itemsInWish: []
+      itemsInWish: [],
+      toggleWishList: false
       }
     },
-    computed: {
-        toggleWishList() {
-            return this.$store.getters.toggleWishList
-        },
-        // *** LIRON: @click should be activated by clicking the table ***
-        // closeWishList() {
-        //   // state.isOpenWishList = !state.isOpenWishList
-        //   return this.$store.commit('toggleWishList');
-          // }
-      }
+    created() {
+      this.$bus.on('toggleWishList', () => {
+        this.toggleWishList = !this.toggleWishList;
+      }),
+      this.itemsInWish = this.$store.getters.wishListItems;
+    },
+    methods: {
+       wishListItems() {
+         this.$store.dispatch('wishListItems')
+       }
+    }
 }
 </script>
