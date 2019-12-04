@@ -50,7 +50,6 @@ export default {
         async loadUser(context, { userId }){
             const user = await UserService.getById(userId)
             context.commit({ type: 'setUser', user })
-            
         },
         async removeUser(context, {userId}) {
             await UserService.remove(userId);
