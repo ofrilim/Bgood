@@ -1,51 +1,68 @@
-.user-details-container {
+.user-details {
+    grid-template-columns: 1fr 2fr;
+    grid-gap: rem(30px);
     margin: 0 auto;
-    padding: 2rem;
-}
-// .user-details{
-//     &h1{
-//         font-size: 2rem
-//     }
-// }
-.user-img{
-        height: rem(250px);
-        width: rem(250px);
-        padding: 15px;
-        border-radius: 5000px;
+    & h1 {
+        font-size: 1.5rem
+    }
+    & h2 {
+        font-size: 1rem
+    }
 }
 
-// .details{
-//     max-width: 50vw;
-//     height: 50vh;
-// }
-
-// .user-items {
-//     width: 100%;
-// }
-
-// .user-about {
-//     padding-left: 5%;
-//     text-align: center;
-//     // border-left: $clr2 0.2px solid;
-//     & h1 {
-//         font-size: 1.5rem;
-//         margin-bottom: 20px;
-//     }
-// }
-
-.user-details-container button{
-    width: 100px;
-    margin: 10px;
+.user-section {
+    height: 100vh;
+    padding: 20px;
+    background-color: $clr2;
+    & .btns {
+        margin: 0 auto;
+        margin-top: 20px; 
+        & .btn {
+            margin-right: 20px;
+        }
+    }
 }
 
-// .user-details-btns {
-//     justify-content: center;
-// }
+.fa-user {
+    font-size: 20px;
+}
 
-// .items-container{
-//     width: 50%
-// }
+.user-details-content {
+    height: 450px;
+    line-height: 1.6;
+    font-size: rem(20px);
+    & h1 {
+        margin: 0 auto;
+    }
+}
 
-// .details-items-container h2{
-//     text-transform: capitalize
-// }
+.user-img {
+    margin:  0 auto;
+    height: rem(150px);
+    width: rem(150px);
+    border-radius: 100%;
+}
+
+.user-info {
+    line-height: 2;
+    & i {
+        padding-right: 15px;
+    }
+}
+
+.items-section {
+    height: 500px;
+    padding: 20px;
+    text-transform: capitalize;
+    & .btns {
+        padding: 20px 0;
+        & .btn {
+            margin-right: 20px;
+        }
+    }
+}
+
+.items {
+    grid-gap: rem(15px);
+    grid-template-columns: repeat(auto-fill, minmax(rem(180px), rem(200px)));
+}

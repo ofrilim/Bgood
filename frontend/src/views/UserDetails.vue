@@ -1,34 +1,34 @@
 <template>
-    <section class="user-details-container flex flex-around" v-if="user">
+    <section class="user-details grid" v-if="user">
         <!-- <h1>{{user.fullName}}'s Page</h1> -->
-        <section class="details-container flex flex-between">
-            <section class="user-about flex flex-col justify-start align-center">
-                <h1>Welcome to {{user.firstName}}'s page</h1>
+        <section class="user-section">
+            <div class="user-details-content flex flex-col flex-around">
                 <img class="user-img" :src="user.imgUrl"/>
-                <section class="details flex-col flex-between">
-                    <div class="user-details">
-                        <h2>Name: {{user.fullName}}</h2>
-                        <h2>Email: {{user.email}}</h2>
-                    </div>
-                    <div class="user-details-btns flex flex-between">
-                        <router-link to='/item/edit'><button class="add-btn btn">Add Item</button></router-link>
-                        <button class="contact-btn btn">Contact Me</button>
-                    </div>
-                </section>     
-            </section>    
+                <h1>{{user.firstName}}'s Boutique</h1>      
+                <section class="user-info">
+                    <h2><i class="fa fa-user"></i>{{user.fullName}}</h2>
+                    <h2><i class="fa fa-envelope"></i>{{user.email}}</h2>
+                </section>
+                <div class="btns">
+                    <router-link to='/item/edit'><button class="btn">Add Item</button></router-link>
+                    <button class="btn">Contact Me</button>
+                </div>
+            </div>
         </section>
-        <section class="details-items-container flex-col">
-            <button class="available-btn btn" @click="itemsFilter = 'available'">Available Items</button>
-            <button class="sold-btn btn" @click="itemsFilter = 'sold'">Sold Items</button>
-            <!-- TODO: render order button only if user is loggedInUser -->
-            <button class="order-btn btn" @click="itemsFilter = 'In process'">Incoming Orders</button> 
-            <section class="user-item flex-row flex-wrap">
-            <h2>{{itemsFilter}} items:</h2>
-            <h1 class="sold-msg" v-if="this.msg">{{msg}}</h1>
+        <section class="items-section">
+            <!-- <h1>{{itemsFilter}} items:</h1> -->
+            <div class="btns">
+                <button class="btn" @click="itemsFilter = 'available'">Available Items</button>
+                <button class="btn" @click="itemsFilter = 'sold'">Sold Items</button>
+                <!-- TODO: render order button only if user is loggedInUser -->
+                <button class="btn" @click="itemsFilter = 'In process'">Incoming Orders</button>
+            </div>
+            <section class="items grid">
                 <item-preview v-for="item in userItems" :key="item._id" :item="item">
                     <button class="btn" v-if="itemsFilter === 'In process'" @click="markAsSold(item)">Approve sell</button>
                 </item-preview>
             </section>
+            <h1 class="sold-msg" v-if="this.msg">{{msg}}</h1>
         </section>
     </section>
 </template>
@@ -47,6 +47,8 @@ export default {
     },
     created(){
         this.userId = this.$route.params.id
+        console.log('user details user:', this.userId);
+        
         this.$store.dispatch({type: 'loadUser', userId: this.userId })
     },
     methods:{

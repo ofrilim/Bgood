@@ -15,9 +15,10 @@ body {
 }
 
 .btn {
+    font-size: 1rem;
     border: $clr11 1px solid;
     padding: 8px 15px;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .avatar-img {
@@ -36,13 +37,19 @@ body {
     }
 }
 
-.heart-btn {
-    color : red;
-    opacity: 0.5;
-    margin: 5px;
-    &:hover {
-        opacity: none;
-    }
+img {
+    width: 100%;
+}
+
+.fa-heart {
+    margin: rem(5px);
+    font-size: rem(20px);
+    size: rem(10px);
+    color: $clr4;
+    background-color: $clr1;
+    border: $clr11 1px solid;
+    padding: rem(7px);
+    border-radius: 100%;
 }
 
 /* === HEART === */

@@ -1,8 +1,10 @@
 <template>
     <section class="sign-in">
+              <span v-if="loggedinUser"> | <a @click="logout">Logout</a></span> 
+
         <h2 class="sign-in-title center">Welcome to Bgood!</h2>
         <div class="flex flex-evenly">
-          <form @submit.prevent>
+          <form>
             <table>
               <tr>
                 <th colspan="2">Have a account?</th>
@@ -10,15 +12,15 @@
               <tbody>
                 <tr>
                   <td>Email:</td>
-                  <td><input type="email" class="frame" v-model="member.memberEmail"/></td>
+                  <td><input type="email" class="frame" v-model="loginCred.email" placeholder="Email"/></td>
                 </tr>
                 <tr>
                   <td>Password:</td>
-                  <td><input type="text" class="frame" v-model="member.memberPassword"/></td>
+                  <td><input type="text" class="frame" v-model="loginCred.password" placeholder="Password"/></td>
                 </tr>
                 <tr>
                   <td></td>
-                  <td><button class="btn" @click="signIn">Sign In</button></td>
+                  <td><button class="btn" @click.prevent="signIn">Sign In</button></td>
                 </tr>
               </tbody>
             </table>
@@ -32,19 +34,19 @@
               <tbody>
                 <tr>
                   <td>First Name:</td>
-                  <td><input type="text" class="frame" v-model="newMember.firstName"/></td>
+                  <td><input type="text" class="frame" v-model="registerCred.firstName" placeholder="First Name"/></td>
                 </tr>  
                 <tr>
                   <td>Last Name:</td>
-                  <td><input type="text" class="frame" v-model="newMember.lastName"/></td>
+                  <td><input type="text" class="frame" v-model="registerCred.lastName" placeholder="Last Name"/></td>
                 </tr> 
                 <tr>
                   <td>Email:</td>
-                  <td><input type="email" class="frame" v-model="newMember.email"/></td>
+                  <td><input type="email" class="frame" v-model="registerCred.email" placeholder="Email"/></td>
                 </tr> 
                 <tr>
                   <td>Password:</td>
-                  <td><input type="text" class="frame" v-model="newMember.password"/></td>
+                  <td><input type="text" class="frame" v-model="registerCred.password" placeholder="Password"/></td>
                 </tr> 
                 <tr>
                   <td></td>
@@ -64,37 +66,50 @@
     name: 'sign-in',
     data() {
       return {
-        member: {
-          memberEmail: '',
-          memberPassword: ''
-        },
-        newMember: {
-          firstName: '',
-          lastName: '',
-          email: '',
-          password: ''
-        }
+        loginCred: {},
+        registerCred: {},
+        msg: '',
+        userToEdit: {}
       }
     },
     methods: {
-      signIn() {
-        if (!this.member.memberEmail) return;
-        console.log('signed In!');
-        console.log('userEmail is: ', this.member.memberEmail);
-        console.log('userPassword is: ', this.member.memberPassword);
-        this.$router.push('/user/:id')
+      async signIn() {
+        const cred = this.loginCred
+        if (!cred.email || !cred.password) return this.msg = 'Please enter valid username or password';
+        const user = await this.$store.dispatch({type: 'signIn', userCred:{cred}})
+        this.$router.push(`/user/${user._id}`)
+        // console.log('signde In: ', cred);
       },
-      register() {
-        console.log('register!');
-        console.log('userEmail is: ', this.newMember.firstName);
-        console.log('userPassword is: ', this.newMember.lastName);
-        console.log('userEmail is: ', this.newMember.email);
-        console.log('userPassword is: ', this.newMember.password);
-        this.$router.push('/user/:id')
+      async register() {
+        const cred = this.registerCred
+        if( !cred.firstName || !cred.lastName 
+              || !cred.email || !cred.password ) return this.msg = 'Please fill up all register fields'
+        this.$store.dispatch({type: 'signup', userCred: {cred}})
+        // this.$router.push(`/user/${}`)
+        console.log('register! ', cred);
+      },
+      getAllUsers() {
+        this.$store.dispatch({type: 'loadUsers'})
+      },
+      removeUser(userId) {
+        this.$store.dispatch({type: 'removeUser', userId})
       }
-    }
+    },
+    computed: {
+      users() {
+        return this.$store.getters.users
+      },
+      loggedinUser() {
+        return this.$store.getters.loggedinUser
+      }
+    },
+    created() {
+      console.log('this.loggedinUser', this.loggedinUser)
+  },
+// "_id" : "5de41bbe77a3f6bbaad48780" - user with attr ADMIN = null.
+// EMAIL = gyallop0@tripadvisor.com
+// PASSWORD = 1234
 }
 </script>
-
 
 

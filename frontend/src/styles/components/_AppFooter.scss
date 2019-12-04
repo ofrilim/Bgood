@@ -1,11 +1,9 @@
 .footer {
-    height: 20%;
-    margin-top: 20px;
-    padding-top: 10px;
+    height: rem(180px);
 }
 
 .footer-content {
-    height: 80px;
+    height: rem(120px);
 }
 
 .member :hover {
