@@ -12,11 +12,11 @@
                 <h2>Price:  {{item.price}} $</h2>
             </div>
             <div v-if="item.byUser">
-            <router-link :to="`/user/${item.byUser._id}`">
-                <div class="flex align-center">
-                    <img class="avatar-img pointer" :src="item.byUser.imgUrl"/><small class="by">By: {{item.byUser.fullName}}</small>
-                </div>
-            </router-link>
+                <router-link :to="`/user/${item.byUser._id}`">
+                    <div class="flex align-center">
+                        <img class="avatar-img pointer" :src="item.byUser.imgUrl"/><small class="by">By: {{item.byUser.fullName}}</small>
+                    </div>
+                </router-link>
             </div>
         <slot></slot>
         </div>
