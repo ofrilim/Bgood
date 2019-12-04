@@ -1,8 +1,8 @@
 <template>
-    <section class="user-details-container flex" v-if="user">
+    <section class="user-details-container flex flex-around" v-if="user">
         <!-- <h1>{{user.fullName}}'s Page</h1> -->
         <section class="details-container flex flex-between">
-            <section class="user-about flex-col">
+            <section class="user-about flex flex-col justify-start align-center">
                 <h1>Welcome to {{user.firstName}}'s page</h1>
                 <img class="user-img" :src="user.imgUrl"/>
                 <section class="details flex-col flex-between">
@@ -18,17 +18,17 @@
             </section>    
         </section>
         <section class="details-items-container flex-col">
-            <h2>{{itemsFilter}} items:</h2>
             <button class="available-btn btn" @click="itemsFilter = 'available'">Available Items</button>
             <button class="sold-btn btn" @click="itemsFilter = 'sold'">Sold Items</button>
             <!-- TODO: render order button only if user is loggedInUser -->
             <button class="order-btn btn" @click="itemsFilter = 'In process'">Incoming Orders</button> 
             <section class="user-item flex-row flex-wrap">
+            <h2>{{itemsFilter}} items:</h2>
+            <h1 class="sold-msg" v-if="this.msg">{{msg}}</h1>
                 <item-preview v-for="item in userItems" :key="item._id" :item="item">
                     <button class="btn" v-if="itemsFilter === 'In process'" @click="markAsSold(item)">Approve sell</button>
                 </item-preview>
-                </section>
-            <h1 class="sold-msg" v-if="this.msg">{{msg}}</h1>
+            </section>
         </section>
     </section>
 </template>
@@ -62,11 +62,15 @@ export default {
     },
     computed:{
         user(){
+            console.log('user details user:', this.$store.getters.user);
+            
             return this.$store.getters.user
         },
         userItems(){            
-            return this.$store.getters.items.filter(item => {
-                return item.owner._id === this.userId &&
+            var items = this.$store.getters.items
+            // console.log('user own items details user:', user.ownItems);
+            return items.filter(item => {
+                return item.byUser._id === this.user._id &&
                         item.status === this.itemsFilter
                 })
         },

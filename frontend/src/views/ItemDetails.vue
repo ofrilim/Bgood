@@ -19,7 +19,7 @@
                 <h4><span>Additional information : </span>{{item.description}}</h4>
                 <div class="item-details-owner flex flex-between">
                     <div class="container">
-                        <router-link :to="`/user/${item.owner._id}`"><span>Uploaded by : </span>{{item.owner.name}}
+                        <router-link :to="`/user/${item.owner._id}`"><span>Uploaded by : </span>{{item.byUser.fullName}}
                             <img :src="item.owner.imgUrl" class="avatar-img"/>
                         </router-link> 
                         <router-link :to="`/item/edit/${item._id}`"><button class="btn">Edit Item</button></router-link>
@@ -28,13 +28,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- <div class="flex">
-            <button class="btn" @click="buyItem">BUY</button>
-            <router-link :to="`/item/edit/${item._id}`"><button class="btn">Edit</button></router-link>
-            <button class="btn" @click="removeItem(item._id)">Delete</button>
-            <h1 class="buy-msg" v-if="msg">{{msg}}</h1>
-        </div> -->
     </section>
 </template>
 

@@ -12,7 +12,8 @@
                 </div>
                 <router-link :to="`/user/${item.owner._id}`">
                 <div class="flex align-center">
-                    <img class="avatar-img pointer" :src="item.owner.imgUrl"/><small class="by">By: {{item.owner.name}}</small>
+                    <img class="avatar-img pointer" :src="item.owner.imgUrl"/>
+                    <small class="by">By: {{item.owner.fullName}}</small>
                 </div>
                 </router-link>
             <slot></slot>

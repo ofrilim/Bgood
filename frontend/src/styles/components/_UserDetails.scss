@@ -1,53 +1,51 @@
 .user-details-container {
     margin: 0 auto;
     padding: 2rem;
-    justify-content: space-around;
-
-    // max-width: 800px;
 }
-.user-details{
-    &h1{
-        font-size: 2rem
-    }
-}
+// .user-details{
+//     &h1{
+//         font-size: 2rem
+//     }
+// }
 .user-img{
-        height: 200px;
+        height: rem(250px);
+        width: rem(250px);
         padding: 15px;
         border-radius: 5000px;
 }
 
-.details{
-    max-width: 50vw;
-    height: 50vh;
-}
+// .details{
+//     max-width: 50vw;
+//     height: 50vh;
+// }
 
-.user-items {
-    width: 100%;
-}
+// .user-items {
+//     width: 100%;
+// }
 
-.user-about {
-    padding-left: 5%;
-    text-align: center;
-    // border-left: $clr2 0.2px solid;
-    & h1 {
-        font-size: 1.5rem;
-        margin-bottom: 20px;
-    }
-}
+// .user-about {
+//     padding-left: 5%;
+//     text-align: center;
+//     // border-left: $clr2 0.2px solid;
+//     & h1 {
+//         font-size: 1.5rem;
+//         margin-bottom: 20px;
+//     }
+// }
 
 .user-details-container button{
     width: 100px;
     margin: 10px;
 }
 
-.user-details-btns {
-    justify-content: center;
-}
+// .user-details-btns {
+//     justify-content: center;
+// }
 
-.items-container{
-    width: 50%
-}
+// .items-container{
+//     width: 50%
+// }
 
-.details-items-container h2{
-    text-transform: capitalize
-}
+// .details-items-container h2{
+//     text-transform: capitalize
+// }

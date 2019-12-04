@@ -31,6 +31,8 @@ async function update(edited) {
 async function getById(id) {
     try {
         const user = await HttpService.get(`user/${id}`);
+        console.log('FE service user:', user);
+        
         return user;
     } catch(error) {
         console.error(`inside userService -> couldnt getById user: ${id}`);

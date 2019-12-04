@@ -3,6 +3,7 @@ import UserService from "../services/UserService";
 export default {
     state: {
         currUser: null,
+        // loggedInUser: null,
     },
     mutations: {
         setUser(state, { user }){
@@ -16,7 +17,9 @@ export default {
     actions: {
         async loadUser(context, { userId }){
             const user = await UserService.getById(userId)
+            console.log('store user:', user);
             context.commit({ type: 'setUser', user })
+            
         },
     },
     getters: {

@@ -2,7 +2,7 @@
   <div id="app" class="appVue text-center flex-row">
     <AppHeader/>
     <AppWishList v-if="this.$store.state.currUser"/>
-    <router-view/>
+      <router-view/>
     <AppFooter/>
   </div>
 </template>
