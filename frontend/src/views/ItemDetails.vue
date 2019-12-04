@@ -18,18 +18,6 @@
                     <h3><span class="bold">Price: $ </span>{{item.price}}</h3>
                     <h4><span class="bold">Additional information: </span>{{item.description}}</h4>
                 </div>
-<<<<<<< HEAD
-                <h3><span>Condition : </span>{{item.condition}}</h3>
-                <h3><span>Status : </span>{{item.status}}</h3>
-                <h3><span>Uploaded at : </span>{{item.createdAt}}</h3>
-                <h3><span>Price : </span>${{item.price}}</h3>
-                <h4><span>Additional information : </span>{{item.description}}</h4>
-                <div class="item-details-owner flex flex-between">
-                    <div class="container">
-                        <router-link :to="`/user/${item.owner._id}`"><span>Uploaded by : </span>{{item.byUser.fullName}}
-                            <img :src="item.owner.imgUrl" class="avatar-img"/>
-                        </router-link> 
-=======
                 <div class="">
                     <div class="">
                     <router-link :to="`/user/${item.owner._id}`"><span class="bold">Seller: </span>{{item.owner.name}}
@@ -37,7 +25,6 @@
                     </router-link> 
                     </div>
                     <div>
->>>>>>> 637746f61a16d58229a9019c45719772e4bdf9ff
                         <router-link :to="`/item/edit/${item._id}`"><button class="btn">Edit Item</button></router-link>
                         <button @click="removeItem(item._id)" class="btn">Delete</button>
                     </div>
