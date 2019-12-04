@@ -1,8 +1,5 @@
 import UserService from "../services/UserService";
 
-// var localLoggedinUser = null;
-// if (sessionStorage.user) localLoggedinUser = JSON.parse(sessionStorage.user);
-
 export default {
     state: {
         currUser: null,
