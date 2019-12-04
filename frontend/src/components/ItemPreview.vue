@@ -27,7 +27,7 @@ export default {
     name:'ItemPreview',
 
     props: ['item'],
-    computed: { // Sends the data back to the STORE-ACTIONS
+    computed: {
     },
     methods: {
         addToWishList(itemId) {

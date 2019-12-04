@@ -1,7 +1,7 @@
 <template>
-  <div id="app" class="appVue text-center flex-row">
+  <div id="app">
     <AppHeader/>
-    <AppWishList v-if="this.$store.state.currUser"/>
+    <AppWishList/>
     <main>
       <router-view/>
     </main>
@@ -28,8 +28,12 @@ export default {
 </script>
 
 <style scoped>
+#app {
+  display: flex;
+  flex-direction: column;
+}
 main {
-  padding-top: 70px;
+  min-height: 60vh;
 }
 </style>
 

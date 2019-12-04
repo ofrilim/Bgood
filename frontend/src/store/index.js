@@ -11,18 +11,18 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   strict: true,
   state: {
-    isOpenWishList: false
+    // isOpenWishList: false
   },
   mutations: {
-    openWishList(state) {
-      state.isOpenWishList = !state.isOpenWishList
-      console.log('store, mutation: ',state.isOpenWishList)
-    }
+    // openWishList(state) {
+    //   state.isOpenWishList = !state.isOpenWishList
+    //   console.log('store, mutation: ',state.isOpenWishList)
+    // }
   },
   getters: {
-    toggleWishList(state) {
-      return state.isOpenWishList;
-    }
+    // toggleWishList(state) {
+    //   return state.isOpenWishList;
+    // }
   },
   modules: {
     UserStore,

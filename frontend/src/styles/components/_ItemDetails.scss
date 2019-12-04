@@ -1,28 +1,30 @@
 .item-details-main {
-    margin: 5% 8% 5% 8%;
-    height: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    height: 350px;
+    max-width: 700px;
 }
 
-.img-container {
-    height: 80vh;
-    width: 50vw;
-}
-.img-details {
-    max-height: 70%;
+.details-content {
+    width: 370px;
+    padding: 20px;  
     border-radius: 5px;
-    margin-left: 5%;
 }
 
-.Details-title{
-    color: $clr7;
+.img-details {
+    padding: 20px;  
+    width: 250px;
+    height: 310px;
 }
 
-.heart-btn {
-    color : red;
-    opacity: 0.5;
-    margin: 5px;
-    &:hover {
-        opacity: none;
+.details-title {
+    font-size: 1.5rem;
+}
+
+.details-btns {
+    display: inline-block;
+    & i {
+        margin: 0;
     }
 }
 
@@ -37,60 +39,36 @@
     justify-content: center;
     text-align: center;
 }
-.item-img {
-    width: auto;
-    height: 85vh;
-    padding: 10px;
-}
-.seller-info {
-    width: 100%;
-}
 
-.img-container {
-    height: 80vh;
-    width: 50vw;
-}
+// .details-content {
+//     background-color: $clr2;
+//     color: rgb(122, 35, 122);
+//     margin-left: 10px;
+//     padding: 10px;
+//     border-radius: 5px;
+//     & h3 {
+//         color: rgb(122, 35, 122);
+//         margin-top: 10px
+//     }
+//     & span {
+//         font-weight: bolder;
+//         }
+//     & h2 {
+//         margin-top: 5%;
+//         margin-bottom: 5%;
+//     }
+//     & h4 {
+//         height: 100px;
+//     }
+//     & .btn {
+//         background-color: rgb(122, 35, 122);
+//         color: $clr11;
+//         border: $clr11 solid 1px;
+//     } 
+// }
 
-.item-title {
-    font-size: 1.4rem;
-    font-weight: bolder;
-    margin-bottom: 20px;
-    border-bottom: 1px gray solid;
-    background-color: rgb(122, 35, 122);
-    border-radius: 5px;
-    padding: 3px;
-    color: $clr11;
-}
-
-.details-content {
-    background-color: rgb(214, 208, 208);
-    color: rgb(122, 35, 122);
-    margin-left: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    & h3 {
-        color: rgb(122, 35, 122);
-        margin-top: 10px
-    }
-    & span {
-        font-weight: bolder;
-        }
-    & h2 {
-        margin-top: 5%;
-        margin-bottom: 5%;
-    }
-    & h4 {
-        height: 100px;
-    }
-    & .btn {
-        background-color: rgb(122, 35, 122);
-        color: $clr11;
-        border: $clr11 solid 1px;
-    } 
-}
-
-.item-details-owner {
-    & img {
-        margin-left: 10px;
-    }
-}
+// .item-details-owner {
+//     & img {
+//         margin-left: 10px;
+//     }
+// }

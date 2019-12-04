@@ -1,17 +1,24 @@
 <template>
-    
-    <section v-if="item" class="item-details flex-col">
-        <div class="item-details-main flex justify-center">
-            <img :src="this.item.imgUrl" class="ratio-16-9 img-details radius"/>
-            <div class="details-content container flex-col">
-                <h1 class="item-title center">{{item.name}}</h1>
-                <div class="flex flex-between">
-                    <h3 ><span>Category : </span>{{item.category}}</h3>
-                    <div>
+    <section v-if="item" class="item-details">
+        <div class="item-details-main flex">
+            <div>
+                <img  class="img-details" :src="this.item.imgUrl"/>
+            </div>
+            <div class="details-content">
+                <h1 class="details-title">{{item.name}}</h1>
+                <div class="">
+                    <div class="details-btns">
                         <button class="btn" @click="buyItem">BUY</button>
-                        <button @click="addToWishList(item._id)"><span class="heart"></span></button>
+                        <i class="fa fa-heart preview-heart pointer" title="Add To WishList" @click.stop="addToWishList(item._id)"></i>
                     </div>
+                    <h3><span class="bold">Category: </span>{{item.category}}</h3>
+                    <h3><span class="bold">Condition: </span>{{item.condition}}</h3>
+                    <h3><span class="bold">Status: </span>{{item.status}}</h3>
+                    <h3><span class="bold">Uploaded at: </span>{{item.createdAt}}</h3>
+                    <h3><span class="bold">Price: $ </span>{{item.price}}</h3>
+                    <h4><span class="bold">Additional information: </span>{{item.description}}</h4>
                 </div>
+<<<<<<< HEAD
                 <h3><span>Condition : </span>{{item.condition}}</h3>
                 <h3><span>Status : </span>{{item.status}}</h3>
                 <h3><span>Uploaded at : </span>{{item.createdAt}}</h3>
@@ -22,6 +29,15 @@
                         <router-link :to="`/user/${item.owner._id}`"><span>Uploaded by : </span>{{item.byUser.fullName}}
                             <img :src="item.owner.imgUrl" class="avatar-img"/>
                         </router-link> 
+=======
+                <div class="">
+                    <div class="">
+                    <router-link :to="`/user/${item.owner._id}`"><span class="bold">Seller: </span>{{item.owner.name}}
+                        <img :src="item.owner.imgUrl" class="avatar-img"/>
+                    </router-link> 
+                    </div>
+                    <div>
+>>>>>>> 637746f61a16d58229a9019c45719772e4bdf9ff
                         <router-link :to="`/item/edit/${item._id}`"><button class="btn">Edit Item</button></router-link>
                         <button @click="removeItem(item._id)" class="btn">Delete</button>
                     </div>
