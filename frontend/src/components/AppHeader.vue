@@ -22,11 +22,10 @@
 
 
 <script>
-
 export default {
     methods: {
       clicked() {
-        this.$store.commit('openWishList');
+        this.$bus.emit('toggleWishList')
     }
   }
 }
