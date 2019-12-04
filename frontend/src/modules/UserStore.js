@@ -44,7 +44,6 @@ export default {
         },
         async loadUser(context, { userId }){
             const user = await UserService.getById(userId)
-            console.log('store user:', user);
             context.commit({ type: 'setUser', user })
         },
         async removeUser(context, {userId}) {

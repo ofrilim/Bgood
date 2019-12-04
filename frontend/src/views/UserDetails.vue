@@ -64,6 +64,8 @@ export default {
     },
     computed:{
         user(){
+            console.log('user details user:', this.$store.getters.user);
+            
             return this.$store.getters.user
         },
         userItems(){            

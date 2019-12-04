@@ -24,7 +24,7 @@
                     <tr v-if="newItem.category !== 'shoes'">
                         <td><label for="itemSize">Item Size:</label></td>
                         <td>
-                            <select class="frame" name="itemSize" v-model="newItem.size" placeholder="size">
+                            <select class="frame" name="itemSize" v-model="newItem.size" placeholder="Size">
                                 <option label="Small" value="S"></option>
                                 <option label="Medium" value="M"></option>
                                 <option label="Large" value="L"></option>
