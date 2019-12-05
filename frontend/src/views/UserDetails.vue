@@ -11,7 +11,7 @@
                     <h2><i class="fa fa-envelope"></i>{{currUser.email}}</h2>
                 </section>
                 <div class="btns">
-                    <router-link to='/item/edit'><button class="btn">Add Item</button></router-link>
+                    <router-link to='/item/edit' v-if="isLoggedInUser"><button class="btn">Add Item</button></router-link>
                     <button class="btn">Contact Me</button>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                 <button class="btn" @click="itemsFilter = 'available'">Available Items</button>
                 <!-- TODO: render order button only if user is loggedInUser -->
                 <button class="btn" @click="itemsFilter = 'In process'" v-if="isLoggedInUser">Incoming Orders</button>
-                <button class="btn" @click="itemsFilter = 'sold'">Sold Items</button>
+                <button class="btn" @click="itemsFilter = 'sold'" v-if="isLoggedInUser">Sold Items</button>
             </div>
             <section class="items grid">
                 <item-preview v-for="item in userItems" :key="item._id" :item="item">
@@ -83,7 +83,7 @@ export default {
         },
         async editUserImg(){
             if (!this.currUser.imgUrl) return
-            // const updatedUser = await this.$store.dispatch({type: 'updateUser', user : this.currUser })
+            await this.$store.dispatch({type: 'updateUser', user : this.currUser })
         },
         toggleIsEdit(){
             this.isEdit = !this.isEdit
@@ -98,8 +98,8 @@ export default {
         // },
         userItems(){            
             return this.$store.getters.user.ownItems.filter(item => {
-                return item.status === this.itemsFilter
-                })
+                return item.status === this.itemsFilter 
+            })
         },
     },
     components:{

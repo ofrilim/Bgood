@@ -1,16 +1,16 @@
 <template>
     <section v-if="item" class="item-details">
         <div class="item-details-main flex">
-            <div>
+            <div class="justify-center">
                 <img class="img-details" :src="this.item.imgUrl"/>
             </div>
             <div class="details-content">
-                <h1 class="details-title">{{item.name}}</h1>
-                <div class="">
-                    <div class="details-btns" v-if="!isOwner">
-                        <button class="btn" @click="buyItem">BUY</button>
-                        <i class="fa fa-heart preview-heart pointer" title="Add To WishList" @click.stop="addToWishList(item._id)"></i>
-                    </div>
+                <section class="flex flex-between align-center">
+                    <i class="fa fa-heart pointer" v-if="!isOwner" title="Add To WishList" @click.stop="addToWishList(item._id)"></i>
+                    <h1 class="details-title  inline">{{item.name}}</h1>
+                    <button class="btn action-buy" v-if="!isOwner" @click="buyItem">BUY</button>
+                </section>
+                <div class="details-content-box">
                     <h3><span class="bold">Category: </span>{{item.category}}</h3>
                     <h3><span class="bold">Condition: </span>{{item.condition}}</h3>
                     <h3><span class="bold">Status: </span>{{item.status}}</h3>
@@ -34,7 +34,6 @@
     </section>
 </template>
 
-
 <script>
 export default {
     name: 'item-details',
@@ -50,21 +49,25 @@ export default {
             this.$store.commit({type: 'setCurrItem', itemId: this.itemId})
             this.item = this.$store.getters.item
             const loggedInUser = this.$store.getters.loggedInUser
-            if (loggedInUser) this.isOwner = (loggedInUser === this.item.byUser._Id)
+            console.log();
+            
+            if (loggedInUser) this.isOwner = (loggedInUser._id === this.item.byUser._id)
     },
     methods:{
-        addToWishList(itemId) {
-            this.$store.commit('setWishCount', itemId) // will be assigned to totalCount + diff
-            this.$store.commit('addToWishList', this.item) // will be assigned to loggedinUser + diff
-            this.$store.dispatch({type: 'setMsg', msg: 'Item added successfully'})
-        },
+        // addToWishList(itemId) {
+        //     console.log('ITEMDETAILS, ID ', itemId)
+        //     this.$store.dispatch('addToWishList', itemId)
+            // this.$store.commit('setWishCount', itemId) // will be assigned to totalCount + diff
+            // this.$store.commit('addToWishList', this.item) // will be assigned to loggedinUser + diff
+            // this.$store.dispatch({type: 'setMsg', msg: 'Item added successfully'})
+        // },
         async removeItem(itemId){
             await this.$store.dispatch({type: 'removeItem', itemId})
             this.$router.push('/item/')
         },
          async buyItem() {
             var user = this.$store.getters.loggedInUser;
-            const baughtItem = {...this.item};
+            const baughtItem =  {...this.item};
             baughtItem.buyer = user._id
             baughtItem.status = "In process" 
             await this.$store.dispatch({type: 'saveItem', item: baughtItem})
