@@ -48,7 +48,7 @@ body {
 
 .user-msg {
     position: absolute;
-    width: 300px;
+    width: 25vw;
     // margin: 0 auto;
     right: 0;
     top: 80px;
@@ -71,13 +71,4 @@ img {
     padding: rem(7px);
     border-radius: 100%;
 }
-
-/* === HEART === */
-.heart { background-color: $clr4; display: inline-block; height: 15px; margin: 0 8px;
-    position: relative; top: 0; transform: rotate(-45deg); width: 15px; }
-.heart:before, .heart:after {
-    content: ""; background-color: $clr4; border-radius: 50%;
-    height: 15px; position: absolute; width: 15px; }
-.heart:before { top: -8px; left: 0; }
-.heart:after { left: 8px; top: 0; }
 

@@ -28,7 +28,7 @@
 }
 
 .user-details-content {
-    height: 450px;
+    height: 70vh;
     line-height: 1.6;
     font-size: rem(20px);
     & h1 {
@@ -38,8 +38,7 @@
 
 .user-img {
     margin:  0 auto;
-    height: rem(150px);
-    width: rem(150px);
+    width: 12vw;
     border-radius: 100%;
 }
 
@@ -51,7 +50,6 @@
 }
 
 .items-section {
-    height: 500px;
     padding: 20px;
     text-transform: capitalize;
     & .btns {
@@ -68,5 +66,5 @@
 }
 
 .uploadImg-input {
-    width: 300px;
+    width: 20vw;
 }

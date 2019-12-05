@@ -20,7 +20,10 @@ function update(edited) {
 }
 
 function getById(id) {
-    return HttpService.get(`item/${id}`)
+    var item = HttpService.get(`item/${id}`)
+    item.createdAt = convert(`/Date(${+item.createdAt})/`)
+    console.log(item.createdAt)
+    return item;
 }
 
 async function remove(id) {
@@ -36,6 +39,22 @@ async function add(newItem, {_id, fullName, imgUrl }) {
     newItem.ownerId = _id
     newItem.owner = {_id, name: fullName, imgUrl};
     return await HttpService.post(`item`, newItem)   
+}
+
+
+/// SHOULD MOVE TO UTILLS!
+
+function convert(timestamp) {
+    var date = new Date(                          
+      parseInt(                                
+        timestamp.split("(")[1]                   
+      )
+    );
+    return [
+      ("0" + date.getDate()).slice(-2),           
+      ("0" + (date.getMonth()+1)).slice(-2),     
+      date.getFullYear()                         
+    ].join('/');                             
 }
 
 function uploadImg(ev) {
