@@ -3,6 +3,7 @@
     <AppHeader/>
     <AppWishList/>
     <main>
+      <h1 class="user-msg action-buy frame" v-if="msg">{{msg}}</h1>
       <router-view/>
     </main>
     <AppFooter/>
@@ -20,6 +21,11 @@ export default {
         this.$store.dispatch('loadItems')
         this.$store.dispatch('loadLoggedInUser')
   },
+  computed: {
+        msg(){
+            return this.$store.getters.msg
+        },
+    },   
   components: {
     AppHeader,
     AppFooter,

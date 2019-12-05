@@ -16,7 +16,7 @@
                 </tr>
                 <tr>
                   <td>Password:</td>
-                  <td><input type="text" class="frame" v-model="loginCred.password" placeholder="Password"/></td>
+                  <td><input type="password" class="frame" v-model="loginCred.password" placeholder="Password"/></td>
                 </tr>
                 <tr>
                   <td></td>
@@ -46,7 +46,7 @@
                 </tr> 
                 <tr>
                   <td>Password:</td>
-                  <td><input type="text" class="frame" v-model="registerCred.password" placeholder="Password"/></td>
+                  <td><input type="password" class="frame" v-model="registerCred.password" placeholder="Password"/></td>
                 </tr> 
                 <tr>
                   <td></td>

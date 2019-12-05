@@ -11,6 +11,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   strict: true,
   state: {
+      msg: '',
     // isOpenWishList: false
   },
   mutations: {
@@ -18,6 +19,12 @@ export default new Vuex.Store({
     //   state.isOpenWishList = !state.isOpenWishList
     //   console.log('store, mutation: ',state.isOpenWishList)
     // }
+  },
+  actions: {
+      setMsg(context, {msg}) {
+        context.commit({type: 'setMsg', msg});
+        setTimeout(() => context.commit({type: 'setMsg', msg: null}), 2500);
+    },
   },
   getters: {
     // toggleWishList(state) {
