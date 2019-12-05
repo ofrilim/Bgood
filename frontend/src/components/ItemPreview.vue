@@ -11,9 +11,9 @@
             <div class="preview-price flex flex-between">
                 <h2>Price:  {{item.price}} $</h2>
             </div>
-            <router-link :to="`/user/${item.owner._id}`">
+            <router-link :to="`/user/${item.byUser._id}`">
             <div class="flex align-center">
-                <img class="avatar-img pointer" :src="item.owner.imgUrl"/><small class="by">By: {{item.owner.name}}</small>
+                <img class="avatar-img pointer" :src="item.byUser.imgUrl"/><small class="by">By: {{item.byUser.name}}</small>
             </div>
             </router-link>
         <slot></slot>

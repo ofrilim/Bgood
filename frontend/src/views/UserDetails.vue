@@ -48,7 +48,6 @@ export default {
     created(){
         this.userId = this.$route.params.id
         console.log('user details user:', this.userId);
-        
         this.$store.dispatch({type: 'loadUser', userId: this.userId })
     },
     methods:{
@@ -67,10 +66,9 @@ export default {
             return this.$store.getters.user
         },
         userItems(){            
-            return this.$store.getters.items.filter(item => {
-                return item.owner._id === this.userId &&
-                        item.status === this.itemsFilter
-                })
+            return this.$store.getters.user.ownItems.filter(item => {
+                return item.status === this.itemsFilter 
+            })
         },
     },
     components:{

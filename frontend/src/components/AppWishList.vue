@@ -13,7 +13,7 @@
               <div class="content grid">
                 <h2>{{item.name}}</h2>
                 <h2 class="price">$ {{item.price}}</h2>
-                <h2>Seller: {{item.ownerName}}</h2>
+                <h2>Seller: {{item.owner.fullName}}</h2>
               </div>
               <div class="btns flex flex-col justify-center flex-evenly">
                 <button class="btn action-buy">Buy</button>
@@ -43,9 +43,9 @@ export default {
       this.itemsInWish = this.$store.getters.wishListItems;
     },
     methods: {
-       wishListItems() {
-         this.$store.dispatch('wishListItems')
-       }
+      //  wishListItems() {
+      //    this.$store.dispatch('wishListItems')
+      //  }
     }
 }
 </script>

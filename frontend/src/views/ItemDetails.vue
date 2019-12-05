@@ -1,16 +1,16 @@
 <template>
     <section v-if="item" class="item-details">
         <div class="item-details-main flex">
-            <div>
-                <img  class="img-details" :src="this.item.imgUrl"/>
+            <div class="justify-center">
+                <img class="img-details" :src="this.item.imgUrl"/>
             </div>
             <div class="details-content">
-                <h1 class="details-title">{{item.name}}</h1>
-                <div class="">
-                    <div class="details-btns">
-                        <button class="btn" @click="buyItem">BUY</button>
-                        <i class="fa fa-heart preview-heart pointer" title="Add To WishList" @click.stop="addToWishList(item._id)"></i>
-                    </div>
+                <section class="flex flex-between align-center">
+                    <i class="fa fa-heart pointer" title="Add To WishList" @click.stop="addToWishList(item._id)"></i>
+                    <h1 class="details-title  inline">{{item.name}}</h1>
+                    <button class="btn action-buy" @click="buyItem">BUY</button>
+                </section>
+                <div class="details-content-box">
                     <h3><span class="bold">Category: </span>{{item.category}}</h3>
                     <h3><span class="bold">Condition: </span>{{item.condition}}</h3>
                     <h3><span class="bold">Status: </span>{{item.status}}</h3>
@@ -20,8 +20,8 @@
                 </div>
                 <div class="">
                     <div class="">
-                    <router-link :to="`/user/${item.owner._id}`"><span class="bold">Seller: </span>{{item.owner.name}}
-                        <img :src="item.owner.imgUrl" class="avatar-img"/>
+                    <router-link :to="`/user/${item.byUser._id}`"><span class="bold">Seller: </span>{{item.byUser.name}}
+                        <img :src="item.byUser.imgUrl" class="avatar-img"/>
                     </router-link> 
                     </div>
                     <div>
@@ -51,9 +51,11 @@ export default {
     },
     methods:{
         addToWishList(itemId) {
-            this.$store.commit('setWishCount', itemId) // will be assigned to totalCount + diff
-            this.$store.commit('addToWishList', this.item) // will be assigned to loggedinUser + diff
-            this.$store.dispatch({type: 'setMsg', msg: 'Item added successfully'})
+            console.log('ITEMDETAILS, ID ', itemId)
+            this.$store.dispatch('addToWishList', itemId)
+            // this.$store.commit('setWishCount', itemId) // will be assigned to totalCount + diff
+            // this.$store.commit('addToWishList', this.item) // will be assigned to loggedinUser + diff
+            // this.$store.dispatch({type: 'setMsg', msg: 'Item added successfully'})
         },
         async removeItem(itemId){
             await this.$store.dispatch({type: 'removeItem', itemId})
