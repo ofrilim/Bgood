@@ -4,7 +4,6 @@
         <section class="user-section">
             <div class="user-details-content flex flex-col flex-around">
                 <img class="user-img" :src="currUser.imgUrl"/>
-                <button class="btn" v-if="isLoggedInUser" @click="toggleIsEdit">Edit Picture</button>
                 <h1>{{currUser.firstName}}'s Boutique</h1>      
                 <section class="user-info">
                     <h2><i class="fa fa-user"></i>{{currUser.fullName}}</h2>
@@ -12,7 +11,8 @@
                 </section>
                 <div class="btns">
                     <router-link to='/item/edit' v-if="isLoggedInUser"><button class="btn">Add Item</button></router-link>
-                    <button class="btn">Contact Me</button>
+                    <button class="btn" v-if="isLoggedInUser" @click="toggleIsEdit">Edit Picture</button>
+                    <button class="btn" v-else>Contact Me</button>
                 </div>
             </div>
             <div v-if="isEdit">
