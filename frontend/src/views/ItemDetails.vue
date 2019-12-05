@@ -53,18 +53,18 @@ export default {
             if (loggedInUser) this.isOwner = (loggedInUser === this.item.byUser._Id)
     },
     methods:{
-        addToWishList(itemId) {
-            this.$store.commit('setWishCount', itemId) // will be assigned to totalCount + diff
-            this.$store.commit('addToWishList', this.item) // will be assigned to loggedinUser + diff
-            this.$store.dispatch({type: 'setMsg', msg: 'Item added successfully'})
-        },
+        // addToWishList(itemId) {
+            // this.$store.commit('setWishCount', itemId) // will be assigned to totalCount + diff
+            // this.$store.commit('addToWishList', this.item) // will be assigned to loggedinUser + diff
+            // this.$store.dispatch({type: 'setMsg', msg: 'Item added successfully'})
+        // },
         async removeItem(itemId){
             await this.$store.dispatch({type: 'removeItem', itemId})
             this.$router.push('/item/')
         },
          async buyItem() {
             var user = this.$store.getters.loggedInUser;
-            const baughtItem = {...this.item};
+            const baughtItem =  {...this.item};
             baughtItem.buyer = user._id
             baughtItem.status = "In process" 
             await this.$store.dispatch({type: 'saveItem', item: baughtItem})

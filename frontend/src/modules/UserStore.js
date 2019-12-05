@@ -54,7 +54,7 @@ export default {
         },
         async updateUser(context, {user}) {
             const updatedUser = await UserService.update(user);
-            context.commit({type: 'setUser', updatedUser})
+            context.commit({type: 'setUser', user: updatedUser})
             return updatedUser
         }
     },
