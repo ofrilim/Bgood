@@ -27,13 +27,13 @@ async function remove(id) {
     return {}
 }
 
-// async function add(newItem, {_id, fullName, imgUrl }) {
-async function add(newItem, _id) {
+async function add(newItem, {_id, fullName, imgUrl }) {
+// async function add(newItem, _id) {
     newItem.wishCount = 0;
     newItem.createdAt = Date.now();
     newItem.status = 'available';
     newItem.ownerId = _id
-    // newItem.owner = {_id, name: fullName, imgUrl};
+    newItem.owner = {_id, name: fullName, imgUrl};
     return await HttpService.post(`item`, newItem)   
 }
 
