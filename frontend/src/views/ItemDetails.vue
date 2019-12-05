@@ -71,8 +71,6 @@ export default {
             baughtItem.buyer = user._id;
             baughtItem.status = "In process";
             const savedItem = await this.$store.dispatch({type: 'saveItem', item: baughtItem});
-            console.log('item details saved item:', savedItem);
-            
             this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully'});
         },
     },
