@@ -15,6 +15,7 @@ function query() {
 }
 
 function update(edited) {    
+    // console.log('item service, updated item:', edited);
     return HttpService.put(`item/${edited._id}`, edited)
 }
 

@@ -108,8 +108,6 @@ import ItemService from '../services/ItemService.js';
         async save(){
             try {
                 if (!this.newItem.imgUrl) throw "image not uploaded";
-                console.log('saving item');
-                
                 const item = await this.$store.dispatch({type: 'saveItem', item: this.newItem, user: this.loggedInUser});
                 console.log('saved item', item);
                 this.newItem = this.resetForm();

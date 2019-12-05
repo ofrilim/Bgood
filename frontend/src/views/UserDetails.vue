@@ -70,6 +70,7 @@ export default {
             this.isLoggedInUser = (this.$store.getters.loggedInUser._id === this.userId)
             if (this.isLoggedInUser) {
                 const loggedInUser = this.$store.getters.loggedInUser
+                console.log('logged in user own items:', loggedInUser.ownItems);
                 const orders = loggedInUser.ownItems.filter(item => item.status === 'In process')
                 if (orders) this.$store.dispatch({type: 'setMsg', msg: 'You have new orders!!!'})         
             }
