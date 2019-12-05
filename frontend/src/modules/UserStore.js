@@ -3,7 +3,8 @@ import UserService from "../services/UserService";
 export default {
     state: {
         currUser: null,
-        loggedInUser: null
+        loggedInUser: null,
+
     },
     mutations: {
         setUser(state, {user}){
@@ -15,13 +16,13 @@ export default {
         removeUser(state, {userId}) {
             state.users = state.users.filter(user => user._id !== userId)
         },
-        addToWishList(state, itemId) { // TODO - define with DIFF (Liron comment)
-            const item = state.items.find(item => item._id === itemId)
-            state.currUser.wishlistItems.unshift(item);
-        },
         setLoggedInUser(state, {user}){
-            if (user) state.loggedInUser = user;
-            else state.loggedInUser = null;
+            if (!user) state.loggedInUser = null;
+            else {
+                state.loggedInUser = user;
+                state.loggedInUserWishListItems = user.itemsOnWishList;
+            }
+            console.log('STATE MUTATION logged in user:', state.loggedInUser);
         }
     },
     actions: {
@@ -56,15 +57,26 @@ export default {
             const updatedUser = await UserService.update(user);
             context.commit({type: 'setUser', user: updatedUser})
             return updatedUser
-        }
+        },
+        async addToWishList(context, itemId) {
+            if (this.state.loggedInUser._id) {
+                console.log('STORE ACTION itemsent is: ', this.state.loggedInUser._id)
+                console.log('STORE ACTION itemsent is: ', context, user, itemId)
+                const user = await UserService.getById(this.state.loggedInUser._id)
+                console.log('STORE ACTION user is: ', context, user, itemId)
+            }
+            else console.log(this.state.loggedInUser)
+            // const item = state.items.find(item => item._id === itemId)
+            // state.currUser.wishlistItems.unshift(item);
+        },
     },
     getters: {
         user(state) {
             return state.currUser;
         },
         wishListItems(state) {
-            // console.log("STORE GETTERS: ", state.currUser.wishListItems)
-            return state.currUser.wishListItems;
+            console.log("STORE GETTERS: ", state.currUser.wishListItems)
+            // return state.loggedInUser.itemsOnWishList;
         }, 
         loggedInUser(state) {
             return state.loggedInUser

@@ -98,8 +98,8 @@ export default {
         // },
         userItems(){            
             return this.$store.getters.user.ownItems.filter(item => {
-                return item.status === this.itemsFilter
-                })
+                return item.status === this.itemsFilter 
+            })
         },
     },
     components:{
