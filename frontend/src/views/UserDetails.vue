@@ -83,7 +83,7 @@ export default {
         },
         async editUserImg(){
             if (!this.currUser.imgUrl) return
-            const updatedUser = await this.$store.dispatch({type: 'updateUser', user : this.currUser })
+            await this.$store.dispatch({type: 'updateUser', user : this.currUser })
         },
         toggleIsEdit(){
             this.isEdit = !this.isEdit

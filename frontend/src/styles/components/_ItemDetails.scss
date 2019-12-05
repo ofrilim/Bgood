@@ -5,8 +5,8 @@
     max-width: 800px;
 }
 
-.details-content {
-    width: 370px;
+.details-title-content {
+    width: 400px;
     padding: 20px;  
     border-radius: 5px;
 }
@@ -18,7 +18,7 @@
 }
 
 .details-title {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 .action-buy {
     color: $clr1;
@@ -28,8 +28,18 @@
 }
 
 .details-content-box {
+    padding: 8px;
+    line-height: 1.8;
 
 }
+
+.details-footer-content {
+    padding: 8px;
+    & :first-child {
+        padding-right: 20px;
+    }
+}
+
 // .details-btns {
 //     display: inline-block;
 //     & i {
