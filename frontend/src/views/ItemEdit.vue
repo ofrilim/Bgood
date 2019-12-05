@@ -89,6 +89,7 @@ import ItemService from '../services/ItemService.js';
             let item = this.resetForm();
             if (itemId) item = this.$store.getters.item;
             this.newItem = JSON.parse(JSON.stringify(item));
+            console.log('item to edit:', this.newItem);
         },
         resetForm() {
             return {
@@ -108,9 +109,10 @@ import ItemService from '../services/ItemService.js';
         async save(){
             try {
                 if (!this.newItem.imgUrl) throw "image not uploaded";
-                console.log('saving item');
+                console.log('saving item', this.newItem);
                 
                 const item = await this.$store.dispatch({type: 'saveItem', item: this.newItem, user: this.loggedInUser});
+                console.log('saving item after action', this.item);
                 this.newItem = this.resetForm();
                 this.$router.push(`/item/${item._id}`)
             } catch(err){

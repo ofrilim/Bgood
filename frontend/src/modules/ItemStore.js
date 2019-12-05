@@ -46,7 +46,9 @@ export default {
             context.commit({type: 'setCurrItem', item})
         },
         async saveItem(context, { item, user }){
-            let editedItem = item;
+            let editedItem = null;
+            console.log('store item:', item);
+            
             if (item._id) editedItem = await ItemService.update(item)
             else editedItem = await ItemService.add(item, user._id)             
             context.commit({type: 'setItem', editedItem})
