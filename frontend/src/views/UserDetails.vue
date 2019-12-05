@@ -34,7 +34,6 @@
                     <button class="btn" v-if="itemsFilter === 'In process'" @click="markAsSold(item)">Approve sell</button>
                 </item-preview>
             </section>
-            <h1 class="sold-msg" v-if="this.msg">{{msg}}</h1>
         </section>
     </section>
 </template>
@@ -57,22 +56,29 @@ export default {
     },
     created(){
         this.loadPage()
+
     },
     // watch: {
     //     loadPage()
     // },
     methods:{
+
         async loadPage(){
             this.userId = this.$route.params.id
             await this.$store.dispatch({type: 'loadUser', userId: this.userId })
             this.currUser = JSON.parse(JSON.stringify(this.$store.getters.user))
             this.isLoggedInUser = (this.$store.getters.loggedInUser._id === this.userId)
+            if (this.isLoggedInUser) {
+                const loggedInUser = this.$store.getters.loggedInUser
+                const orders = loggedInUser.ownItems.filter(item => item.status === 'In process')
+                if (orders) this.$store.dispatch({type: 'setMsg', msg: 'You have new orders!!!'})         
+            }
         },
         async markAsSold(item){
             const soldItem = {...item}
             soldItem.status = 'sold'
             await this.$store.dispatch({type: 'saveItem', item: soldItem, user: this.user })
-            // this.$store.dispatch({type: 'setMsg', msg: 'Item sold!!' })         
+            this.$store.dispatch({type: 'setMsg', msg: 'Item sold!!' })         
             this.msg = 'Item Sold!!'
             console.log('sold item - ', soldItem, 'user:', this.user);
         },

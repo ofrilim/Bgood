@@ -38,6 +38,25 @@ body {
     }
 }
 
+.alert {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
+.user-msg {
+    position: absolute;
+    width: 300px;
+    // margin: 0 auto;
+    right: 0;
+    top: 80px;
+    z-index: 10;
+    padding: 30px;
+}
+
+
 img {
     width: 100%;
 }
