@@ -112,7 +112,7 @@ import ItemService from '../services/ItemService.js';
                 console.log('saving item', this.newItem);
                 
                 const item = await this.$store.dispatch({type: 'saveItem', item: this.newItem, user: this.loggedInUser});
-                console.log('saving item after action', this.item);
+                console.log('saved item', item);
                 this.newItem = this.resetForm();
                 this.$router.push(`/item/${item._id}`)
             } catch(err){

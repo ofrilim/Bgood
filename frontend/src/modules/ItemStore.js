@@ -16,7 +16,6 @@ export default {
         },
         setCurrItem(state, { itemId }){
             const item = state.items.find(item => item._id === itemId)
-            console.log('mutation item:', item);
             state.currItem = item;
         },
         setItem(state, {editedItem}){
@@ -48,20 +47,20 @@ export default {
         },
         async saveItem(context, { item, user }){
             let editedItem = null;
-            console.log('store item:', item);
+            console.log('store item to save action:', item);
             
             if (item._id) editedItem = await ItemService.update(item)
             else editedItem = await ItemService.add(item, user._id)  
+            console.log('store saved item action:', editedItem);
             context.commit({type: 'setItem', editedItem})
             return editedItem;
-        },
-        setMsg(context, {msg}) {
-            context.commit({type: 'setMsg', msg});
-            setTimeout(() => context.commit({type: 'setMsg', msg: null}), 2500);
         },
         async buyItem(context, {item}){
             const editedItem = await ItemService.update(item)
             context.commit({type: 'setItem', editedItem})
+            console.log('contxt:', context);
+            
+            // context.dispatch({type: 'setItem', editedItem})
             return {}
         },
         async removeItem(context, {itemId}){
