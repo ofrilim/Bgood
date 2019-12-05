@@ -7,7 +7,9 @@ export default {
     remove,
     add,
     signIn,
-    logout
+    logout,
+    checkIsLoggedInUser,
+    signUp
 }
     
 
@@ -60,18 +62,26 @@ async function add(added) {
 }
 
 async function signIn(userCred) {
-    console.log('service sign in user cred:', userCred);
+    // console.log('service sign in user cred:', userCred);
     const user = await HttpService.post('auth/login', userCred)
-    console.log('service sign in user:', user);
+    // console.log('service sign in user:', user);
     return _handleLogin(user)
 }
-// async function signup(userCred) {
-//     const user = await HttpService.post('auth/signup', userCred)
-//     return _handleLogin(user)
-// }
+async function signUp(userCred) {
+    userCred.fullName = userCred.firstName + ' ' + userCred.lastName
+    const user = await HttpService.post('auth/signup', userCred)
+    console.log('FE service user:', user);
+    return _handleLogin(user)
+}
 async function logout() {
     await HttpService.post('auth/logout');
     sessionStorage.clear();
+}
+
+function checkIsLoggedInUser(){
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    if (!user) return
+    return user
 }
 
 function _handleLogin(user) {

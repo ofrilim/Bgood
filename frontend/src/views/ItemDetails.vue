@@ -2,12 +2,12 @@
     <section v-if="item" class="item-details">
         <div class="item-details-main flex">
             <div>
-                <img  class="img-details" :src="this.item.imgUrl"/>
+                <img class="img-details" :src="this.item.imgUrl"/>
             </div>
             <div class="details-content">
                 <h1 class="details-title">{{item.name}}</h1>
                 <div class="">
-                    <div class="details-btns">
+                    <div class="details-btns" v-if="!isOwner">
                         <button class="btn" @click="buyItem">BUY</button>
                         <i class="fa fa-heart preview-heart pointer" title="Add To WishList" @click.stop="addToWishList(item._id)"></i>
                     </div>
@@ -19,12 +19,12 @@
                     <h4><span class="bold">Additional information: </span>{{item.description}}</h4>
                 </div>
                 <div class="">
-                    <div class="">
-                    <router-link :to="`/user/${item.owner._id}`"><span class="bold">Seller: </span>{{item.owner.name}}
-                        <img :src="item.owner.imgUrl" class="avatar-img"/>
+                    <div class="" v-if="!isOwner">
+                    <router-link :to="`/user/${item.byUser._id}`"><span class="bold">Seller: </span>{{item.byUser.name}}
+                        <img :src="item.byUser.imgUrl" class="avatar-img"/>
                     </router-link> 
                     </div>
-                    <div>
+                    <div v-if="isOwner">
                         <router-link :to="`/item/edit/${item._id}`"><button class="btn">Edit Item</button></router-link>
                         <button @click="removeItem(item._id)" class="btn">Delete</button>
                     </div>
@@ -42,12 +42,15 @@ export default {
         return {
             item: null,
             itemId: null,
+            isOwner: false
         }
     },
      created(){
             this.itemId = this.$route.params.id
             this.$store.commit({type: 'setCurrItem', itemId: this.itemId})
             this.item = this.$store.getters.item
+            const loggedInUser = this.$store.getters.loggedInUser
+            if (loggedInUser) this.isOwner = (loggedInUser === this.item.byUser._Id)
     },
     methods:{
         addToWishList(itemId) {
@@ -60,7 +63,9 @@ export default {
             this.$router.push('/item/')
         },
          async buyItem() {
-            const baughtItem = {...this.item}
+            var user = this.$store.getters.loggedInUser;
+            const baughtItem = {...this.item};
+            baughtItem.buyer = user._id
             baughtItem.status = "In process" 
             await this.$store.dispatch({type: 'saveItem', item: baughtItem})
             this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully'})
@@ -69,7 +74,7 @@ export default {
     computed: {
         msg(){
             return this.$store.getters.msg
-        }
+        },
     },   
 }
 </script>
