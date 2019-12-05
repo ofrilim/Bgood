@@ -35,8 +35,7 @@ async function update(edited) {
 async function getById(id) {
     try {
         const user = await HttpService.get(`user/${id}`);
-        console.log('FE service user:', user);
-        
+        // console.log('FE service user:', user);
         return user;
     } catch(error) {
         console.error(`inside userService -> couldnt getById user: ${id}`);
@@ -70,7 +69,7 @@ async function signIn(userCred) {
 async function signUp(userCred) {
     userCred.fullName = userCred.firstName + ' ' + userCred.lastName
     const user = await HttpService.post('auth/signup', userCred)
-    console.log('FE service user:', user);
+    // console.log('FE service user:', user);
     return _handleLogin(user)
 }
 async function logout() {
