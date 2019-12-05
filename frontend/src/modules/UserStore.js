@@ -22,7 +22,6 @@ export default {
         setLoggedInUser(state, {user}){
             if (user) state.loggedInUser = user;
             else state.loggedInUser = null;
-            console.log('state logged in user:', state.loggedInUser);
         }
     },
     actions: {
@@ -32,27 +31,31 @@ export default {
             context.commit({type: 'setLoggedInUser', user})
             return user;
         },
-        async signup(context, {userCred}) {
-            const user = await UserService.signup(userCred)
-            context.commit({type: 'setUser', user})
+        async signUp(context, {userCred}) {
+            const user = await UserService.signUp(userCred)
+            context.commit({type: 'setLoggedInUser', user})
             return user;
         },
         async logout(context) {
             await UserService.logout()
-            // context.commit({type: 'setUsers', users: []})
             context.commit({type: 'setLoggedInUser'})
         },
         async loadUser(context, { userId }){
             const user = await UserService.getById(userId)
             context.commit({ type: 'setUser', user })
         },
+        async loadLoggedInUser(context){
+            const user = await UserService.checkIsLoggedInUser()
+            context.commit({type: 'setLoggedInUser', user})
+        },
         async removeUser(context, {userId}) {
             await UserService.remove(userId);
             context.commit({type: 'removeUser', userId})
         },
         async updateUser(context, {user}) {
-            user = await UserService.update(user);
-            context.commit({type: 'setUser', user})
+            const updatedUser = await UserService.update(user);
+            context.commit({type: 'setUser', user: updatedUser})
+            return updatedUser
         }
     },
     getters: {

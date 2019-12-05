@@ -18,6 +18,7 @@ export default {
   name: 'App',
   created(){
         this.$store.dispatch('loadItems')
+        this.$store.dispatch('loadLoggedInUser')
   },
   components: {
     AppHeader,

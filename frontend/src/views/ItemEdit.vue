@@ -81,7 +81,7 @@ import ItemService from '../services/ItemService.js';
     },
     created(){
         this.setCurrItem();
-        this.loggedInUser = this.$store.getters.user;
+        this.loggedInUser = this.$store.getters.loggedInUser;
     },
     methods: {
         setCurrItem(){
@@ -108,6 +108,8 @@ import ItemService from '../services/ItemService.js';
         async save(){
             try {
                 if (!this.newItem.imgUrl) throw "image not uploaded";
+                console.log('saving item');
+                
                 const item = await this.$store.dispatch({type: 'saveItem', item: this.newItem, user: this.loggedInUser});
                 this.newItem = this.resetForm();
                 this.$router.push(`/item/${item._id}`)
