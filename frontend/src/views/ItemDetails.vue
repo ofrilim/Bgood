@@ -47,12 +47,12 @@ export default {
     },
      created(){
             this.itemId = this.$route.params.id
-            this.$store.commit({type: 'setCurrItem', itemId: this.itemId})
+            this.$store.dispatch({type: 'loadItem', itemId: this.itemId})
             this.item = this.$store.getters.item
             const loggedInUser = this.$store.getters.loggedInUser
             if (loggedInUser) this.isOwner = (loggedInUser === this.item.byUser._Id)
     },
-    methods:{
+    methods: {
         // addToWishList(itemId) {
         //     console.log('ITEMDETAILS, ID ', itemId)
         //     this.$store.dispatch('addToWishList', itemId)
@@ -71,7 +71,7 @@ export default {
             baughtItem.status = "In process" 
             await this.$store.dispatch({type: 'saveItem', item: baughtItem})
             this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully'})
-        },
+        }
     },
     computed: {
         msg(){
