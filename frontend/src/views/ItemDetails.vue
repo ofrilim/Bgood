@@ -6,9 +6,9 @@
             </div>
             <div class="details-content">
                 <section class="flex flex-between align-center">
-                    <i class="fa fa-heart pointer" title="Add To WishList" @click.stop="addToWishList(item._id)"></i>
+                    <i class="fa fa-heart pointer" v-if="!isOwner" title="Add To WishList" @click.stop="addToWishList(item._id)"></i>
                     <h1 class="details-title  inline">{{item.name}}</h1>
-                    <button class="btn action-buy" @click="buyItem">BUY</button>
+                    <button class="btn action-buy" v-if="!isOwner" @click="buyItem">BUY</button>
                 </section>
                 <div class="details-content-box">
                     <h3><span class="bold">Category: </span>{{item.category}}</h3>
@@ -19,12 +19,12 @@
                     <h4><span class="bold">Additional information: </span>{{item.description}}</h4>
                 </div>
                 <div class="">
-                    <div class="">
+                    <div class="" v-if="!isOwner">
                     <router-link :to="`/user/${item.byUser._id}`"><span class="bold">Seller: </span>{{item.byUser.name}}
                         <img :src="item.byUser.imgUrl" class="avatar-img"/>
                     </router-link> 
                     </div>
-                    <div>
+                    <div v-if="isOwner">
                         <router-link :to="`/item/edit/${item._id}`"><button class="btn">Edit Item</button></router-link>
                         <button @click="removeItem(item._id)" class="btn">Delete</button>
                     </div>
@@ -34,7 +34,6 @@
     </section>
 </template>
 
-
 <script>
 export default {
     name: 'item-details',
@@ -42,12 +41,15 @@ export default {
         return {
             item: null,
             itemId: null,
+            isOwner: false
         }
     },
      created(){
             this.itemId = this.$route.params.id
             this.$store.commit({type: 'setCurrItem', itemId: this.itemId})
             this.item = this.$store.getters.item
+            const loggedInUser = this.$store.getters.loggedInUser
+            if (loggedInUser) this.isOwner = (loggedInUser === this.item.byUser._Id)
     },
     methods:{
         addToWishList(itemId) {
@@ -62,7 +64,9 @@ export default {
             this.$router.push('/item/')
         },
          async buyItem() {
-            const baughtItem = {...this.item}
+            var user = this.$store.getters.loggedInUser;
+            const baughtItem = {...this.item};
+            baughtItem.buyer = user._id
             baughtItem.status = "In process" 
             await this.$store.dispatch({type: 'saveItem', item: baughtItem})
             this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully'})
@@ -71,7 +75,7 @@ export default {
     computed: {
         msg(){
             return this.$store.getters.msg
-        }
+        },
     },   
 }
 </script>

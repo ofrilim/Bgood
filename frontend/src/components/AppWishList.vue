@@ -39,8 +39,8 @@ export default {
     created() {
       this.$bus.on('toggleWishList', () => {
         this.toggleWishList = !this.toggleWishList;
-      }),
-      this.itemsInWish = this.$store.getters.wishListItems;
+      })
+      // this.itemsInWish = this.$store.getters.wishListItems;
     },
     methods: {
       //  wishListItems() {

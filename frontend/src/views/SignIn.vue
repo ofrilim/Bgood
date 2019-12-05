@@ -78,15 +78,15 @@
         if (!cred.email || !cred.password) return this.msg = 'Please enter valid username or password';
         const user = await this.$store.dispatch({type: 'signIn', userCred:{cred}})
         this.$router.push(`/user/${user._id}`)
-        // console.log('signde In: ', cred);
       },
       async register() {
-        const cred = this.registerCred
+        const cred = this.registerCred;
         if( !cred.firstName || !cred.lastName 
-              || !cred.email || !cred.password ) return this.msg = 'Please fill up all register fields'
-        this.$store.dispatch({type: 'signup', userCred: {cred}})
-        // this.$router.push(`/user/${}`)
-        console.log('register! ', cred);
+              || !cred.email || !cred.password ) 
+              return this.msg = 'Please fill up all register fields';
+        // console.log('register! ', cred);
+        const user = await this.$store.dispatch({type: 'signUp', userCred: {cred}})
+        this.$router.push(`/user/${user._id}`)
       },
       getAllUsers() {
         this.$store.dispatch({type: 'loadUsers'})

@@ -19,7 +19,6 @@ export default {
             state.currItem = item;
         },
         setItem(state, {editedItem}){
-            console.log('editedItem:', editedItem);
             const idx = state.items.findIndex(item => item._id === editedItem._id)
             if (idx === -1) state.items.unshift(editedItem)
             else state.items.splice(idx, 1, editedItem)
@@ -49,7 +48,7 @@ export default {
         async saveItem(context, { item, user }){
             let editedItem = null;
             if (item._id) editedItem = await ItemService.update(item)
-            else editedItem = await ItemService.add(item, user)             
+            else editedItem = await ItemService.add(item, user._id)             
             context.commit({type: 'setItem', editedItem})
             return editedItem;
         },

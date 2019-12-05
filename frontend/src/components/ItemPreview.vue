@@ -9,14 +9,17 @@
         <div class="preview-content flex flex-col flex-around">
             <h2 class="preview-name bold">{{item.name}}</h2>
             <div class="preview-price flex flex-between">
-                <h2>Price:  {{item.price}} $</h2>
+                <h2>Price: $ {{item.price}}</h2>
             </div>
-            <router-link :to="`/user/${item.byUser._id}`">
-            <div class="flex align-center">
-                <img class="avatar-img pointer" :src="item.byUser.imgUrl"/><small class="by">By: {{item.byUser.name}}</small>
+            <div v-if="item.byUser">
+                <router-link :to="`/user/${item.byUser._id}`">
+                    <div class="flex align-center">
+                        <img class="avatar-img pointer" :src="item.byUser.imgUrl"/>
+                        <small class="by">By: {{item.byUser.fullName}}</small>
+                    </div>
+                </router-link>
             </div>
-            </router-link>
-        <slot></slot>
+            <slot></slot>
         </div>
     </li>
 </template>
