@@ -22,13 +22,11 @@ export default {
                 state.loggedInUser = user;
                 state.loggedInUserWishListItems = user.itemsOnWishList;
             }
-            console.log('STATE MUTATION logged in user:', state.loggedInUser);
         }
     },
     actions: {
         async signIn(context, {userCred}) {
             const user = await UserService.signIn(userCred);
-            // console.log('store sign in user:', user);
             context.commit({type: 'setLoggedInUser', user})
             return user;
         },
@@ -47,7 +45,7 @@ export default {
         },
         async loadLoggedInUser(context){
             const user = await UserService.checkIsLoggedInUser()
-            context.commit({type: 'setLoggedInUser', user})
+            if (user) context.commit({type: 'setLoggedInUser', user})
         },
         async removeUser(context, {userId}) {
             await UserService.remove(userId);
@@ -58,17 +56,17 @@ export default {
             context.commit({type: 'setUser', user: updatedUser})
             return updatedUser
         },
-        async addToWishList(context, itemId) {
-            if (this.state.loggedInUser._id) {
-                console.log('STORE ACTION itemsent is: ', this.state.loggedInUser._id)
-                console.log('STORE ACTION itemsent is: ', context, user, itemId)
-                const user = await UserService.getById(this.state.loggedInUser._id)
-                console.log('STORE ACTION user is: ', context, user, itemId)
-            }
-            else console.log(this.state.loggedInUser)
+        // async addToWishList(context, itemId) {
+        //     if (this.state.loggedInUser._id) {
+                // console.log('STORE ACTION itemsent is: ', this.state.loggedInUser._id)
+                // console.log('STORE ACTION itemsent is: ', context, user, itemId)
+                // const user = await UserService.getById(this.state.loggedInUser._id)
+                // console.log('STORE ACTION user is: ', context, user, itemId)
+            // }
+            // else console.log(this.state.loggedInUser)
             // const item = state.items.find(item => item._id === itemId)
             // state.currUser.wishlistItems.unshift(item);
-        },
+        // },
     },
     getters: {
         user(state) {

@@ -74,10 +74,5 @@ export default {
             this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully'});
         },
     },
-    // computed: {
-    //     msg(){
-    //         return this.$store.getters.msg
-    //     },
-    // },   
 }
 </script>
