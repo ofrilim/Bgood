@@ -70,14 +70,9 @@ export default {
             const baughtItem = JSON.parse(JSON.stringify(this.item));
             baughtItem.buyer = user._id;
             baughtItem.status = "In process";
-            const savedItem = await this.$store.dispatch({type: 'saveItem', item: baughtItem});
+            await this.$store.dispatch({type: 'saveItem', item: baughtItem});
             this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully'});
         },
     },
-    // computed: {
-    //     msg(){
-    //         return this.$store.getters.msg
-    //     },
-    // },   
 }
 </script>

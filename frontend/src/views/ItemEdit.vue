@@ -109,7 +109,6 @@ import ItemService from '../services/ItemService.js';
             try {
                 if (!this.newItem.imgUrl) throw "image not uploaded";
                 const item = await this.$store.dispatch({type: 'saveItem', item: this.newItem, user: this.loggedInUser});
-                console.log('saved item', item);
                 this.newItem = this.resetForm();
                 this.$router.push(`/item/${item._id}`)
             } catch(err){

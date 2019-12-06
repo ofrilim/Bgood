@@ -31,7 +31,7 @@
             </div>
             <section class="items grid">
                 <item-preview v-for="item in userItems" :key="item._id" :item="item">
-                    <button class="btn" v-if="itemsFilter === 'In process'" @click="markAsSold(item)">Approve sell</button>
+                    <button class="btn" v-if="itemsFilter === 'In process'" @click="markAsSold(item)">Approve sale</button>
                 </item-preview>
             </section>
         </section>
@@ -70,8 +70,7 @@ export default {
             this.isLoggedInUser = (this.$store.getters.loggedInUser._id === this.userId)
             if (this.isLoggedInUser) {
                 const loggedInUser = this.$store.getters.loggedInUser
-                console.log('logged in user own items:', loggedInUser.ownItems);
-                const orders = loggedInUser.ownItems.filter(item => item.status === 'In process')
+                const orders = loggedInUser.ownItems.find(item => item.status === 'In process')
                 if (orders) this.$store.dispatch({type: 'setMsg', msg: 'You have new orders!!!'})         
             }
         },
@@ -81,11 +80,9 @@ export default {
             await this.$store.dispatch({type: 'saveItem', item: soldItem, user: this.user })
             this.$store.dispatch({type: 'setMsg', msg: 'Item sold!!' })         
             this.msg = 'Item Sold!!'
-            console.log('sold item - ', soldItem, 'user:', this.user);
         },
         async uploadImg(ev){
             const imgUrl = await ItemService.uploadImg(ev)
-            console.log('img url:', imgUrl);
             this.currUser.imgUrl = imgUrl
         },
         async editUserImg(){
@@ -98,11 +95,6 @@ export default {
         
     },
     computed:{
-        // user(){
-        //     this.currUser = this.$store.getters.user
-        //     console.log('user details user:', this.$store.getters.user);
-        //     // return this.$store.getters.user
-        // },
         userItems(){            
             return this.$store.getters.user.ownItems.filter(item => {
                 return item.status === this.itemsFilter 

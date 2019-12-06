@@ -84,7 +84,6 @@
         if( !cred.firstName || !cred.lastName 
               || !cred.email || !cred.password ) 
               return this.msg = 'Please fill up all register fields';
-        // console.log('register! ', cred);
         const user = await this.$store.dispatch({type: 'signUp', userCred: {cred}})
         this.$router.push(`/user/${user._id}`)
       },
@@ -103,12 +102,6 @@
         return this.$store.getters.loggedinUser
       }
     },
-    created() {
-      console.log('this.loggedinUser', this.loggedinUser)
-  },
-// "_id" : "5de41bbe77a3f6bbaad48780" - user with attr ADMIN = null.
-// EMAIL = gyallop0@tripadvisor.com
-// PASSWORD = 1234
 }
 </script>
 
