@@ -22,6 +22,8 @@ export default {
             const idx = state.items.findIndex(item => item._id === editedItem._id)
             if (idx === -1) state.items.unshift(editedItem)
             else state.items.splice(idx, 1, editedItem)
+            console.log('mutations edited item:', editedItem);
+            
         },
         removeItem(state, {itemId}){
             const idx = state.items.findIndex(item => item._id === itemId)
@@ -47,11 +49,9 @@ export default {
         },
         async saveItem(context, { item, user }){
             let editedItem = null;
-            console.log('store item to save action:', item);
-            
             if (item._id) editedItem = await ItemService.update(item)
             else editedItem = await ItemService.add(item, user._id)  
-            console.log('store saved item action:', editedItem);
+            console.log('store save item:', editedItem);
             context.commit({type: 'setItem', editedItem})
             return editedItem;
         },

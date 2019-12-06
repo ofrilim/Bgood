@@ -51,7 +51,7 @@ export default {
             await this.$store.dispatch({type: 'loadItem', itemId: this.itemId})
             this.item = this.$store.getters.item
             const loggedInUser = this.$store.getters.loggedInUser
-            if (loggedInUser) this.isOwner = (loggedInUser._id === this.item.byUser._id)
+            if (loggedInUser) this.isOwner = (loggedInUser._id === this.item.ownerId)
     },
     methods:{
         addToWishList(itemId) {
@@ -67,11 +67,11 @@ export default {
         },
          async buyItem() {
             var user = this.$store.getters.loggedInUser;
-            const baughtItem = JSON.parse(JSON.stringify(this.item))
-            baughtItem.buyer = user._id
-            baughtItem.status = "In process" 
-            await this.$store.dispatch({type: 'saveItem', item: baughtItem})
-            this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully'})
+            const baughtItem = JSON.parse(JSON.stringify(this.item));
+            baughtItem.buyer = user._id;
+            baughtItem.status = "In process";
+            const savedItem = await this.$store.dispatch({type: 'saveItem', item: baughtItem});
+            this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully'});
         },
     },
     // computed: {

@@ -1,10 +1,10 @@
 .footer {
-    height: rem(180px);
+    height: 28vh;
     flex-grow: 1;
 }
 
 .footer-content {
-    height: rem(120px);
+    height: 18vh;
 }
 
 .member :hover {
@@ -12,7 +12,6 @@
     color: $clr4;
     border-bottom: $clr7 1px solid; 
     padding: 5px; 
-    width: 170px;
 }
 
 
