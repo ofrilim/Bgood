@@ -7,7 +7,7 @@
                 <h1>{{currUser.firstName}}'s Boutique</h1>      
                 <section class="user-info">
                     <h2><i class="fa fa-user"></i>{{currUser.fullName}}</h2>
-                    <h2><i class="fa fa-envelope"></i>{{currUser.email}}</h2>
+                    <h2><a href="#"><i class="fa fa-envelope"></i>{{currUser.email}}</a></h2>
                 </section>
                 <div class="btns">
                     <router-link to='/item/edit' v-if="isLoggedInUser"><button class="btn">Add Item</button></router-link>
