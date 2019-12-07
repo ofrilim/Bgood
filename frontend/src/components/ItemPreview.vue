@@ -1,7 +1,7 @@
 <template>
     <li class="preview">
         <router-link :to="`/item/${item._id}`">
-            <i class="fa fa-heart preview-heart" @click.stop="addToWishList(item._id)"></i>
+            <i class="fa fa-heart preview-heart" @click.prevent="addToWishList(item._id)"></i>
             <div class="img-hover">
                 <img class="img-preview" :src="item.imgUrl"/>
             </div>
@@ -30,7 +30,6 @@ export default {
     props: ['item'],
     methods: {
         addToWishList(itemId) {
-            console.log('hi')
             this.$emit('addToWishList', itemId)
         },
     },

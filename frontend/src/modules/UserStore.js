@@ -18,6 +18,13 @@ export default {
                 state.loggedInUser = user;
             }
         },
+        // updateUser(state, {user}){       // TODO: WISH LIST THING
+        //     state.loggedInUser = user
+        //     console.log('mutation updates user:', state.loggedInUser);
+        //     console.log('mutation updates user wishlist:', state.loggedInUser.wishList);
+        //     console.log('mutation updates user wishlist items:', state.loggedInUser.wishListItems);
+            
+        // }
     },
     actions: {
         async signIn(context, { userCred }) {
@@ -38,10 +45,24 @@ export default {
             const user = await SessionService.checkIsLoggedInUser()
             context.commit({ type: 'setLoggedInUser', user })
         },
-        addToWishList(context, { itemId }) {    //  TODO:  STEPS FOR WISHlIST
-            console.log("ADD TO WISH LIST ",itemId);
-        }
+        async updateUser(context, {user}) {         // TODO: WISH LIST
+            const updatedUser = await UserService.update(user);
+            context.commit({type: 'updateUser', user: updatedUser})
+            return updatedUser;
+        },
+        async addToWishList(context, {itemId}) {        // TODO: WISH LIST
+            if (context.state.loggedInUser) {
+                const user = JSON.parse(JSON.stringify(context.state.loggedInUser)) 
+                console.log('STORE ACTION user is: ', user)
+                console.log('STORE ACTION item is: ', itemId)
+                user.wishList.unshift(itemId)
+                console.log('STORE ACTION user is: ', user.wishList)
+                const updatedUser = await UserService.update(user)
+                console.log('STORE ACTION user is: ', updatedUser)
+                context.commit({type: 'updateUser', user: updatedUser})
 
+            }
+        },
     },
     getters: {
         loggedInUser(state) {

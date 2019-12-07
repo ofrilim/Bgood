@@ -31,6 +31,8 @@ export default {
         },
         async saveItem(context, { item, userId }) {
             let editedItem = null;
+            console.log('store item to save:', item);
+            
             if (item._id) editedItem = await ItemService.update(item)
             else editedItem = await ItemService.add(item, userId)
             context.commit({ type: 'setItem', editedItem })
@@ -38,7 +40,6 @@ export default {
         async buyItem(context, { item }) {
             const editedItem = await ItemService.update(item)
             context.commit({ type: 'setItem', editedItem })
-            // context.dispatch({type: 'setItem', editedItem})
             return {}
         },
         async removeItem(context, { itemId }) {
