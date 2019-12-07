@@ -89,6 +89,7 @@ import ItemService from '../services/ItemService.js';
             let item = this.resetForm();
             if (itemId) item = this.$store.getters.item;
             this.newItem = JSON.parse(JSON.stringify(item));
+            console.log('item to edit:', this.newItem);
         },
         resetForm() {
             return {

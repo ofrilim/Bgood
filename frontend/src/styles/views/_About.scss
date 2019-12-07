@@ -1,0 +1,29 @@
+.about{
+    padding: 2%;
+    & span {
+        color: $clr5;
+    }
+}
+
+.about-header {
+    color: $clr5;
+    font-weight: bolder;
+    margin: 0 auto;
+}
+
+.about-img {
+    margin:  0 auto;
+    width: 8vw;
+    border-radius: 100%;
+    // padding: 2%;
+    align-items: center;
+}
+
+.about-admin {
+    width: 20%;
+    margin:  0 auto;
+    padding-top: 2%;
+    color: $clr5;
+    font-weight: bold;
+    align-items: center;
+}
