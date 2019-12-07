@@ -26,11 +26,11 @@
       <h1>Hila Solomon</h1>
     </div>
     <div class="about-admin">
-      <img class="about-img" src="https://ca.slack-edge.com/TMCJAUBPU-UMHAG22AW-6fbebf3eeb8c-72" alt="">
+      <img class="about-img" src="http://res.cloudinary.com/dtkrff3dw/image/upload/v1575666281/krvhasvlmbufmafearx7.jpg" alt="">
       <h1>Limor Ofri</h1>
     </div>
     <div class="about-admin">
-      <img class="about-img" src="http://res.cloudinary.com/dtkrff3dw/image/upload/v1575536234/e1kizodw5wtdslqgzsc4.jpg" alt="">
+      <img class="about-img" src="http://res.cloudinary.com/dtkrff3dw/image/upload/v1575717163/mekf22bpejlgy321amnh.jpg" alt="">
       <h1>Liron Shahar-Atia</h1>
     </div>
   </section>
