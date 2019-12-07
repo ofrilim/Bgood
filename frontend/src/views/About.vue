@@ -1,9 +1,10 @@
 <template>
   <section class="about">
     <section>
-      <h1></h1>
-      <span class="about-header">We like fashion we care about the environment<br>
-        dressing well and being eco-friendly simultaneously – This is the essence of B-GOOD!</span><br><br>
+      <h1 class="about-header">
+        <span >We like <span class=diff>fashion</span> and we care about the <span class=diff>environment</span><br>
+        Dressing well and being eco-friendly simultaneously – This is the essence of <span class=diff>B-GOOD!</span></span>
+      </h1><br><br>
       <span>1. You can afford more and better stuff</span>, using the same amount you planned to spend.<br><br>
       <span>2. You help prevent environmental devastation</span><br>
       Consider the amount of recourses needed for the production of a new piece of clothing.
