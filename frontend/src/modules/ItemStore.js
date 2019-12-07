@@ -14,11 +14,13 @@ export default {
         setItems(state, {items}){
             state.items = items;
         },
-        setCurrItem(state, { itemId }){
-            const item = state.items.find(item => item._id === itemId)
+        setCurrItem(state, { item }){
+            // const item = state.items.find(item => item._id === itemId)
             state.currItem = item;
         },
         setItem(state, {editedItem}){
+            console.log('mutations edited item:', editedItem);
+            
             const idx = state.items.findIndex(item => item._id === editedItem._id)
             if (idx === -1) state.items.unshift(editedItem)
             else state.items.splice(idx, 1, editedItem)
@@ -43,20 +45,25 @@ export default {
         },
         async loadItem(context, {itemId}){
             let item = await ItemService.getById(itemId)
-            context.commit({type: 'setCurrItem', itemId: item._id})
+            console.log('store get by id item:', item);
+            context.commit({type: 'setCurrItem', item})
         },
         async saveItem(context, { item, user }){
             let editedItem = null;
+            console.log('store item to save:', item);
+            
             if (item._id) editedItem = await ItemService.update(item)
-            else editedItem = await ItemService.add(item, user._id)  
+            else editedItem = await ItemService.add(item, user)  
+            console.log('store editedItem to save:', editedItem);
+
             context.commit({type: 'setItem', editedItem})
             return editedItem;
         },
-        async buyItem(context, {item}){
-            const editedItem = await ItemService.update(item)
-            context.commit({type: 'setItem', editedItem})
-            return {}
-        },
+        // async buyItem(context, {item}){
+        //     const editedItem = await ItemService.update(item)
+        //     context.commit({type: 'setItem', editedItem})
+        //     return {}
+        // },
         async removeItem(context, {itemId}){
             await ItemService.remove(itemId)
             context.commit({type: 'removeItem', itemId})
@@ -70,8 +77,8 @@ export default {
         item(state){
             return state.currItem;
         },
-        msg(state){
-            return state.msg
-        }
+        // msg(state){
+        //     return state.msg
+        // }
     }
 }

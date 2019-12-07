@@ -26,12 +26,12 @@
             <div class="btns">
                 <button class="btn" @click="itemsFilter = 'available'">Available Items</button>
                 <!-- TODO: render order button only if user is loggedInUser -->
-                <button class="btn" @click="itemsFilter = 'In process'" v-if="isLoggedInUser">Incoming Orders</button>
+                <button class="btn" @click="itemsFilter = 'in process'" v-if="isLoggedInUser">Incoming Orders</button>
                 <button class="btn" @click="itemsFilter = 'sold'" v-if="isLoggedInUser">Sold Items</button>
             </div>
             <section class="items grid">
                 <item-preview v-for="item in userItems" :key="item._id" :item="item">
-                    <button class="btn" v-if="itemsFilter === 'In process'" @click="markAsSold(item)">Approve sale</button>
+                    <button class="btn" v-if="itemsFilter === 'in process'" @click="markAsSold(item)">Approve sale</button>
                 </item-preview>
             </section>
         </section>
@@ -70,7 +70,7 @@ export default {
             this.isLoggedInUser = (this.$store.getters.loggedInUser._id === this.userId)
             if (this.isLoggedInUser) {
                 const loggedInUser = this.$store.getters.loggedInUser
-                const orders = loggedInUser.ownItems.find(item => item.status === 'In process')
+                const orders = loggedInUser.ownItems.find(item => item.status === 'in process')
                 if (orders) this.$store.dispatch({type: 'setMsg', msg: 'You have new orders!!!'})         
             }
         },

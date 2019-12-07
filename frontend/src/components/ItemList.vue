@@ -1,7 +1,7 @@
 <template>
     <section>
         <ul class="grid-container">
-            <ItemPreview v-for="currItem in items" :key="currItem._id" :item="currItem">
+            <ItemPreview v-for="currItem in items" :key="currItem._id" :item="currItem" @addToWishList="addItemToWishList">
             </ItemPreview>
         </ul>
 
@@ -20,6 +20,11 @@ export default {
     },
     created() {
         // console.log('items: ', items)
+    },
+    methods: {
+        addItemToWishList(itemId){
+            this.$emit('addToWishList', itemId)
+        }
     }
 }
 </script>
