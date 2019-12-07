@@ -18,13 +18,13 @@ export default {
                 state.loggedInUser = user;
             }
         },
-        // updateUser(state, {user}){       // TODO: WISH LIST THING
-        //     state.loggedInUser = user
-        //     console.log('mutation updates user:', state.loggedInUser);
-        //     console.log('mutation updates user wishlist:', state.loggedInUser.wishList);
-        //     console.log('mutation updates user wishlist items:', state.loggedInUser.wishListItems);
+        updateUser(state, {user}){       // TODO: WISH LIST THING
+            state.loggedInUser = user
+            console.log('mutation updates user:', state.loggedInUser);
+            console.log('mutation updates user wishlist:', state.loggedInUser.wishList);
+            console.log('mutation updates user wishlist items:', state.loggedInUser.wishListItems);
             
-        // }
+        }
     },
     actions: {
         async signIn(context, { userCred }) {
