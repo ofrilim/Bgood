@@ -88,7 +88,10 @@ export default {
       this.userId = this.$route.params.id;
       const tempUser = await userService.getById(this.userId);
       this.user = JSON.parse(JSON.stringify(tempUser));
-      this.isLoggedInUser = this.$store.getters.loggedInUser._id === this.userId;
+
+      
+      const userIdFromStore = this.$store.getters.loggedInUser._id
+      if (userIdFromStore) this.isLoggedInUser = userIdFromStore === this.userId;
     },
     async markAsSold(item) {
       const soldItem = { ...item };

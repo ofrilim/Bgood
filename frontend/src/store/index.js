@@ -15,6 +15,11 @@ export default new Vuex.Store({
       msg: '',
       // wishList: []   // TODO: CHECK IF HERE IS THE PLACE FOR WISH LIST
   },
+  mutations: {
+    setMsg(state, { msg }) {
+      state.msg = msg;
+    }
+  },
   actions: {
       setMsg(context, {msg}) {      // TODO: CHECK ABOUT ALL PLACES WE HAVE msg AND COME TO STORE and this one paryicular dont have mutation
         context.commit({type: 'setMsg', msg});

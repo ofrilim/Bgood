@@ -26,12 +26,12 @@ export default {
                 const items = await ItemService.query();
                 context.commit({ type: 'setItems', items })
             } catch (err) {
-                console.error(err);
+                console.error('ITEM STORE ERROR LOAD ITEMS', err);
             }
         },
         async saveItem(context, { item, userId }) {
             let editedItem = null;
-            console.log('store item to save:', item);
+            console.log('STORE item to save:', item);
             
             if (item._id) editedItem = await ItemService.update(item)
             else editedItem = await ItemService.add(item, userId)
