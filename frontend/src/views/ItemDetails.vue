@@ -12,11 +12,12 @@
                 </section>
                 <div class="details-content-box">
                     <h3><span class="bold">Category: </span>{{item.category}}</h3>
+                    <h3><span class="bold" v-if="item.category==='clothes' || item.category==='shoes'">Size: </span>{{item.size}}</h3>
                     <h3><span class="bold">Condition: </span>{{item.condition}}</h3>
-                    <!-- <h3><span class="bold">Uploaded at: </span>{{item.createdAt}}</h3> -->
+                    <h3><span class="bold">Uploaded at: </span>{{createdAtDate}}</h3>
                     <h3><span class="bold">Price: $ </span>{{item.price}}</h3>
                     <h4><span class="bold">Additional information: </span>{{item.description}}</h4>
-                    <h3><span class="bold alert" v-if="item.status==='in process'">Someone is interested in this item</span></h3>
+                    <h3><span class="bold alert" v-if="item.status==='in process' || item.status==='sold'">Someone is interested in this item</span></h3>
                     <h3><span class="bold success" v-if="item.status === 'available'">Item is available</span></h3>
                     <h3><span class="bold primary" v-if="item.status === 'sold'">{{item.byUser.firstName}} had sold the {{item.name}}</span></h3>
                     
@@ -39,46 +40,42 @@
 </template>
 
 <script>
+import UtilsService from '../services/UtilsService.js';
+import ItemService from '../services/ItemService.js';
+
 export default {
     name: 'item-details',
     data() {
         return {
             item: null,
             itemId: null,
-            isOwner: false
+            isOwner: false,
+            createdAtDate: ''
         }
     },
-     async created(){
-            this.itemId = this.$route.params.id
-            await this.$store.dispatch({type: 'loadItem', itemId: this.itemId})
-            this.item = this.$store.getters.item
-            console.log('item details item:', this.item);
-            
-            const loggedInUser = this.$store.getters.loggedInUser
-            if (loggedInUser) this.isOwner = (loggedInUser._id === this.item.ownerId)
+    async created() {
+        this.itemId = this.$route.params.id; 
+        this.item = await ItemService.getById(this.itemId);
+        this.createdAtDate = UtilsService.timeStampToString(this.item.createdAt)           
+        const loggedInUser = this.$store.getters.loggedInUser;
+        if (loggedInUser) this.isOwner = (loggedInUser._id === this.item.ownerId) 
     },
-    methods:{
-        addToWishList(itemId) {
-            console.log('ITEMDETAILS, ID ', itemId)
-            // this.$store.dispatch('addToWishList', itemId)
-            // // this.$store.commit('setWishCount', itemId) // will be assigned to totalCount + diff
-            // this.$store.commit('addToWishList', this.item) // will be assigned to loggedinUser + diff
-            // this.$store.dispatch({type: 'setMsg', msg: 'Item added successfully'})
+    methods: {
+        addToWishList(itemId) {         // TODO: WISH LIST
+            this.$store.dispatch('addToWishList', itemId);
         },
-        async removeItem(itemId){
+        async removeItem(itemId) {
             await this.$store.dispatch({type: 'removeItem', itemId})
             this.$router.push('/item/')
         },
-         async buyItem() {
-            var user = this.$store.getters.loggedInUser;
+        async buyItem() {
+            var user = this.$store.getters.loggedInUser;   // TODO: CHECK FOR THIS TO WORK WELL
             const baughtItem = JSON.parse(JSON.stringify(this.item));
             baughtItem.buyer = user._id;
             baughtItem.status = "in process";
-            console.log('buy item item:', baughtItem);
-            
             await this.$store.dispatch({type: 'saveItem', item: baughtItem});
-            this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully'});
-        },
+            this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully'}); // TODO: ADD TRY AND CATCH FOR IF ITEM DOENT SAVE SUCCEFULLY
+        }, 
     },
 }
 </script>

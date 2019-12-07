@@ -4,10 +4,8 @@
             <ItemPreview v-for="currItem in items" :key="currItem._id" :item="currItem" @addToWishList="addItemToWishList">
             </ItemPreview>
         </ul>
-
     </section>
 </template>
-
 
 <script>   
 import ItemPreview from "@/components/ItemPreview.vue";
@@ -18,11 +16,8 @@ export default {
     components: {
         ItemPreview
     },
-    created() {
-        // console.log('items: ', items)
-    },
     methods: {
-        addItemToWishList(itemId){
+        addItemToWishList(itemId){       // TODO: WISH LIST - HILA
             this.$emit('addToWishList', itemId)
         }
     }

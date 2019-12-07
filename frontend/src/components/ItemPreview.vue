@@ -24,14 +24,10 @@
     </li>
 </template>
 
-
 <script> 
 export default {
     name:'ItemPreview',
-
     props: ['item'],
-    computed: {
-    },
     methods: {
         addToWishList(itemId) {
             this.$emit('addToWishList', itemId)

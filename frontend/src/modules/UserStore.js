@@ -1,75 +1,56 @@
 import UserService from "../services/UserService";
+import SessionService from "../services/SessionService";
 
 export default {
     state: {
-        currUser: null,
+        wishList: [],       // TODO: WISH LIST
         loggedInUser: null,
-
     },
     mutations: {
-        setUser(state, {user}){
-            state.currUser = user
-        },
-        setUsers(state, {users}) {
+        setUsers(state, { users }) {
             state.users = users;
         },
-        removeUser(state, {userId}) {
-            state.users = state.users.filter(user => user._id !== userId)
-        },
-        setLoggedInUser(state, {user}){
-            if (!user) state.loggedInUser = null;
+        setLoggedInUser(state, { user }) {
+            if (!user) {
+                state.loggedInUser = null;
+            }
             else {
                 state.loggedInUser = user;
-                state.loggedInUserWishListItems = user.itemsOnWishList;
             }
         },
-        updateUser(state, {user}){
-            state.loggedInUser = user
-            console.log('mutation updates user:', state.loggedInUser);
-            console.log('mutation updates user wishlist:', state.loggedInUser.wishList);
-            console.log('mutation updates user wishlist items:', state.loggedInUser.wishListItems);
+        // updateUser(state, {user}){       // TODO: WISH LIST THING
+        //     state.loggedInUser = user
+        //     console.log('mutation updates user:', state.loggedInUser);
+        //     console.log('mutation updates user wishlist:', state.loggedInUser.wishList);
+        //     console.log('mutation updates user wishlist items:', state.loggedInUser.wishListItems);
             
-        }
+        // }
     },
     actions: {
-        async signIn(context, {userCred}) {
+        async signIn(context, { userCred }) {
             const user = await UserService.signIn(userCred);
-            console.log('store logged in user:', user);
-            // const fullUser = await UserService.getById(user._id);
-            // console.log('store logged in fullUser:', fullUser);
-            // context.commit({type: 'setLoggedInUser', fullUser})
-            context.commit({type: 'setLoggedInUser', user})
-
+            context.commit({ type: 'setLoggedInUser', user })
             return user;
         },
-        async signUp(context, {userCred}) {
+        async signUp(context, { userCred }) {
             const user = await UserService.signUp(userCred)
-            context.commit({type: 'setLoggedInUser', user})
+            context.commit({ type: 'setLoggedInUser', user })
             return user;
         },
-        async logout(context) {
-            await UserService.logout()
-            context.commit({type: 'setLoggedInUser'})
+        async logOut(context) {
+            await UserService.logOut()
+            context.commit({ type: 'setLoggedInUser' })
         },
-        async loadUser(context, { userId }){
-            const user = await UserService.getById(userId)
-            context.commit({ type: 'setUser', user })
-            
+        async loadLoggedInUser(context) {
+            const user = await SessionService.checkIsLoggedInUser()
+            context.commit({ type: 'setLoggedInUser', user })
         },
-        async loadLoggedInUser(context){
-            const user = await UserService.checkIsLoggedInUser()
-            if (user) context.commit({type: 'setLoggedInUser', user})
-        },
-        async removeUser(context, {userId}) {
-            await UserService.remove(userId);
-            context.commit({type: 'removeUser', userId})
-        },
-        async updateUser(context, {user}) {
+        async updateUser(context, {user}) {         // TODO: WISH LIST
             const updatedUser = await UserService.update(user);
             context.commit({type: 'updateUser', user: updatedUser})
-            return updatedUser
+            return updatedUser;
         },
-        async addToWishList(context, {itemId}) {
+        async addToWishList(context, {itemId}) {        // TODO: WISH LIST
             if (context.state.loggedInUser) {
                 const user = JSON.parse(JSON.stringify(context.state.loggedInUser)) 
                 console.log('STORE ACTION user is: ', user)
@@ -84,15 +65,11 @@ export default {
         },
     },
     getters: {
-        user(state) {
-            return state.currUser;
-        },
-        wishListItems(state) {
-            console.log("STORE GETTERS: ", state.currUser.wishListItems)
-            // return state.loggedInUser.itemsOnWishList;
-        }, 
         loggedInUser(state) {
-            return state.loggedInUser
+            return state.loggedInUser;
         },
+        wishList(state) {           // TODO: WISH LIST
+            return state.wishList;
+        }
     }
 }

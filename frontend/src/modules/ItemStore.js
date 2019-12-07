@@ -3,82 +3,54 @@ import ItemService from '../services/ItemService.js';
 export default {
     state: {
         items: [],
-        currItem: null,
-        msg: null,
-        status: 'Available',
-        filterBy: {
-
-        }
+        status: 'available',
+        filterBy: {}
     },
     mutations: {
-        setItems(state, {items}){
+        setItems(state, { items }) {
             state.items = items;
         },
-        setCurrItem(state, { item }){
-            // const item = state.items.find(item => item._id === itemId)
-            state.currItem = item;
-        },
-        setItem(state, {editedItem}){
-            console.log('mutations edited item:', editedItem);
-            
+        setItem(state, { editedItem }) {
             const idx = state.items.findIndex(item => item._id === editedItem._id)
             if (idx === -1) state.items.unshift(editedItem)
             else state.items.splice(idx, 1, editedItem)
         },
-        removeItem(state, {itemId}){
+        removeItem(state, { itemId }) {
             const idx = state.items.findIndex(item => item._id === itemId)
             state.items.splice(idx, 1)
         },
-        setMsg(state, {msg}){
-            state.msg = msg;
-        }
-        
     },
     actions: {
-        async loadItems(context){
+        async loadItems(context) {
             try {
                 const items = await ItemService.query();
-                context.commit({type: 'setItems', items})
-            } catch(err) {
+                context.commit({ type: 'setItems', items })
+            } catch (err) {
                 console.error(err);
             }
         },
-        async loadItem(context, {itemId}){
-            let item = await ItemService.getById(itemId)
-            console.log('store get by id item:', item);
-            context.commit({type: 'setCurrItem', item})
-        },
-        async saveItem(context, { item, user }){
+        async saveItem(context, { item, userId }) {
             let editedItem = null;
             console.log('store item to save:', item);
             
             if (item._id) editedItem = await ItemService.update(item)
-            else editedItem = await ItemService.add(item, user)  
-            console.log('store editedItem to save:', editedItem);
-
-            context.commit({type: 'setItem', editedItem})
-            return editedItem;
+            else editedItem = await ItemService.add(item, userId)
+            context.commit({ type: 'setItem', editedItem })
         },
-        // async buyItem(context, {item}){
-        //     const editedItem = await ItemService.update(item)
-        //     context.commit({type: 'setItem', editedItem})
-        //     return {}
-        // },
-        async removeItem(context, {itemId}){
+        async buyItem(context, { item }) {
+            const editedItem = await ItemService.update(item)
+            context.commit({ type: 'setItem', editedItem })
+            return {}
+        },
+        async removeItem(context, { itemId }) {
             await ItemService.remove(itemId)
-            context.commit({type: 'removeItem', itemId})
+            context.commit({ type: 'removeItem', itemId })
             return {};
         }
     },
     getters: {
-        items(state){
+        items(state) {
             return state.items
         },
-        item(state){
-            return state.currItem;
-        },
-        // msg(state){
-        //     return state.msg
-        // }
     }
 }

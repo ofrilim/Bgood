@@ -1,4 +1,5 @@
 import HttpService from './HttpService';
+import SessionService from './SessionService'
 
 export default {
     query,
@@ -7,19 +8,24 @@ export default {
     remove,
     add,
     signIn,
-    logout,
-    checkIsLoggedInUser,
-    signUp
+    logOut,
+    signUp,
+    // addItemToWishList
 }
-    
 
+// async function addItemToWishList(itemId, userId) {  // TODO: IN PROCCESS TRYING TO HAVE A WISH LIST
+//     let user = await getById(userId);
+//     user.wishList.unshift(itemId);
+//     await update(user);
+//     return user
+// }
 
 async function query() {
     try {
         const users = await HttpService.get('user')
         return users;
     } catch(error) {
-        console.error('inside userService => couldnt get users');
+        console.error('ERROR USERSERVICE => couldnt get users');
     }
 }
 
@@ -28,16 +34,16 @@ async function update(edited) {
         const user = await HttpService.put(`user/${edited._id}`, edited)
         return user;
     } catch(error) {
-        console.error(`inside userService => couldnt update user: ${edited._id}`);
+        console.error(`ERROR USERSERVICE => couldnt update user: ${edited._id}`);
     }
 }
 
 async function getById(id) {
     try {
-        const user = await HttpService.get(`user/${id}`);
+        const user = await HttpService.get(`user/${id}`);  // TODO:  THINK OF MAYBE ADD BOOLEAN FOR CLONE OPTION
         return user;
     } catch(error) {
-        console.error(`inside userService -> couldnt getById user: ${id}`);
+        console.error(`ERROR USERSERVICE => couldnt getById user: ${id}`);
     }
 }
 
@@ -46,7 +52,7 @@ async function remove(id) {
         await HttpService.delete(`user/${id}`)
         return {};
     } catch(error) {
-        console.error(`inside userService -> couldnt remove user: ${id}`);
+        console.error(`ERROR USERSERVICE => couldnt remove user: ${id}`);
     }
 }
 
@@ -55,31 +61,28 @@ async function add(added) {
         const user = await HttpService.post(`user`, added)
         return user;
     } catch(error) {
-        console.error('inside userService -> couldnt add user');
+        console.error('ERROR USERSERVICE => couldnt add user');
     }
 }
 
 async function signIn(userCred) {
-    const user = await HttpService.post('auth/login', userCred)
-    return _handleLogin(user)
+    let user;
+    try {
+        user = await HttpService.post('auth/login', userCred);
+    } catch {
+        user = null;
+        console.error('ERROR USERSERVICE => couldnt find user');
+    }
+    return SessionService.handleLogin(user);
 }
+
 async function signUp(userCred) {
-    userCred.fullName = userCred.firstName + ' ' + userCred.lastName
-    const user = await HttpService.post('auth/signup', userCred)
-    return _handleLogin(user)
+    userCred.cred.fullName = userCred.cred.firstName + ' ' + userCred.cred.lastName;
+    const user = await HttpService.post('auth/signup', userCred);
+    return SessionService.handleLogin(user);
 }
-async function logout() {
+
+async function logOut() {
     await HttpService.post('auth/logout');
-    sessionStorage.clear();
-}
-
-function checkIsLoggedInUser(){
-    const user = JSON.parse(sessionStorage.getItem('user'));
-    if (!user) return
-    return user
-}
-
-function _handleLogin(user) {
-    sessionStorage.setItem('user', JSON.stringify(user))
-    return user;
+    SessionService.clearSession();
 }
