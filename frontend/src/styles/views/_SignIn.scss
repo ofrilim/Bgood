@@ -15,3 +15,13 @@ th {
     padding: rem(10px);
     font-size: rem(22px);
 }
+
+
+.signIn-msg {
+    position: absolute;
+    margin: 0 auto;
+    top: 23vh;
+    z-index: 10;
+    padding: 10px;
+    border-bottom:  1px solid red;
+}

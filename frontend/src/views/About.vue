@@ -19,7 +19,6 @@
       We invite you to join us and be a B-good member - <br>
       You can buy and sell, and on the way make some difference in the world.
   </section>
-
   <section class="flex align-end">
     <div class="about-admin">
       <img class="about-img" src="https://ca.slack-edge.com/TMCJAUBPU-UMUV8ULF7-a9423eb038b6-512" alt="">
@@ -35,12 +34,7 @@
     </div>
   </section>
   </section>
-
 </template>
-
-
-
-
 
 <script>
 // http://contrabond.com/en/6-reasons-second-hand-clothes-better/
