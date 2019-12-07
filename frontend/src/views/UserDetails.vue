@@ -35,8 +35,7 @@
         <button
           class="btn"
           @click="itemsFilter = 'in process'"
-          v-if="isLoggedInUser"
-        >
+          v-if="isLoggedInUser">
           Incoming Orders
         </button>
         <button class="btn" @click="itemsFilter = 'sold'" v-if="isLoggedInUser">
@@ -89,7 +88,7 @@ export default {
       const tempUser = await userService.getById(this.userId);
       this.user = JSON.parse(JSON.stringify(tempUser));
 
-      
+
       const userIdFromStore = this.$store.getters.loggedInUser._id
       if (userIdFromStore) this.isLoggedInUser = userIdFromStore === this.userId;
     },

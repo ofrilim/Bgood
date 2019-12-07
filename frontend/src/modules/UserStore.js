@@ -16,6 +16,7 @@ export default {
             }
             else {
                 state.loggedInUser = user;
+                state.wishList = user.wishList
             }
         },
         updateUser(state, {user}){       // TODO: WISH LIST THING
@@ -23,7 +24,6 @@ export default {
             console.log('mutation updates user:', state.loggedInUser);
             console.log('mutation updates user wishlist:', state.loggedInUser.wishList);
             console.log('mutation updates user wishlist items:', state.loggedInUser.wishListItems);
-            
         }
     },
     actions: {

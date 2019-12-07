@@ -78,6 +78,9 @@ async function signIn(userCred) {
 
 async function signUp(userCred) {
     userCred.cred.fullName = userCred.cred.firstName + ' ' + userCred.cred.lastName;
+    userCred.cred.imgUrl = 'https://qph.fs.quoracdn.net/main-raw-359505805-hmqrogfhzagrxzngqieqxccqxpqxltrr.jpeg'
+    userCred.cred.wishList = [];
+    userCred.cred.location = { adress: '', lat: 0, lng: 0 }
     const user = await HttpService.post('auth/signup', userCred);
     return SessionService.handleLogin(user);
 }
