@@ -17,7 +17,7 @@
       Fashion is frequently using unsafe and unfair labor.The less we buy - the less people and children will be hurt.<br><br>
       <span>6. You support local economy and creativity.</span><br><br>
       We invite you to join us and be a B-good member - <br>
-      You can buy and sell, and on the way make some difference in the world.
+      You can buy and sell, and on the way make some difference and make the world a better place.
   </section>
 
   <section class="flex align-end">
