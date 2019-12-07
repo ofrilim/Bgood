@@ -73,13 +73,13 @@ async function signIn(userCred) {
         user = null;
         console.error('ERROR USERSERVICE => couldnt find user');
     }
-    return sessionStorage.handleLogin(user);
+    return SessionService.handleLogin(user);
 }
 
 async function signUp(userCred) {
     userCred.cred.fullName = userCred.cred.firstName + ' ' + userCred.cred.lastName;
     const user = await HttpService.post('auth/signup', userCred);
-    return sessionStorage.handleLogin(user);
+    return SessionService.handleLogin(user);
 }
 
 async function logOut() {

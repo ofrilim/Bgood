@@ -17,10 +17,10 @@ export default {
         ItemPreview
     },
     methods: {
-    //     addItemToWishList(itemId){       // TODO: WISH LIST - HILA
-    //         this.$emit('addToWishList', itemId)
-    //     }
-    // }
+        addItemToWishList(itemId){       // TODO: WISH LIST - HILA
+            this.$emit('addToWishList', itemId)
+        }
+    }
 }
 </script>
    
