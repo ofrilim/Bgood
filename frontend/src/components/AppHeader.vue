@@ -16,8 +16,8 @@
           <router-link to="/signin" v-if="!loggedInUser">SignIn</router-link>
           <div v-if="loggedInUser" class="flex">
             <router-link :to="`/user/${loggedInUser._id}`">{{loggedInUser.firstName}}'s Page</router-link>
-            <router-link to="/"  @click="logout">
-              <button @click="logout">Log Out</button>
+            <router-link to="/"  @click="logOut">
+              <button @click="logOut">Log Out</button>
             </router-link>
           </div>
           <i class="fa fa-heart pointer" @click="clicked" title="Wish List"></i>
@@ -25,24 +25,20 @@
     </section>
 </template>
 
-
 <script>
 export default {
-    methods: {
+  methods: {
     clicked() {
       this.$bus.emit('toggleWishList')
     },
-    logout() {
-      this.$store.dispatch('logout');
+    logOut() {
+      this.$store.dispatch('logOut');
     }
   },
-   computed: {
-    users() {
-      return this.$store.getters.users
-    },
+  computed: {
     loggedInUser() {
       return this.$store.getters.loggedInUser
     }
-   }
+  }
 }
 </script>

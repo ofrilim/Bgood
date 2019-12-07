@@ -17,12 +17,12 @@ import AppWishList from "./components/AppWishList.vue";
 
 export default {
   name: 'App',
-  created(){
+  created() {
         this.$store.dispatch('loadItems')
         this.$store.dispatch('loadLoggedInUser')
   },
   computed: {
-        msg(){
+        msg(){      // CHECK msg THING HERE => also above at template
             return this.$store.getters.msg
         },
     },   
