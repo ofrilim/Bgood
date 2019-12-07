@@ -15,7 +15,9 @@
       You can find gorgeous pieces that fit into whatever is currently trendy, yet different enough to stand out from the crowd.<br><br>
       <span>5. You won’t fund slave or child labor</span><br>
       Fashion is frequently using unsafe and unfair labor.The less we buy - the less people and children will be hurt.<br><br>
-      <span>6. You support local economy and creativity</span><br>
+      <span>6. You support local economy and creativity.</span><br><br>
+      We invite you to join us and be a B-good member - <br>
+      You can buy and sell, and on the way make some difference in the world.
   </section>
 
   <section class="flex align-end">
