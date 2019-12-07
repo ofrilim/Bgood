@@ -16,8 +16,10 @@
                     <!-- <h3><span class="bold">Uploaded at: </span>{{item.createdAt}}</h3> -->
                     <h3><span class="bold">Price: $ </span>{{item.price}}</h3>
                     <h4><span class="bold">Additional information: </span>{{item.description}}</h4>
-                    <h3><span class="bold alert" v-if="item.status==='In process' || item.status==='sold'">Someone is interested in this item</span></h3>
+                    <h3><span class="bold alert" v-if="item.status==='in process'">Someone is interested in this item</span></h3>
                     <h3><span class="bold success" v-if="item.status === 'available'">Item is available</span></h3>
+                    <h3><span class="bold primary" v-if="item.status === 'sold'">{{item.byUser.firstName}} had sold the {{item.name}}</span></h3>
+                    
                 </div>
                 <div class="">
                     <div class="details-footer-content" v-if="!isOwner">
@@ -50,6 +52,8 @@ export default {
             this.itemId = this.$route.params.id
             await this.$store.dispatch({type: 'loadItem', itemId: this.itemId})
             this.item = this.$store.getters.item
+            console.log('item details item:', this.item);
+            
             const loggedInUser = this.$store.getters.loggedInUser
             if (loggedInUser) this.isOwner = (loggedInUser._id === this.item.ownerId)
     },
@@ -69,7 +73,9 @@ export default {
             var user = this.$store.getters.loggedInUser;
             const baughtItem = JSON.parse(JSON.stringify(this.item));
             baughtItem.buyer = user._id;
-            baughtItem.status = "In process";
+            baughtItem.status = "in process";
+            console.log('buy item item:', baughtItem);
+            
             await this.$store.dispatch({type: 'saveItem', item: baughtItem});
             this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully'});
         },
