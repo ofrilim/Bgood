@@ -1,13 +1,10 @@
 <template>
     <section class="wish-list">
-        <el-drawer
-        class="wish-list-drawer"
-        :visible.sync="toggleWishList"
-        direction="ltr"
-        size="100%">
+        <el-drawer class="wish-list-drawer" :visible.sync="toggleWishList"
+                   direction="ltr" size="100%">
         <h1 class="title center">Your Wish List <i class="fa fa-heart"></i></h1>
-        <div v-if="wishList.length > 0">
-          <ul class="wishList-ul center" v-for="item in wishList" :key="item._id">
+        <div v-if="itemsToShow.length > 0">
+          <ul class="wishList-ul center" v-for="item in itemsToShow" :key="item._id">
             <li class="grid">
               <router-link :to="`/item/${item._id}`"><img :src="item.imgUrl"/></router-link>
               <div class="content grid">
@@ -33,17 +30,28 @@ export default {
   data() {
     return {
       toggleWishList: false,
+      wishListItems: [],
+      itemsToShow: []
       }
     },
     created() {
       this.$bus.on('toggleWishList', () => {
         this.toggleWishList = !this.toggleWishList;
+        this.getItems()
       })
+    },
+    methods: {
+      getItems() {
+        const items = this.$store.getters.items;
+        this.itemsToShow = items.filter((item) => {
+          return this.wishList.includes(item._id);
+        })
+      }
     },
     computed: {
       wishList() {
         return this.$store.getters.wishList;
-      }
+      },
     }
 }
 </script>
