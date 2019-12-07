@@ -3,7 +3,6 @@ import ItemService from '../services/ItemService.js';
 export default {
     state: {
         items: [],
-        currItem: null,
         msg: null,
         status: 'Available',
         filterBy: {
@@ -13,10 +12,6 @@ export default {
     mutations: {
         setItems(state, {items}){
             state.items = items;
-        },
-        setCurrItem(state, { item }){
-            // const item = state.items.find(item => item._id === itemId)
-            state.currItem = item;
         },
         setItem(state, {editedItem}){
             console.log('mutations edited item:', editedItem);
@@ -42,11 +37,6 @@ export default {
             } catch(err) {
                 console.error(err);
             }
-        },
-        async loadItem(context, {itemId}){
-            let item = await ItemService.getById(itemId)
-            console.log('store get by id item:', item);
-            context.commit({type: 'setCurrItem', item})
         },
         async saveItem(context, { item, user }){
             let editedItem = null;

@@ -25,7 +25,8 @@ export default {
         },
         updateUser(state, {user}){
             state.loggedInUser = user
-            console.log('mutation updates user:', state.loggedInUser);
+            console.log('mutation updates user:', user);
+            console.log('mutation updates logged in user:', state.loggedInUser);
             console.log('mutation updates user wishlist:', state.loggedInUser.wishList);
             console.log('mutation updates user wishlist items:', state.loggedInUser.wishListItems);
             
@@ -72,12 +73,12 @@ export default {
         async addToWishList(context, {itemId}) {
             if (context.state.loggedInUser) {
                 const user = JSON.parse(JSON.stringify(context.state.loggedInUser)) 
-                console.log('STORE ACTION user is: ', user)
-                console.log('STORE ACTION item is: ', itemId)
+                // console.log('STORE ACTION user is: ', user)
+                // console.log('STORE ACTION item is: ', itemId)
                 user.wishList.unshift(itemId)
-                console.log('STORE ACTION user is: ', user.wishList)
+                // console.log('STORE ACTION user is: ', user.wishList)
                 const updatedUser = await UserService.update(user)
-                console.log('STORE ACTION user is: ', updatedUser)
+                // console.log('STORE ACTION user is: ', updatedUser)
                 context.commit({type: 'updateUser', user: updatedUser})
 
             }

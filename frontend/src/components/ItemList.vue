@@ -18,9 +18,6 @@ export default {
     components: {
         ItemPreview
     },
-    created() {
-        // console.log('items: ', items)
-    },
     methods: {
         addItemToWishList(itemId){
             this.$emit('addToWishList', itemId)

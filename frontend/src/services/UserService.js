@@ -26,6 +26,8 @@ async function query() {
 async function update(edited) {
     try {
         const user = await HttpService.put(`user/${edited._id}`, edited)
+        console.log('service updated user:', user);
+        
         return user;
     } catch(error) {
         console.error(`inside userService => couldnt update user: ${edited._id}`);

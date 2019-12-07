@@ -62,7 +62,6 @@ export default {
     //     loadPage()
     // },
     methods:{
-
         async loadPage(){
             this.userId = this.$route.params.id
             await this.$store.dispatch({type: 'loadUser', userId: this.userId })
