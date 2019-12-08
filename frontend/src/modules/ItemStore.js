@@ -37,11 +37,6 @@ export default {
             else editedItem = await ItemService.add(item, userId)
             context.commit({ type: 'setItem', editedItem })
         },
-        async buyItem(context, { item }) {
-            const editedItem = await ItemService.update(item)
-            context.commit({ type: 'setItem', editedItem })
-            return {}
-        },
         async removeItem(context, { itemId }) {
             await ItemService.remove(itemId)
             context.commit({ type: 'removeItem', itemId })

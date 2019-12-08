@@ -84,11 +84,13 @@ export default {
   },
   methods: {
     async setUserById(){
-      this.userId = this.$route.params.id;
-      const tempUser = await userService.getById(this.userId);
-      this.user = JSON.parse(JSON.stringify(tempUser));
-
-
+      try {
+        this.userId = this.$route.params.id;
+        const tempUser = await userService.getById(this.userId);
+        this.user = JSON.parse(JSON.stringify(tempUser));
+      } catch (error) {
+        console.log('USERDETAILS ERROR WHILE GETTING USERID: ', this.user)
+      }
       const userIdFromStore = this.$store.getters.loggedInUser._id
       if (userIdFromStore) this.isLoggedInUser = userIdFromStore === this.userId;
     },

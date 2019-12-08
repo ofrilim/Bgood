@@ -61,7 +61,7 @@ export default {
         if (loggedInUser) this.isOwner = (loggedInUser._id === this.item.ownerId) 
     },
     methods: {
-        addToWishList(itemId) {         // TODO: WISH LIST
+        addToWishList(itemId) {    
             this.$store.dispatch('addToWishList', itemId);
         },
         async removeItem(itemId) {
