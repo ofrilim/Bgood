@@ -3,7 +3,7 @@ import SessionService from "../services/SessionService";
 
 export default {
     state: {
-        wishList: [],       // TODO: WISH LIST
+        wishList: [],       
         loggedInUser: null,
     },
     mutations: {
@@ -19,12 +19,9 @@ export default {
                 state.wishList = user.wishList
             }
         },
-        updateUser(state, {user}){       // TODO: WISH LIST THING
-            state.loggedInUser = user
-            console.log('mutation updates user:', user);
-            console.log('mutation updates logged in user:', state.loggedInUser);
-            console.log('mutation updates user wishlist:', state.loggedInUser.wishList);
-            console.log('mutation updates user wishlist items:', state.loggedInUser.wishListItems);
+        updateUser(state, {user}) {    
+            state.loggedInUser = user;
+            state.wishList = user.wishList;
         }
     },
     actions: {
@@ -43,27 +40,43 @@ export default {
             context.commit({ type: 'setLoggedInUser' })
         },
         async loadLoggedInUser(context) {
-            const user = await SessionService.checkIsLoggedInUser()
+            const userFronSession = await SessionService.checkIsLoggedInUser()
+            if (!userFronSession) {
+                context.commit({ type: 'setLoggedInUser', user: null });
+                return;
+            }
+            const user = await UserService.getById(userFronSession._id)
             context.commit({ type: 'setLoggedInUser', user })
         },
-        async updateUser(context, {user}) {         // TODO: WISH LIST
-            const updatedUser = await UserService.update(user);
-            context.commit({type: 'updateUser', user: updatedUser})
-            return updatedUser;
+        async addToWishList(context, itemId) {    
+           try {
+               const user = JSON.parse(JSON.stringify(context.state.loggedInUser)) 
+               if (user.wishList.includes(itemId)) return;
+               user.wishList.unshift(itemId)
+               const updatedUser = await UserService.update(user)
+               context.commit({type: 'updateUser', user: updatedUser})
+           }
+           catch (error) {
+               console.log('ERROR: USERSTORE ADDTOWISHLIST ACTION', error)
+           }
         },
-        async addToWishList(context, {itemId}) {        // TODO: WISH LIST
-            if (context.state.loggedInUser) {
-                const user = JSON.parse(JSON.stringify(context.state.loggedInUser)) 
-                // console.log('STORE ACTION user is: ', user)
-                // console.log('STORE ACTION item is: ', itemId)
-                user.wishList.unshift(itemId)
-                // console.log('STORE ACTION user is: ', user.wishList)
+        async removeFromWishList(context, { itemId }) {
+            try {
+                let user = JSON.parse(JSON.stringify(context.state.loggedInUser)) 
+                const idx = user.wishList.findIndex(item => itemId === item)
+                user.wishList.splice(idx, 1)
                 const updatedUser = await UserService.update(user)
-                // console.log('STORE ACTION user is: ', updatedUser)
                 context.commit({type: 'updateUser', user: updatedUser})
-
+            }
+            catch (error) {
+                console.log('ERROR: USERSTORE ADDTOWISHLIST ACTION', error)
             }
         },
+        // async buyItem(context, { itemId }) {
+        //     const editedItem = await ItemService.update(item)
+        //     context.commit({ type: 'setItem', editedItem })
+        //     return {}
+        // },
     },
     getters: {
         loggedInUser(state) {

@@ -1,10 +1,6 @@
 <template>
     <section class="item-app">
-        <ItemList :items="items" @addToWishList="addItemToWishList"/>
-        <ItemList :items="topWishCountItems" @addToWishList="addItemToWishList"/>
-        <ItemList :items="lowestCostItems" @addToWishList="addItemToWishList"/>
-        <ItemList :items="newItems" @addToWishList="addItemToWishList"/>
-        <!-- <ItemList :items="items" @addToWishList="addItemToWishList"/> -->
+        <ItemList :items="items" @addToWishList="addToWishList"/>
     </section>
 </template>
 
@@ -34,9 +30,8 @@ export default {
         this.filterBy = null
     },
     methods: {
-        addItemToWishList(itemId) { // TODO: CONTINUE THE FLOW- HOPE WIE CAN ADD ITEMS TO WISHlIST AT THE END
-            console.log('ITEMAPP item is: ', itemId)
-            this.$store.dispatch({type: 'addToWishList', itemId})
+        addToWishList(itemId) {    
+            this.$store.dispatch('addToWishList', itemId);
         }
     },
     computed:{

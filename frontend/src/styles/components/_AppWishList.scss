@@ -1,5 +1,5 @@
 .wish-list {
-    width: 70vw;
+    width: 60vw;
     position: absolute;
     z-index: 2;
     top: 0;
@@ -13,6 +13,9 @@
     background-color: $clr2;
     height: 89vh;
     padding: 20px;
+    border: 1px solid black;
+    overflow: scroll;
+    
     // animation: 'drawer-in' 3s 1000ms;
 }
 

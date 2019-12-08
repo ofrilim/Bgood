@@ -4,17 +4,17 @@
                    direction="ltr" size="100%">
         <h1 class="title center">Your Wish List <i class="fa fa-heart"></i></h1>
         <div v-if="itemsToShow.length > 0">
-          <ul class="wishList-ul center" v-for="item in itemsToShow" :key="item._id">
-            <li class="grid">
+          <ul class="wishList-ul center">
+            <li class="grid" v-for="item in itemsToShow" :key="item._id">
               <router-link :to="`/item/${item._id}`"><img :src="item.imgUrl"/></router-link>
               <div class="content grid">
                 <h2>{{item.name}}</h2>
                 <h2 class="price">$ {{item.price}}</h2>
-                <h2>Seller: {{item.byUser.name}}</h2>
+                <h2>Seller: <img class="avatar-img" :src="item.owner.imgUrl"/></h2>
               </div>
               <div class="btns flex flex-col justify-center flex-evenly">
-                <button class="btn action-buy">Buy</button>
-                <button class="btn action-remove">Remove</button>
+                <button class="btn action-buy" @click="buy(item._id)">Buy</button>
+                <button class="btn action-remove" @click="remove(item._id)">Remove</button>
               </div>
             </li>
           </ul>
@@ -30,25 +30,31 @@ export default {
   data() {
     return {
       toggleWishList: false,
-      wishListItems: [],
-      itemsToShow: []
       }
     },
     created() {
-      this.$bus.on('toggleWishList', () => {
+        this.$bus.on('toggleWishList', () => {
         this.toggleWishList = !this.toggleWishList;
-        this.getItems()
       })
     },
     methods: {
-      getItems() {
-        const items = this.$store.getters.items;
-        this.itemsToShow = items.filter((item) => {
-          return this.wishList.includes(item._id);
-        })
+      remove(itemId) {
+        this.$store.dispatch({ type: 'removeFromWishList', itemId })
+      },
+      buy(itemId) {
+        console.log('APPWISHLIPT CPM BUYING itemid: ', itemId)
+        // this.$store.dispatch('buyItem', itemId)      //  TODO: CONTINUE WITH BUYING PROCCESS
+        this.$store.dispatch({ type: 'setMsg', msg: 'Message sent to the seller succefuly' })
+
       }
     },
     computed: {
+      itemsToShow() {
+        const items = this.$store.getters.items;
+        return items.filter((item) => {
+          return this.wishList.includes(item._id);
+        })
+      },
       wishList() {
         return this.$store.getters.wishList;
       },
