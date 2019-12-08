@@ -39,7 +39,9 @@
 
 .user-img {
     margin:  0 auto;
-    width: 12vw;
+    object-fit: cover;
+    width: 140px;
+    height: 140px;
     border-radius: 100%;
 }
 
