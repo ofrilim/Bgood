@@ -1,8 +1,32 @@
+.grid-container {
+    // padding: 10px 60px;
+    display: grid;
+    grid-gap: 30px 14px;
+    grid-template-columns: repeat(auto-fill, minmax(rem(210px), 2fr));
+    margin-bottom: 10px;
+}
+
+.item-app-top {
+    margin-bottom: 20px;
+}
+
 .item-app {
+    padding: 20px 40px;
     & h1 {
+        // border-top: rgb(226, 222, 222) 1px solid;
         font-family: Handlee, sans-serif;
         font-size: 30px;
-        padding: 20px;
-        color: red
+        color: $clr5;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        font-weight: bolder;
+        // background-color: rgb(238, 235, 235);
+        border-radius: 5px;
     }
+}
+
+.more {
+    font-family: Handlee, sans-serif;
+    font-size: 20px;
+    font-weight: bolder;
 }
