@@ -38,8 +38,6 @@ export default {
         },
         async saveItem(context, { item, userId }) {
             let editedItem = null;
-            console.log('STORE item to save:', item);
-            
             if (item._id) editedItem = await ItemService.update(item)
             else editedItem = await ItemService.add(item, userId)
             context.commit({ type: 'setItem', editedItem })
@@ -59,15 +57,13 @@ export default {
             var lowestPriceItems = itemsToSort.sort((a, b)=> {
                 return a.price - b.price;
             })
-            // lowestPriceItems = lowestPriceItems.slice(0, 4)
             return lowestPriceItems     
         },
         mostWishedItems(state){
             var itemsToSort = JSON.parse(JSON.stringify(state.items))
             var wishedItems = itemsToSort.sort((a, b)=> {
-                return b.wishCount + a.wishCount;
+                return b.wishCount - a.wishCount;
             })
-            // wishedItems = wishedItems.slice(0, 4)
             return wishedItems     
         },
         newestItems(state){
@@ -75,7 +71,6 @@ export default {
             var newestItems = itemsToSort.sort((a, b)=> {
                 return b.createdAt - a.createdAt;
             })
-            // newestItems = newestItems.slice(0, 4)
             return newestItems     
         }
     }

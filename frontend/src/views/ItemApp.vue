@@ -14,7 +14,8 @@
             <h1>Lowest Price:</h1>
             <ItemList :items="itemsByPrice" @addToWishList="addToWishList"/>
             <router-link to="/item">More</router-link>
-        </div>        
+        </div>       
+            <ItemList :items="items" @addToWishList="addToWishList"/>
     </section>
 </template>
 
@@ -30,20 +31,6 @@ export default {
     data(){
         return {
            isHome: false,
-        }
-    },
-    // watch: {
-    // $route() {
-    //   this.setUserById()
-    //     }
-    // },
-    watch: {
-        $route(to, from){
-            console.log('to:', to);
-            console.log('from:', from);
-            
-            if (this.$route.path === '/') this.isHome = true;
-            else this.isHome = false;
         }
     },
     methods: {
