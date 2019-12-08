@@ -73,8 +73,12 @@ export default {
             const baughtItem = JSON.parse(JSON.stringify(this.item));
             baughtItem.buyer = user._id;
             baughtItem.status = "in process";
-            await this.$store.dispatch({type: 'saveItem', item: baughtItem});
-            this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully'}); // TODO: ADD TRY AND CATCH FOR IF ITEM DOENT SAVE SUCCEFULLY
+            try { 
+                await this.$store.dispatch({type: 'saveItem', item: baughtItem});
+                this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully'});
+            } catch(error){
+                console.error('Item order was not successful, try again', error); 
+            } // TODO: ADD TRY AND CATCH FOR IF ITEM DOENT SAVE SUCCEFULLY
         }, 
     },
 }

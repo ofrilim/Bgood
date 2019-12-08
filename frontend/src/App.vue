@@ -30,7 +30,7 @@ export default {
         msg(){      // CHECK msg THING HERE => also above at template
             return this.$store.getters.msg
         },
-    },   
+    },
   components: {
     AppHeader,
     AppFooter,

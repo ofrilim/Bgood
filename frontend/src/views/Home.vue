@@ -1,7 +1,7 @@
 <template>
   <section class="home">
-    <img class="home-img" src="../assets/homepage-carousel/elegant-stylish-sisters-spring-park_1157-23934_1.jpg"/>
-    <ItemApp></itemApp>
+    <img class="home-img" src="../assets/homepage-carousel/4.jpg"/>
+    <ItemApp/>
   </section>
 </template>
 
@@ -12,7 +12,7 @@ export default {
   name: 'home',
   components: {
     ItemApp,
-  }
+  },
 }
 </script>
 

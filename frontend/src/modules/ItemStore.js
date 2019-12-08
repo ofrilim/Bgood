@@ -3,7 +3,7 @@ import ItemService from '../services/ItemService.js';
 export default {
     state: {
         items: [],
-        status: 'available',
+        // status: 'available',
         filterBy: {}
     },
     mutations: {
@@ -21,10 +21,17 @@ export default {
         },
     },
     actions: {
-        async loadItems(context) {
+        async loadItems(context, filterBy) {
+            var items = [];
             try {
-                const items = await ItemService.query();
-                context.commit({ type: 'setItems', items })
+                if (filterBy) {
+                    items = await ItemService.query(filterBy);
+                    console.log('store load items:', items);
+                } else {
+                    items = await ItemService.query();
+                    context.commit({ type: 'setItems', items })
+                }
+                    return items
             } catch (err) {
                 console.error('ITEM STORE ERROR LOAD ITEMS', err);
             }
@@ -47,5 +54,29 @@ export default {
         items(state) {
             return state.items
         },
+        lowestPriceItems(state){
+            var itemsToSort = JSON.parse(JSON.stringify(state.items))
+            var lowestPriceItems = itemsToSort.sort((a, b)=> {
+                return a.price - b.price;
+            })
+            // lowestPriceItems = lowestPriceItems.slice(0, 4)
+            return lowestPriceItems     
+        },
+        mostWishedItems(state){
+            var itemsToSort = JSON.parse(JSON.stringify(state.items))
+            var wishedItems = itemsToSort.sort((a, b)=> {
+                return b.wishCount + a.wishCount;
+            })
+            // wishedItems = wishedItems.slice(0, 4)
+            return wishedItems     
+        },
+        newestItems(state){
+            var itemsToSort = JSON.parse(JSON.stringify(state.items))
+            var newestItems = itemsToSort.sort((a, b)=> {
+                return b.createdAt - a.createdAt;
+            })
+            // newestItems = newestItems.slice(0, 4)
+            return newestItems     
+        }
     }
 }

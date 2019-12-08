@@ -39,6 +39,7 @@
 </template>
 
 <script>
+// http://contrabond.com/en/6-reasons-second-hand-clothes-better/
 export default {
   name: 'about',
 }
