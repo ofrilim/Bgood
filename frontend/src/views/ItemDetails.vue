@@ -19,8 +19,7 @@
                     <h4><span class="bold">Additional information: </span>{{item.description}}</h4>
                     <h3><span class="bold alert" v-if="item.status==='in process' || item.status==='sold'">Someone is interested in this item</span></h3>
                     <h3><span class="bold success" v-if="item.status === 'available'">Item is available</span></h3>
-                    <h3><span class="bold primary" v-if="item.status === 'sold'">{{item.byUser.firstName}} had sold the {{item.name}}</span></h3>
-                    
+                    <h3><span class="bold primary" v-if="item.status === 'sold'">{{item.byUser.firstName}} had sold the {{item.name}}</span></h3>    
                 </div>
                 <div class="">
                     <div class="details-footer-content" v-if="!isOwner">
@@ -69,16 +68,18 @@ export default {
             this.$router.push('/item/')
         },
         async buyItem() {
-            var user = this.$store.getters.loggedInUser;   // TODO: CHECK FOR THIS TO WORK WELL
+            var user = this.$store.getters.loggedInUser; 
             const baughtItem = JSON.parse(JSON.stringify(this.item));
             baughtItem.buyer = user._id;
-            baughtItem.status = "in process";
-            try { 
+            baughtItem.status = 'in process';
+            try {
                 await this.$store.dispatch({type: 'saveItem', item: baughtItem});
-                this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully'});
-            } catch(error){
-                console.error('Item order was not successful, try again', error); 
-            } // TODO: ADD TRY AND CATCH FOR IF ITEM DOENT SAVE SUCCEFULLY
+                this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully. Order sent to seller'});
+            }
+            catch (error) {
+                console.log('ERROR: ITEMDETAILS BUYITEM FAILED error: ', error)
+                this.$store.dispatch({type: 'setMsg', msg: 'Item order failed. Try again later'});
+            }
         }, 
     },
 }

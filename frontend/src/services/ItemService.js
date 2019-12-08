@@ -33,7 +33,6 @@ async function add(newItem) {
     newItem.wishCount = 0;
     newItem.createdAt = Date.now();
     newItem.status = 'available';
-    // newItem.ownerId = userId;
     return await HttpService.post(`item`, newItem)   
 }
 

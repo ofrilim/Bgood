@@ -3,8 +3,6 @@ import ItemService from '../services/ItemService.js';
 export default {
     state: {
         items: [],
-        // status: 'available',
-        filterBy: {}
     },
     mutations: {
         setItems(state, { items }) {
@@ -36,10 +34,10 @@ export default {
                 console.error('ITEM STORE ERROR LOAD ITEMS', err);
             }
         },
-        async saveItem(context, { item, userId }) {
-            let editedItem = null;
+        async saveItem(context, { item }) {
+            let editedItem = null;            
             if (item._id) editedItem = await ItemService.update(item)
-            else editedItem = await ItemService.add(item, userId)
+            else editedItem = await ItemService.add(item)
             context.commit({ type: 'setItem', editedItem })
         },
         async removeItem(context, { itemId }) {
