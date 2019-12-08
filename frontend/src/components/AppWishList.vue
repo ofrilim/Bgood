@@ -10,7 +10,7 @@
               <div class="content grid">
                 <h2>{{item.name}}</h2>
                 <h2 class="price">$ {{item.price}}</h2>
-                <h2>Seller: <img class="avatar-img" :src="item.owner.imgUrl"/></h2>
+                <h2>Seller: <img class="avatar-img" :src="item.byUser.imgUrl"/></h2>
               </div>
               <div class="btns flex flex-col justify-center flex-evenly">
                 <button class="btn action-buy" @click="buy(item._id)">Buy</button>
