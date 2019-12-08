@@ -1,7 +1,7 @@
 .wish-list {
     width: 60vw;
     position: absolute;
-    z-index: 2;
+    z-index: 4;
     top: 0;
     position: sticky;
     padding-top: 70px;
@@ -15,8 +15,26 @@
     padding: 20px;
     border: 1px solid black;
     overflow: scroll;
-    
+
     // animation: 'drawer-in' 3s 1000ms;
+}
+
+.screen {
+    position: fixed;
+    left:0;
+    top: 0;
+    width: 100vw;
+    height:100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 1;
+}
+.open-screen.screen  {
+    visibility: visible;
+    opacity: 1;
+    overflow: hidden;
 }
 
 .el-drawer__wrapper {

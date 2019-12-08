@@ -33,12 +33,12 @@ export default {
     },
     logOut() {
       this.$store.dispatch('logOut');
-    }
+    },
   },
   computed: {
     loggedInUser() {
       return this.$store.getters.loggedInUser
-    }
+    },
   }
 }
 </script>

@@ -69,12 +69,18 @@ export default {
             this.$router.push('/item/')
         },
         async buyItem() {
-            var user = this.$store.getters.loggedInUser;   // TODO: CHECK FOR THIS TO WORK WELL
+            var user = this.$store.getters.loggedInUser; 
             const baughtItem = JSON.parse(JSON.stringify(this.item));
             baughtItem.buyer = user._id;
-            baughtItem.status = "in process";
-            await this.$store.dispatch({type: 'saveItem', item: baughtItem});
-            this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully'}); // TODO: ADD TRY AND CATCH FOR IF ITEM DOENT SAVE SUCCEFULLY
+            baughtItem.status = 'in process';
+            try {
+                await this.$store.dispatch({type: 'saveItem', item: baughtItem});
+                this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully. Order sent to seller'});
+            }
+            catch (error) {
+                console.log('ERROR: ITEMDETAILS BUYITEM FAILED error: ', error)
+                this.$store.dispatch({type: 'setMsg', msg: 'Item order failed. Try again later'});
+            }
         }, 
     },
 }

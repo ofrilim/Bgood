@@ -28,26 +28,25 @@
     <section class="items-section">
       <!-- <h1>{{itemsFilter}} items:</h1> -->
       <div class="btns">
-        <button class="btn" @click="itemsFilter = 'available'">
+        <button autofocus class="btn" @click="itemsFilter = 'available' || 'in process'">
           Available Items
         </button>
         <!-- TODO: render order button only if user is loggedInUser -->
         <button
           class="btn"
-          @click="itemsFilter = 'in process'"
-          v-if="isLoggedInUser">
-          Incoming Orders
+          @click="itemsFilter = 'in process'" v-if="isLoggedInUser" :class="{ notification : incomingOrderCount }">
+          Incoming Orders ( {{incomingOrderCount}} )
         </button>
         <button class="btn" @click="itemsFilter = 'sold'" v-if="isLoggedInUser">
           Sold Items
         </button>
       </div>
       <section class="items grid">
-        <item-preview v-for="item in userItems" :key="item._id" :item="item">
+        <item-preview v-for="item in userItems" :key="item._id" :item="item" @addToWishList="addToWishList(item._id)">
           <button
             class="btn"
             v-if="itemsFilter === 'in process'"
-            @click="markAsSold(item)"
+            @click="approveSale(item)"
           >
             Approve sell
           </button>
@@ -71,11 +70,15 @@ export default {
       itemsFilter: 'available',
       msg: '',
       isLoggedInUser: false,
-      isEdit: false
+      isEdit: false,
+      incomingOrderCount: 0
     };
   },
   async created() {
-    this.setUserById()
+    await this.setUserById()
+    const orderedItem = this.user.ownItems.filter(item => item.status === 'in process')
+    if (orderedItem) this.incomingOrderCount = orderedItem.length
+    console.log('USER DETASILS ' ,orderedItem)
   },
   watch: {
     $route() {
@@ -83,25 +86,31 @@ export default {
     }
   },
   methods: {
+    addToWishList(itemId) { 
+      console.log(itemId)   
+      this.$store.dispatch('addToWishList', itemId);
+    },
     async setUserById(){
       try {
         this.userId = this.$route.params.id;
         const tempUser = await userService.getById(this.userId);
         this.user = JSON.parse(JSON.stringify(tempUser));
+        
       } catch (error) {
         console.log('USERDETAILS ERROR WHILE GETTING USERID: ', this.user)
       }
       const userIdFromStore = this.$store.getters.loggedInUser._id
       if (userIdFromStore) this.isLoggedInUser = userIdFromStore === this.userId;
     },
-    async markAsSold(item) {
-      const soldItem = { ...item };
+    async approveSale(item) {
+      const soldItem = JSON.parse(JSON.stringify(item));
       soldItem.status = 'sold';
-      await this.$store.dispatch({
-        type: 'saveItem',
-        item: soldItem,
-        user: this.user
-      });
+      try {
+        await this.$store.dispatch({ type: 'saveItem', item: soldItem });
+        this.$store.dispatch({ type: 'setMsg', msg: 'Item Sold!'});
+      } catch(error) {
+        console.log('ERROR: USER DETAILS APPROVING SALE FAILED')
+      }
     },
     async uploadImg(ev) {
       const imgUrl = await UtilsService.uploadImg(ev);
@@ -117,9 +126,7 @@ export default {
   },
   computed: {
     userItems() {
-      return this.user.ownItems.filter(
-        item => item.status === this.itemsFilter
-      );
+      return this.user.ownItems.filter(item => item.status === this.itemsFilter);
     }
   },
   components: {
