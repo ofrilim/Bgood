@@ -1,8 +1,10 @@
 <template>
   <section class="about">
     <section>
-    <!-- <h1>This is an about page</h1> -->
-      <span class="about-header">dressing well and being eco-friendly simultaneously – This is the essence of B-GOOD!</span><br><br>
+      <h1 class="about-header">
+        <span >We like <span class=diff>fashion</span> and we care about the <span class=diff>environment</span><br>
+        Dressing well and being eco-friendly simultaneously – This is the essence of <span class=diff>B-GOOD!</span></span>
+      </h1><br><br>
       <span>1. You can afford more and better stuff</span>, using the same amount you planned to spend.<br><br>
       <span>2. You help prevent environmental devastation</span><br>
       Consider the amount of recourses needed for the production of a new piece of clothing.
@@ -17,7 +19,7 @@
       Fashion is frequently using unsafe and unfair labor.The less we buy - the less people and children will be hurt.<br><br>
       <span>6. You support local economy and creativity.</span><br><br>
       We invite you to join us and be a B-good member - <br>
-      You can buy and sell, and on the way make some difference in the world.
+      You can buy and sell, and on the way make some difference and make the world a better place.
   </section>
   <section class="flex align-end">
     <div class="about-admin">
@@ -25,11 +27,11 @@
       <h1>Hila Solomon</h1>
     </div>
     <div class="about-admin">
-      <img class="about-img" src="https://ca.slack-edge.com/TMCJAUBPU-UMHAG22AW-6fbebf3eeb8c-72" alt="">
+      <img class="about-img" src="http://res.cloudinary.com/dtkrff3dw/image/upload/v1575666281/krvhasvlmbufmafearx7.jpg" alt="">
       <h1>Limor Ofri</h1>
     </div>
     <div class="about-admin">
-      <img class="about-img" src="http://res.cloudinary.com/dtkrff3dw/image/upload/v1575536234/e1kizodw5wtdslqgzsc4.jpg" alt="">
+      <img class="about-img" src="http://res.cloudinary.com/dtkrff3dw/image/upload/v1575717163/mekf22bpejlgy321amnh.jpg" alt="">
       <h1>Liron Shahar-Atia</h1>
     </div>
   </section>
