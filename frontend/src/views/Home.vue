@@ -1,7 +1,7 @@
 <template>
   <section class="home">
     <img class="home-img" src="../assets/homepage-carousel/4.jpg"/>
-    <ItemApp></itemApp>
+    <ItemApp @getItems="getSortedItems"></itemApp>
   </section>
 </template>
 
@@ -12,6 +12,12 @@ export default {
   name: 'home',
   components: {
     ItemApp,
+  },
+  methods: {
+    getSortedItems(sortBy){
+      console.log('sortBy:', sortBy);
+      
+    }
   }
 }
 </script>
