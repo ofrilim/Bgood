@@ -10,9 +10,7 @@
           <h2><i class="fa fa-envelope"></i>{{ user.email }}</h2>
         </section>
         <div class="btns">
-          <router-link to="/item/edit" v-if="isLoggedInUser"
-            ><button class="btn">Add Item</button></router-link
-          >
+          <router-link to="/item/edit" v-if="isLoggedInUser"><button class="btn">Add Item</button></router-link>
           <button class="btn" v-if="isLoggedInUser" @click="toggleIsEdit">
             Edit Picture
           </button>
@@ -47,8 +45,7 @@
           <button
             class="btn"
             v-if="itemsFilter === 'in process'"
-            @click="markAsSold(item)"
-          >
+            @click="markAsSold(item)">
             Approve sell
           </button>
         </item-preview>

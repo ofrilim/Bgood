@@ -9,10 +9,10 @@ export default {
 }
 
 // .limit(3).sort( { name: 1, born: -1 } )
-function query(filter) {
-    var url = 'item';
-    if (filter.filterBy) url += `?limit=3&sort=${filter.filterBy}`
-    return HttpService.get(url)
+function query() {
+    // var url = 'item';
+    // if (filter.filterBy) url += `?limit=3&sort=${filter.filterBy}`
+    return HttpService.get('item')
 }
 
 function update(edited) {    

@@ -1,6 +1,20 @@
 <template>
     <section class="item-app">
-        <ItemList :items="items" @addToWishList="addToWishList"/>
+        <div class="new-items">
+            <h1>New On Site:</h1>
+            <ItemList :items="itemsByCreatedAt" @addToWishList="addToWishList"/>
+            <router-link to="/item">More</router-link>
+        </div>
+        <div class="popular-items">
+            <h1>Most Popular:</h1>
+            <ItemList :items="itemsByWishCount" @addToWishList="addToWishList"/>
+            <router-link to="/item">More</router-link>
+        </div>
+        <div class="lowest-price">
+            <h1>Lowest Price:</h1>
+            <ItemList :items="itemsByPrice" @addToWishList="addToWishList"/>
+            <router-link to="/item">More</router-link>
+        </div>        
     </section>
 </template>
 
@@ -12,22 +26,25 @@ export default {
     components:{
         ItemList,
     },
+    props: ['sortBy'],
     data(){
         return {
-            topWishCountItems: [],
-            lowestCostItems: [],
-            newItems: [],
-            filterBy: null
+           isHome: false,
         }
     },
-    async created(){
-        this.filterBy = 'wishcount'
-        this.topWishCountItems = await this.$store.dispatch({type: 'loadItems', filterBy: this.filterBy});
-        this.filterBy = 'price'
-        this.lowestCostItems = await this.$store.dispatch({type: 'loadItems', filterBy: this.filterBy});
-        this.filterBy = 'createdAt'
-        this.newItems = await this.$store.dispatch({type: 'loadItems', filterBy: this.filterBy});
-        this.filterBy = null
+    // watch: {
+    // $route() {
+    //   this.setUserById()
+    //     }
+    // },
+    watch: {
+        $route(to, from){
+            console.log('to:', to);
+            console.log('from:', from);
+            
+            if (this.$route.path === '/') this.isHome = true;
+            else this.isHome = false;
+        }
     },
     methods: {
         addToWishList(itemId) {    
@@ -36,10 +53,19 @@ export default {
     },
     computed:{
         items(){
-            return this.$store.getters.items
-            // if (!sortBy) return this.$store.getters.items
-            // else this.$emit('getItems', sortBy)
-            // return true
+            return this.$store.getters.items;
+        },
+        itemsByPrice(){
+            var itemsToShow = this.$store.getters.lowestPriceItems
+            return itemsToShow = itemsToShow.slice(0, 4);
+        },
+        itemsByWishCount(){
+            var itemsToShow = this.$store.getters.mostWishedItems
+            return itemsToShow = itemsToShow.slice(0, 4);
+        },
+        itemsByCreatedAt(){
+            var itemsToShow = this.$store.getters.newestItems;
+           return itemsToShow = itemsToShow.slice(0, 4);
         }
     },
 }
