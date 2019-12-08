@@ -13,7 +13,6 @@ export default new Vuex.Store({
   strict: true,
   state: {
       msg: '',
-      // wishList: []   // TODO: CHECK IF HERE IS THE PLACE FOR WISH LIST
   },
   mutations: {
     setMsg(state, { msg }) {
@@ -21,10 +20,16 @@ export default new Vuex.Store({
     }
   },
   actions: {
-      setMsg(context, {msg}) {      // TODO: CHECK ABOUT ALL PLACES WE HAVE msg AND COME TO STORE and this one paryicular dont have mutation
-        context.commit({type: 'setMsg', msg});
-        setTimeout(() => context.commit({type: 'setMsg', msg: null}), 2500);
+      setMsg(context, { msg }) {      // TODO: CHECK ABOUT ALL PLACES WE HAVE msg AND COME TO STORE and this one paryicular dont have mutation
+        console.log('MSG IN STORE. MSG: ', msg)
+        context.commit({ type: 'setMsg', msg });
+        setTimeout(() => context.commit({ type: 'setMsg', msg: null }), 2500);
     },
+  },
+  getters: {
+    msg(state) {
+      return state.msg
+    }
   },
   modules: {
     UserStore,

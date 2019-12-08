@@ -1,7 +1,6 @@
 <template>
     <section class="item-app">
-        <ItemList :items="items" @addToWishList="addItemToWishList"/>
-        <!-- <ItemList :items="items" @addToWishList="addItemToWishList"/> -->
+        <ItemList :items="items" @addToWishList="addToWishList"/>
     </section>
 </template>
 
@@ -14,9 +13,8 @@ export default {
         ItemList
     },
     methods: {
-        addItemToWishList(itemId) { // TODO: CONTINUE THE FLOW- HOPE WIE CAN ADD ITEMS TO WISHlIST AT THE END
-            console.log('ITEMAPP item is: ', itemId)
-            this.$store.dispatch({type: 'addToWishList', itemId})
+        addToWishList(itemId) {    
+            this.$store.dispatch('addToWishList', itemId);
         }
     },
     computed:{
