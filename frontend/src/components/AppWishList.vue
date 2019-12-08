@@ -47,19 +47,13 @@ export default {
       remove(itemId) {
         this.$store.dispatch({ type: 'removeFromWishList', itemId })
       },
-      // buy(itemId) {
-      //   console.log('APPWISHLIPT CPM BUYING itemid: ', itemId)
-      //   // this.$store.dispatch('buyItem', itemId)      //  TODO: CONTINUE WITH BUYING PROCCESS
-      //   this.$store.dispatch({ type: 'setMsg', msg: 'Message sent to the seller succefuly' })
-
-      // },
       async buyItem(item) {
-        var user = this.$store.getters.loggedInUser;   // TODO: CHECK FOR THIS TO WORK WELL
+        var user = this.$store.getters.loggedInUser;   
         const baughtItem = JSON.parse(JSON.stringify(item));
         baughtItem.buyer = user._id;
         baughtItem.status = 'in process';
         await this.$store.dispatch({type: 'saveItem', item: baughtItem});
-        this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully'}); // TODO: ADD TRY AND CATCH FOR IF ITEM DOENT SAVE SUCCEFULLY
+        this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully'});
       }, 
     },
     computed: {

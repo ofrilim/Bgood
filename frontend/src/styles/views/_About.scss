@@ -9,6 +9,12 @@
     color: $clr5;
     font-weight: bolder;
     margin: 0 auto;
+    text-align: center;
+    font-size: 1.2rem;
+    & .diff {
+        color: $clr9;
+    }
+   
 }
 
 .about-img {

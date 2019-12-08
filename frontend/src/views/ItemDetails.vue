@@ -19,8 +19,7 @@
                     <h4><span class="bold">Additional information: </span>{{item.description}}</h4>
                     <h3><span class="bold alert" v-if="item.status==='in process' || item.status==='sold'">Someone is interested in this item</span></h3>
                     <h3><span class="bold success" v-if="item.status === 'available'">Item is available</span></h3>
-                    <h3><span class="bold primary" v-if="item.status === 'sold'">{{item.byUser.firstName}} had sold the {{item.name}}</span></h3>
-                    
+                    <h3><span class="bold primary" v-if="item.status === 'sold'">{{item.byUser.firstName}} had sold the {{item.name}}</span></h3>    
                 </div>
                 <div class="">
                     <div class="details-footer-content" v-if="!isOwner">

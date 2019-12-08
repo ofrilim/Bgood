@@ -1,6 +1,5 @@
 <template>
   <section class="user-details grid" v-if="user">
-    <!-- <h1>{{user.fullName}}'s Page</h1> -->
     <section class="user-section">
       <div class="user-details-content flex flex-col flex-around">
         <img class="user-img" :src="user.imgUrl" />
@@ -10,9 +9,7 @@
           <h2><i class="fa fa-envelope"></i>{{ user.email }}</h2>
         </section>
         <div class="btns">
-          <router-link to="/item/edit" v-if="isLoggedInUser"
-            ><button class="btn">Add Item</button></router-link
-          >
+          <router-link to="/item/edit" v-if="isLoggedInUser"><button class="btn">Add Item</button></router-link>
           <button class="btn" v-if="isLoggedInUser" @click="toggleIsEdit">
             Edit Picture
           </button>
@@ -26,7 +23,6 @@
       </div>
     </section>
     <section class="items-section">
-      <!-- <h1>{{itemsFilter}} items:</h1> -->
       <div class="btns">
         <button autofocus class="btn" @click="itemsFilter = 'available' || 'in process'">
           Available Items
@@ -46,8 +42,7 @@
           <button
             class="btn"
             v-if="itemsFilter === 'in process'"
-            @click="approveSale(item)"
-          >
+            @click="approveSale(item)">
             Approve sell
           </button>
         </item-preview>

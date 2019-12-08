@@ -1,11 +1,5 @@
 // class inside itemList container
-.grid-container {
-    padding: 60px;
-    display: grid;
-    grid-gap: 30px 14px;
-    grid-template-columns: repeat(auto-fill, minmax(rem(210px), 2fr));
-    
-}
+
 .preview {
     position: relative;
     overflow: hidden;

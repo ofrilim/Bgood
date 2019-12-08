@@ -1,6 +1,26 @@
 <template>
     <section class="item-app">
-        <ItemList :items="items" @addToWishList="addToWishList"/>
+        <div class="item-app-top">
+            <h1>New On Site:</h1>
+            <ItemList :items="itemsByCreatedAt" @addToWishList="addToWishList"/>
+            <router-link class="more" to="/item">More</router-link>
+        </div>
+        <div class="item-app-top">
+            <h1>Most Popular:</h1>
+            <ItemList :items="itemsByWishCount" @addToWishList="addToWishList"/>
+            <router-link class="more" to="/item">More</router-link>
+        </div>
+        <div class="item-app-top">
+            <h1>Lowest Price:</h1>
+            <ItemList :items="itemsByPrice" @addToWishList="addToWishList"/>
+<<<<<<< HEAD
+            <router-link to="/item">More</router-link>
+        </div>       
+            <ItemList :items="items" @addToWishList="addToWishList"/>
+=======
+            <router-link class="more" to="/item">More</router-link>
+        </div>        
+>>>>>>> 5b331e362b46d3e74dd16b3a4a9ac1b67655dabc
     </section>
 </template>
 
@@ -10,7 +30,13 @@ import ItemList from '@/components/ItemList.vue'
 export default {
     name: 'item-app',
     components:{
-        ItemList
+        ItemList,
+    },
+    props: ['sortBy'],
+    data(){
+        return {
+           isHome: false,
+        }
     },
     methods: {
         addToWishList(itemId) {    
@@ -19,7 +45,19 @@ export default {
     },
     computed:{
         items(){
-            return this.$store.getters.items
+            return this.$store.getters.items;
+        },
+        itemsByPrice(){
+            var itemsToShow = this.$store.getters.lowestPriceItems
+            return itemsToShow = itemsToShow.slice(0, 4);
+        },
+        itemsByWishCount(){
+            var itemsToShow = this.$store.getters.mostWishedItems
+            return itemsToShow = itemsToShow.slice(0, 4);
+        },
+        itemsByCreatedAt(){
+            var itemsToShow = this.$store.getters.newestItems;
+           return itemsToShow = itemsToShow.slice(0, 4);
         }
     },
 }
