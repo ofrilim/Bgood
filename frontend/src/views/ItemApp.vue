@@ -44,15 +44,15 @@ export default {
         },
         itemsByPrice(){
             var itemsToShow = this.$store.getters.lowestPriceItems
-            return itemsToShow = itemsToShow.slice(0, 4);
+            return itemsToShow = itemsToShow.slice(0, 5);
         },
         itemsByWishCount(){
             var itemsToShow = this.$store.getters.mostWishedItems
-            return itemsToShow = itemsToShow.slice(0, 4);
+            return itemsToShow = itemsToShow.slice(0, 5);
         },
         itemsByCreatedAt(){
             var itemsToShow = this.$store.getters.newestItems;
-           return itemsToShow = itemsToShow.slice(0, 4);
+           return itemsToShow = itemsToShow.slice(0, 5);
         }
     },
 }

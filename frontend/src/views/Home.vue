@@ -1,6 +1,7 @@
 <template>
   <section class="home">
-    <img class="home-img" src="../assets/homepage-carousel/elegant-stylish-girls-greenhouse_1.jpg"/>
+    <!-- <img class="home-img" src="../assets/homepage-carousel/brooke-testoni_1.jpg"/> -->
+    <!-- <div class="home-slogen">The Neighbour's Closet Is Always Greener</div> -->
     <ItemApp/>
   </section>
 </template>

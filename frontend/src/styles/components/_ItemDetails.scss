@@ -2,20 +2,37 @@
     margin: 0 auto;
     padding: 20px;
     max-width: 60vw;
+    @include for-mobile-layout {
+        flex-direction: column;
+        margin: none;
+        padding: 20px;
+        max-width: none;
+        align-items: center;
+    }
+    
 }
 
 .details-title-content {
     padding: 20px;  
     border-radius: 5px;
+    @include for-mobile-layout {
+        padding: 15px 0;
+    }
 }
+
 
 .img-details {
     padding: 20px;  
     width: 20vw;
+    @include for-mobile-layout {
+        width: 70vw;
+        margin: 0 auto;
+        padding: 20px;
+    }
 }
 
 .details-title {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
 }
 .action-buy {
     color: $clr1;
@@ -27,7 +44,9 @@
 .details-content-box {
     padding: 8px;
     line-height: 1.8;
-
+    @include for-mobile-layout {
+        padding: none;
+    }
 }
 
 .details-footer-content {
