@@ -24,7 +24,7 @@
     </section>
     <section class="items-section">
       <div class="btns">
-        <button autofocus class="btn" @click="itemsFilter = 'available' || 'in process'">
+        <button autofocus class="btn" @click="itemsFilter = 'available'">
           Available Items
         </button>
         <!-- TODO: render order button only if user is loggedInUser -->
@@ -38,13 +38,15 @@
         </button>
       </div>
       <section class="items grid">
-        <item-preview v-for="item in userItems" :key="item._id" :item="item" @addToWishList="addToWishList(item._id)">
-          <button
-            class="btn"
-            v-if="itemsFilter === 'in process'"
-            @click="approveSale(item)">
-            Approve sell
-          </button>
+        <item-preview v-for="item in userItems" :key="item._id" :item="item" :buyerInfo="item.buyerInfo" @addToWishList="addToWishList(item._id)">
+          <!-- <template v-if="itemsFilter !== 'available'" class="by" v-slot="buyerName"> -->
+              <!-- <router-link :to="`/user/${item.buyerInfo._id}`">
+              Ordered By: {{item.buyerInfo.fullName}}
+              </router-link> -->
+          <!-- </template> -->
+            <button class="btn" v-if="itemsFilter === 'in process'" @click="approveSale(item)">
+              Approve sell
+            </button>
         </item-preview>
       </section>
     </section>
@@ -71,9 +73,12 @@ export default {
   },
   async created() {
     await this.setUserById()
-    const orderedItem = this.user.ownItems.filter(item => item.status === 'in process')
-    if (orderedItem) this.incomingOrderCount = orderedItem.length
-    console.log('USER DETASILS ' ,orderedItem)
+    return (this.user.ownItems.map(async item => {
+      if (item.status === 'in process') this.incomingOrderCount++;
+      if (item.buyer) {
+        item.buyerInfo = await userService.getById(item.buyer)
+      }
+    }))
   },
   watch: {
     $route() {
@@ -82,7 +87,6 @@ export default {
   },
   methods: {
     addToWishList(itemId) { 
-      console.log(itemId)   
       this.$store.dispatch('addToWishList', itemId);
     },
     async setUserById(){
@@ -94,8 +98,8 @@ export default {
       } catch (error) {
         console.log('USERDETAILS ERROR WHILE GETTING USERID: ', this.user)
       }
-      const userIdFromStore = this.$store.getters.loggedInUser._id
-      if (userIdFromStore) this.isLoggedInUser = userIdFromStore === this.userId;
+      const loggedInUserId = this.$store.getters.loggedInUser._id
+      if (loggedInUserId) this.isLoggedInUser = (loggedInUserId === this.userId);
     },
     async approveSale(item) {
       const soldItem = JSON.parse(JSON.stringify(item));
@@ -111,7 +115,7 @@ export default {
       const imgUrl = await UtilsService.uploadImg(ev);
       this.user.imgUrl = imgUrl;
     },
-    async editUserImg() {
+    editUserImg() {
       if (!this.user.imgUrl) return;
       userService.update(this.user);
     },
@@ -121,7 +125,13 @@ export default {
   },
   computed: {
     userItems() {
-      return this.user.ownItems.filter(item => item.status === this.itemsFilter);
+      return this.user.ownItems.filter(item => item.status === this.itemsFilter) 
+        
+      // return this.user.ownItems.filter(async function (item) {
+      //   if (item.buyer) item.buyerInfo = await userService.getById(item.buyer)
+      //     console.log('user items items:', item);
+      //   return item.status === this.itemsFilter
+      //   });
     }
   },
   components: {

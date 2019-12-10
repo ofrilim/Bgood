@@ -3,17 +3,17 @@
         <div class="item-app-top">
             <h1>New On Site:</h1>
             <ItemList :items="itemsByCreatedAt" @addToWishList="addToWishList"/>
-            <router-link class="more" to="/item">More</router-link>
+            <!-- <router-link class="more" to="/item">More</router-link> -->
         </div>
         <div class="item-app-top">
             <h1>Most Popular:</h1>
             <ItemList :items="itemsByWishCount" @addToWishList="addToWishList"/>
-            <router-link class="more" to="/item">More</router-link>
+            <!-- <router-link class="more" to="/item">More</router-link> -->
         </div>
         <div class="item-app-top">
             <h1>Lowest Price:</h1>
             <ItemList :items="itemsByPrice" @addToWishList="addToWishList"/>
-            <router-link class="more" to="/item">More</router-link>
+            <!-- <router-link class="more" to="/item">More</router-link> -->
         </div>        
     </section>
 </template>
@@ -43,15 +43,15 @@ export default {
         },
         itemsByPrice(){
             var itemsToShow = this.$store.getters.lowestPriceItems
-            return itemsToShow = itemsToShow.slice(0, 4);
+            return itemsToShow = itemsToShow.slice(0, 6);
         },
         itemsByWishCount(){
             var itemsToShow = this.$store.getters.mostWishedItems
-            return itemsToShow = itemsToShow.slice(0, 4);
+            return itemsToShow = itemsToShow.slice(0, 6);
         },
         itemsByCreatedAt(){
             var itemsToShow = this.$store.getters.newestItems;
-           return itemsToShow = itemsToShow.slice(0, 4);
+           return itemsToShow = itemsToShow.slice(0, 6);
         }
     },
 }

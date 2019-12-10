@@ -8,7 +8,7 @@
         </router-link>
         <div class="preview-content flex flex-col flex-around">
             <h2 class="preview-name bold">{{item.name}}</h2>
-            <div class="preview-price flex flex-between">
+            <div v-if="item.byUser" class="preview-price flex flex-between">
                 <h2>Price: $ {{item.price}}</h2>
             </div>
             <div v-if="item.byUser">
@@ -19,6 +19,11 @@
                     </div>
                 </router-link>
             </div>
+            <div v-if="buyerInfo">
+                <router-link  :to="`/user/${item.buyerInfo._id}`">
+                    Ordered By: {{item.buyerInfo.fullName}}
+                </router-link>
+            </div>
             <slot></slot>
         </div>
     </li>
@@ -27,7 +32,9 @@
 <script> 
 export default {
     name:'ItemPreview',
-    props: ['item'],
+    props: { item: Object,
+            buyerInfo: Object
+            },
     methods: {
         addToWishList(itemId) {
             this.$emit('addToWishList', itemId)
