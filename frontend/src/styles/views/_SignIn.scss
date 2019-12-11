@@ -6,6 +6,16 @@ td {
     }
 }
 
+.sign-in-forms {
+    margin: 10px;
+    & td {
+        width: 25vh;
+    }
+    @include for-mobile-layout {
+        flex-direction: column;
+    }
+}
+
 .sign-in-title {
     margin: rem(25px) 0 rem(20px) 0;
     font-size: rem(30px);
@@ -14,6 +24,9 @@ td {
 th {
     padding: rem(10px);
     font-size: rem(22px);
+    @include for-mobile-layout {
+        padding: 30px 0px 20px 0;
+    }
 }
 
 
