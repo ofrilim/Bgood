@@ -5,6 +5,7 @@
         <img class="user-img" :src="user.imgUrl" />
         <h1>{{ user.firstName }}'s Boutique</h1>
         <section class="user-info">
+          <!-- LOGGED IN USER <pre>{{loggedInUser}}</pre> -->
           <h2><i class="fa fa-user"></i>{{ user.fullName }}</h2>
           <h2><i class="fa fa-envelope"></i>{{ user.email }}</h2>
         </section>
@@ -39,11 +40,6 @@
       </div>
       <section class="items grid">
         <item-preview v-for="item in userItems" :key="item._id" :item="item" :buyerInfo="item.buyerInfo" @addToWishList="addToWishList(item._id)">
-          <!-- <template v-if="itemsFilter !== 'available'" class="by" v-slot="buyerName"> -->
-              <!-- <router-link :to="`/user/${item.buyerInfo._id}`">
-              Ordered By: {{item.buyerInfo.fullName}}
-              </router-link> -->
-          <!-- </template> -->
             <button class="btn" v-if="itemsFilter === 'in process'" @click="approveSale(item)">
               Approve sell
             </button>
@@ -66,7 +62,6 @@ export default {
       user: null,
       itemsFilter: 'available',
       msg: '',
-      isLoggedInUser: false,
       isEdit: false,
       incomingOrderCount: 0
     };
@@ -81,7 +76,7 @@ export default {
     }))
   },
   watch: {
-    $route() {
+    '$route'() {
       this.setUserById()
     }
   },
@@ -90,16 +85,14 @@ export default {
       this.$store.dispatch('addToWishList', itemId);
     },
     async setUserById(){
+      this.userId = this.$route.params.id;
       try {
-        this.userId = this.$route.params.id;
         const tempUser = await userService.getById(this.userId);
         this.user = JSON.parse(JSON.stringify(tempUser));
-        
       } catch (error) {
-        console.log('USERDETAILS ERROR WHILE GETTING USERID: ', this.user)
+        console.log('USERDETAILS ERROR WHILE GETTING USERID: ', this.user, 'error:', error)
       }
-      const loggedInUserId = this.$store.getters.loggedInUser._id
-      if (loggedInUserId) this.isLoggedInUser = (loggedInUserId === this.userId);
+      
     },
     async approveSale(item) {
       const soldItem = JSON.parse(JSON.stringify(item));
@@ -126,12 +119,13 @@ export default {
   computed: {
     userItems() {
       return this.user.ownItems.filter(item => item.status === this.itemsFilter) 
-        
-      // return this.user.ownItems.filter(async function (item) {
-      //   if (item.buyer) item.buyerInfo = await userService.getById(item.buyer)
-      //     console.log('user items items:', item);
-      //   return item.status === this.itemsFilter
-      //   });
+    },
+    loggedInUser(){
+       return this.$store.getters.loggedInUser
+    },
+    isLoggedInUser(){
+      if (!this.loggedInUser) return
+      return (this.loggedInUser._id === this.userId)
     }
   },
   components: {
