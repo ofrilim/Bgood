@@ -13,8 +13,9 @@
         <div class="item-app-top">
             <h1>Lowest Price:</h1>
             <ItemList :items="itemsByPrice" @addToWishList="addToWishList"/>
-            <!-- <router-link class="more" to="/item">More</router-link> -->
-        </div>        
+            <!-- <router-link to="/item">More</router-link> -->
+        </div>       
+            <ItemList :items="items" @addToWishList="addToWishList"/>
     </section>
 </template>
 
@@ -43,15 +44,15 @@ export default {
         },
         itemsByPrice(){
             var itemsToShow = this.$store.getters.lowestPriceItems
-            return itemsToShow = itemsToShow.slice(0, 6);
+            return itemsToShow = itemsToShow.slice(0, 5);
         },
         itemsByWishCount(){
             var itemsToShow = this.$store.getters.mostWishedItems
-            return itemsToShow = itemsToShow.slice(0, 6);
+            return itemsToShow = itemsToShow.slice(0, 5);
         },
         itemsByCreatedAt(){
             var itemsToShow = this.$store.getters.newestItems;
-           return itemsToShow = itemsToShow.slice(0, 6);
+           return itemsToShow = itemsToShow.slice(0, 5);
         }
     },
 }
