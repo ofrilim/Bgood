@@ -8,11 +8,16 @@ export default {
     add,
 }
 
-// .limit(3).sort( { name: 1, born: -1 } )
-function query() {
-    // var url = 'item';
-    // if (filter.filterBy) url += `?limit=3&sort=${filter.filterBy}`
-    return HttpService.get('item')
+function query(filterBy) {
+    var url = 'item';
+    if (filterBy) {
+        url += '?'
+        if (filterBy.category) url += `category=${filterBy.category}&`
+        if (filterBy.keywords) url += `keywords=${filterBy.keywords[0]}&`
+        if (filterBy.price) url += `price=${filterBy.price}&`
+    }
+    console.log('url:', url);
+    return HttpService.get(url)
 }
 
 function update(edited) {    

@@ -40,12 +40,12 @@ export default {
             context.commit({ type: 'setLoggedInUser' })
         },
         async loadLoggedInUser(context) {
-            const userFronSession = await SessionService.checkIsLoggedInUser()
-            if (!userFronSession) {
+            const userFromSession = await SessionService.checkIsLoggedInUser()
+            if (!userFromSession) {
                 context.commit({ type: 'setLoggedInUser', user: null });
                 return;
             }
-            const user = await UserService.getById(userFronSession._id)
+            const user = await UserService.getById(userFromSession._id)
             context.commit({ type: 'setLoggedInUser', user })
         },
         async addToWishList(context, itemId) {    
@@ -57,7 +57,7 @@ export default {
                context.commit({type: 'updateUser', user: updatedUser})
            }
            catch (error) {
-               console.log('ERROR: USERSTORE ADDTOWISHLIST ACTION', error)
+               console.error('ERROR: USERSTORE ADDTOWISHLIST ACTION', error)
            }
         },
         async removeFromWishList(context, { itemId }) {
@@ -69,20 +69,15 @@ export default {
                 context.commit({type: 'updateUser', user: updatedUser})
             }
             catch (error) {
-                console.log('ERROR: USERSTORE ADDTOWISHLIST ACTION', error)
+                console.error('ERROR: USERSTORE ADDTOWISHLIST ACTION', error)
             }
         },
-        // async buyItem(context, { itemId }) {
-        //     const editedItem = await ItemService.update(item)
-        //     context.commit({ type: 'setItem', editedItem })
-        //     return {}
-        // },
     },
     getters: {
         loggedInUser(state) {
             return state.loggedInUser;
         },
-        wishList(state) {           // TODO: WISH LIST
+        wishList(state) {
             return state.wishList;
         }
     }

@@ -1,5 +1,6 @@
 <template>
     <section class="app-header border-bottom flex flex-between">
+        <div class="screen" :class="open" @click="onToggleNavBar"></div>        
         <div class="left-nav bold flex align-center">
           <router-link to="/"><h1 class="logo inline" title="Home Page">B-good</h1></router-link>
           <select class="select pointer" placeholder="Categories">
@@ -11,15 +12,18 @@
         </div>
         <div class="nav bold flex align-center">
           <input class="header-search border-bottom" type="text"/>
-          <span class="search pointer"><i class="fa fa-search"  title="Serch"></i></span>
-          <router-link to="/item">Explore</router-link> | 
-          <router-link to="/signin" v-if="!loggedInUser">SignIn</router-link>
-          <div v-if="loggedInUser" class="flex">
-            <router-link :to="`/user/${loggedInUser._id}`">{{loggedInUser.firstName}}'s Page</router-link>
-            <router-link to="/"  @click="logOut">
-              <button @click="logOut">Log Out</button>
-            </router-link>
-          </div>
+          <span class="search pointer"><i class="fa fa-search"  title="Search"></i></span>
+          <button class="hamburger-btn" @click="onToggleNavBar">
+            <i class="fa fa-bars"></i>
+          </button>
+          <nav class="nav-bar spread-nav-bar bold flex align-center" :class="{'open-menu' : isOpen}">
+            <router-link to="/item">Explore</router-link>
+            <router-link to="/signin" v-if="!loggedInUser">SignIn</router-link>
+            <div v-if="loggedInUser" class="flex user-nav">
+              <router-link :to="`/user/${loggedInUser._id}`">{{loggedInUser.firstName}}'s Page</router-link>
+              <router-link to="/" @click="logOut"><button @click="logOut">Log Out</button></router-link>
+            </div>
+          </nav>
           <i class="fa fa-heart pointer" @click="clicked" title="Wish List"></i>
         </div>
     </section>
@@ -27,6 +31,11 @@
 
 <script>
 export default {
+  data(){
+    return {
+      isOpen: false,
+    }
+  },
   methods: {
     clicked() {
       this.$bus.emit('toggleWishList')
@@ -34,11 +43,24 @@ export default {
     logOut() {
       this.$store.dispatch('logOut');
     },
+    onToggleNavBar(){
+      this.isOpen = !this.isOpen
+    },
   },
   computed: {
     loggedInUser() {
       return this.$store.getters.loggedInUser
     },
+    open() {
+      if (this.isOpen) return 'open-screen'
+      else return false;
+    }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .fa-bars{
+    font-size: 32px;
+  }
+</style>
