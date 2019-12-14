@@ -1,10 +1,11 @@
-// class inside itemList container
-
 .preview {
+    
     position: relative;
     overflow: hidden;
     border-radius: 10px;
     max-height: rem(400px);
+    max-width: 15vw;
+    margin-bottom: 20px;
     box-shadow: 0px 0px 3px 0px #969090;
     .img-hover {
         overflow: hidden;
@@ -22,7 +23,7 @@
 
 img.img-preview {
     display: block;
-    height: 280px;
+    height: 200px;
     object-fit: cover;
 }
 
@@ -70,10 +71,4 @@ img.img-preview {
 .preview-heart {
     position: absolute;
     z-index: 1;
-}
-// for item details page
-.similar-items{
-    & .grid-container{
-        grid-template-columns: repeat(auto-fill, minmax(12.125rem, 1fr));
-    }
 }

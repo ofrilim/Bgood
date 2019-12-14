@@ -1,6 +1,6 @@
 <template>
     <section>
-        <ul class="grid-container">
+        <ul class="flex flex-wrap flex-evenly">
             <ItemPreview v-for="currItem in items" :key="currItem._id" :item="currItem" @addToWishList="addItemToWishList">
             </ItemPreview>
         </ul>

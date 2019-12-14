@@ -1,19 +1,19 @@
 <template>
     <section class="item-app">
-        <div class="item-app-top">
+        <div>
             <h1>New On Site:</h1>
             <ItemList :items="itemsByCreatedAt" @addToWishList="addToWishList"/>
-            <!-- <router-link class="more" to="/item">More</router-link> -->
+            <router-link class="more" to="/item">More</router-link>
         </div>
-        <div class="item-app-top">
+        <div>
             <h1>Most Popular:</h1>
             <ItemList :items="itemsByWishCount" @addToWishList="addToWishList"/>
-            <!-- <router-link class="more" to="/item">More</router-link> -->
+            <router-link class="more" to="/item">More</router-link>
         </div>
-        <div class="item-app-top">
+        <div>
             <h1>Lowest Price:</h1>
             <ItemList :items="itemsByPrice" @addToWishList="addToWishList"/>
-            <!-- <router-link to="/item">More</router-link> -->
+            <router-link to="/item">More</router-link>
         </div>       
             <!-- <h1>All:</h1> -->
             <!-- <ItemList :items="items" @addToWishList="addToWishList"/> -->

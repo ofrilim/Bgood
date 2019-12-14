@@ -1,24 +1,3 @@
-.grid-container {
-    // padding: 10px 60px;
-    display: grid;
-    grid-gap: 30px 5%;
-    grid-template-columns: repeat(auto-fill, minmax(rem(210px), 2fr));
-    margin-bottom: 10px;
-    @include for-mobile-layout {
-        grid-gap: 10px 3%;
-        grid-template-columns: repeat(auto-fill, minmax(rem(120px), 2fr));
-        margin-bottom: 10px;
-        li:last-child {
-            display: none;
-        }
-
-    }
-}
-
-.item-app-top {
-    margin-bottom: 20px;
-}
-
 .item-app {
     padding: 20px 40px;
     & h1 {

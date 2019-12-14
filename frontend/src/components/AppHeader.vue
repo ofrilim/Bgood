@@ -11,8 +11,6 @@
           </select>
         </div>
         <div class="nav bold flex align-center">
-          <input class="header-search border-bottom" type="text"/>
-          <span class="search pointer"><i class="fa fa-search"  title="Search"></i></span>
           <button class="hamburger-btn" @click="onToggleNavBar">
             <i class="fa fa-bars"></i>
           </button>

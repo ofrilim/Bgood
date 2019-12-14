@@ -1,43 +1,50 @@
 <template>
-    <section v-if="item" class="item-details">
-        <div class="item-details-main flex-col">
-            <div class="flex">
-                <div class="">
-                    <img class="img-details" :src="this.item.imgUrl"/>
+    <section v-if="item">
+        <div class="item-details grid">
+            <div class="">
+                <img class="img-details" :src="this.item.imgUrl"/>
+            </div>
+            <div class="details-title-content">
+                <section class="flex flex-between align-center">
+                    <i class="fa fa-heart pointer" v-if="!isOwner" title="Add To WishList" @click.stop="addToWishList(item._id)"></i>
+                    <h1 class="details-title bold inline">{{item.name}}</h1>
+                    <button class="btn action-buy" v-if="!isOwner" @click="buyItem">BUY</button>
+                </section>
+                <div class="details-content-box">
+                    <h3><span class="bold">Category: </span>{{item.category}}</h3>
+                    <h3 v-if="item.category==='clothes' || item.category==='shoes'"><span class="bold">Size: </span>{{item.size}}</h3>
+                    <h3><span class="bold">Condition: </span>{{item.condition}}</h3>
+                    <h3><span class="bold">Uploaded at: </span>{{createdAtDate}}</h3>
+                    <h3><span class="bold">Price: $ </span>{{item.price}}</h3>
+                    <h4><span class="bold">Additional information: </span>{{item.description}}</h4>
+                    <h3><span class="bold alert" v-if="item.status==='in process'">Someone is interested in this item</span></h3>
+                    <h3><span class="bold success" v-if="item.status === 'available'">Item is available</span></h3>
+                    <h3><span class="bold primary" v-if="item.status === 'sold'">{{item.byUser.firstName}} had sold the {{item.name}}</span></h3>    
                 </div>
-                <div class="details-title-content">
-                    <section class="flex flex-between align-center">
-                        <i class="fa fa-heart pointer" v-if="!isOwner" title="Add To WishList" @click.stop="addToWishList(item._id)"></i>
-                        <h1 class="details-title bold inline">{{item.name}}</h1>
-                        <button class="btn action-buy" v-if="!isOwner" @click="buyItem">BUY</button>
-                    </section>
-                    <div class="details-content-box">
-                        <h3><span class="bold">Category: </span>{{item.category}}</h3>
-                        <h3 v-if="item.category==='clothes' || item.category==='shoes'"><span class="bold">Size: </span>{{item.size}}</h3>
-                        <h3><span class="bold">Condition: </span>{{item.condition}}</h3>
-                        <h3><span class="bold">Uploaded at: </span>{{createdAtDate}}</h3>
-                        <h3><span class="bold">Price: $ </span>{{item.price}}</h3>
-                        <h4><span class="bold">Additional information: </span>{{item.description}}</h4>
-                        <h3><span class="bold alert" v-if="item.status==='in process'">Someone is interested in this item</span></h3>
-                        <h3><span class="bold success" v-if="item.status === 'available'">Item is available</span></h3>
-                        <h3><span class="bold primary" v-if="item.status === 'sold'">{{item.byUser.firstName}} had sold the {{item.name}}</span></h3>    
+                <div class="">
+                    <div class="details-footer-content" v-if="!isOwner">
+                    <router-link :to="`/user/${item.byUser._id}`">
+                        <span class="bold">Seller: {{item.byUser.fullName}}</span>
+                        <img :src="item.byUser.imgUrl" class="avatar-img"/>
+                    </router-link> 
                     </div>
-                    <div class="">
-                        <div class="details-footer-content" v-if="!isOwner">
-                        <router-link :to="`/user/${item.byUser._id}`">
-                            <span class="bold">Seller: {{item.byUser.fullName}}</span>
-                            <img :src="item.byUser.imgUrl" class="avatar-img"/>
-                        </router-link> 
-                        </div>
-                        <div class="details-footer-content" v-if="isOwner">
-                            <router-link :to="`/item/edit/${item._id}`"><button class="btn">Edit Item</button></router-link>
-                            <button @click="removeItem(item._id)" class="btn">Delete</button>
-                        </div>
+                    <div class="details-footer-content" v-if="isOwner">
+                        <router-link :to="`/item/edit/${item._id}`"><button class="btn">Edit Item</button></router-link>
+                        <button @click="removeItem(item._id)" class="btn">Delete</button>
                     </div>
                 </div>
             </div>
-            <div class="similar-items">
-                <ItemList :items="itemsToShow"/>
+            <div class="interest-items">
+                <h1>Related Products</h1>
+                 <ul class="interest-ul" v-for="item in itemsToShow" :key="item._id" >
+                     <li class="grid" v-for="item in itemsToShow" :key="item._id">
+                        <router-link :to="`/item/${item._id}`"><img :src="item.imgUrl"/></router-link>
+                        <div class="similar-content flex flex-col flex-around">
+                            <h2>{{item.name}}</h2>
+                            <h2 class="price">$ {{item.price}}</h2>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </section>
@@ -47,8 +54,6 @@
 import UtilsService from '../services/UtilsService';
 import ItemService from '../services/ItemService';
 import SocketService from '../services/SocketService';
-
-import ItemList from '../components/ItemList.vue'
 
 export default {
     name: 'item-details',
@@ -114,10 +119,5 @@ export default {
             this.itemsToShow = this.$store.getters.items.filter(item => item._id !== this.itemId).slice(0,4)
         },
     },
-    computed: {
-    },
-    components: {
-     ItemList,
-    }
 }
 </script>
