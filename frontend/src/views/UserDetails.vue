@@ -38,7 +38,7 @@
       </div>
       <section class="items grid">
         <item-preview v-for="item in userItems" :key="item._id" 
-        :item="item" @addToWishList="addToWishList(item)">
+        :item="item" @addToWishList="addToWishList(item._id)">
           <td>
             <button class="btn btn-wide" v-if="itemsFilter === 'in process'" @click="approveSale(item)">
             Approve Sell
@@ -90,8 +90,8 @@ export default {
     }
   },
   methods: {
-    addToWishList(item) { 
-      this.$store.dispatch({type:'setOnWishList', item});
+    addToWishList(itemId) { 
+      this.$store.dispatch({type:'setOnWishList', itemId});
     },
     async setUserById(){
       this.userId = this.$route.params.id;

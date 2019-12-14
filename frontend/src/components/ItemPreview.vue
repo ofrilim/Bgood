@@ -21,7 +21,7 @@
                     </router-link>
                 </div>
             </div>
-            <div v-if="buyerInfo">
+            <div v-if="item.buyerInfo">
                 <router-link  :to="`/user/${item.buyerInfo._id}`">
                     Ordered By: {{item.buyerInfo.fullName}}
                 </router-link>
@@ -34,9 +34,7 @@
 <script> 
 export default {
     name:'ItemPreview',
-    props: { item: Object,
-            buyerInfo: Object
-            },
+    props: ['item'],
     data(){
         return {
             isInProcess: false      

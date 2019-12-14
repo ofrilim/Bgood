@@ -33,7 +33,6 @@ export default {
             }
         },
         async saveItem(context, { item }) {
-            
             let editedItem = {};
             if (item._id) editedItem = await ItemService.update(item)
             else editedItem = await ItemService.add(item)
