@@ -1,7 +1,9 @@
 <template>
     <li class="preview">
         <router-link :to="`/item/${item._id}`">
-            <i class="fa fa-heart preview-heart" @click.prevent="addToWishList(item._id)"></i>
+  <!-- <el-button size="small">comments</el-button> -->
+            <!-- <i class="fa fa-heart preview-heart" @click.prevent="addToWishList(item._id)">{{item.wishCount}}</i> -->
+            <i class="fa fa-heart preview-heart" @click.prevent="addToWishList(item)">{{item.wishCount}}</i>
             <div class="img-hover">
                 <img class="img-preview" :src="item.imgUrl"/>
             </div>
@@ -37,11 +39,29 @@ export default {
     props: { item: Object,
             buyerInfo: Object
             },
+    data(){
+        return {
+            isInProcess: false      
+        }
+    },
     methods: {
-        addToWishList(itemId) {
-            this.$emit('addToWishList', itemId)
+        // addToWishList(itemId) {
+        addToWishList(item) {
+            if (this.isInProcess) return
+                this.isInProcess = true
+            this.$emit('addToWishList', item)
+            setTimeout(() => {
+                this.isInProcess = false
+            }, 600); 
+
+            // this.$emit('addToWishList', itemId)
         },
     },
 }
 </script>
-   
+<style lang="scss" scoped>
+    .item {
+  margin-top: 10px;
+  margin-right: 40px;
+}
+</style>

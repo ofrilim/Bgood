@@ -12,7 +12,7 @@
                 <h2>{{item.name}}</h2>
                 <h2 class="price">$ {{item.price}}</h2>
                 <router-link :to="`/user/${item.ownerId}`">
-                  <h2>Seller: <img  @click="toggleScreen" class="avatar-img" :src="item.byUser.imgUrl"/></h2>
+                  <h2>Seller: <img @click="toggleScreen" class="avatar-img" :src="item.byUser.imgUrl"/></h2>
                 </router-link>
               </div>
               <div class="btns flex flex-col justify-center flex-evenly">
@@ -27,8 +27,9 @@
     </section>
 </template>
 
-
 <script>
+import SocketService from '../services/SocketService';
+
 export default {
   data() {
     return {
@@ -53,6 +54,9 @@ export default {
         baughtItem.buyer = user._id;
         baughtItem.status = 'in process';
         await this.$store.dispatch({type: 'saveItem', item: baughtItem});
+        await this.remove(item._id)
+        // { item: item_id, seller: item.ownerId }
+        SocketService.emit('newMsg', 'ITEM SUCCESSFULLY ORDERED')
         this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully'});
       }, 
     },

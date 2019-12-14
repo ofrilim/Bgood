@@ -20,7 +20,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
-      setMsg(context, { msg }) {      // TODO: CHECK ABOUT ALL PLACES WE HAVE msg AND COME TO STORE and this one paryicular dont have mutation
+      setMsg(context, { msg }) { 
         console.log('MSG IN STORE. MSG: ', msg)
         context.commit({ type: 'setMsg', msg });
         setTimeout(() => context.commit({ type: 'setMsg', msg: null }), 2500);
@@ -34,6 +34,6 @@ export default new Vuex.Store({
   modules: {
     UserStore,
     ItemStore,
-    SocketStore
+    SocketStore,
   }
 })

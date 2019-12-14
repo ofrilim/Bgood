@@ -1,6 +1,6 @@
 <template>
   <section class="home">
-    <img class="home-img" src="../assets/homepage-carousel/4.jpg"/>
+    <img class="home-img" src="../assets/imgs/FotoJet.jpg"/>
     <ItemApp/>
   </section>
 </template>

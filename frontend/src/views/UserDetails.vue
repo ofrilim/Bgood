@@ -34,6 +34,7 @@
           @click="itemsFilter = 'in process'" v-if="isLoggedInUser" :class="{ notification : incomingOrderCount }">
           Incoming Orders ( {{incomingOrderCount}} )
         </button>
+        <span v-if="isNewIncoming && isLoggedInUser" class="icon-red badge bold"></span>
         <button class="btn" @click="itemsFilter = 'sold'" v-if="isLoggedInUser">
           Sold Items
         </button>
@@ -56,6 +57,7 @@
 import ItemPreview from '../components/ItemPreview.vue';
 import UtilsService from '../services/UtilsService.js';
 import userService from '../services/UserService.js';
+import SocketService from '../services/SocketService';
 
 export default {
   name: 'user-details',
@@ -66,11 +68,18 @@ export default {
       itemsFilter: 'available',
       msg: '',
       isEdit: false,
-      incomingOrderCount: 0
+      incomingOrderCount: 0,
+      isNewIncoming: false
     };
   },
   async created() {
     await this.setUserById()
+    SocketService.setup();
+    SocketService.on('BEMsg', msg => {
+      this.isNewIncoming = true;
+      console.log('USER DETAILS CMP, MSG ARRIVED FROM BE SOCKET: ', msg)
+      console.log('USER DETAILS CMP, isnewIncoming', this.isNewIncoming)
+    })
     return (this.user.ownItems.map(async item => {
       if (item.status === 'in process') this.incomingOrderCount++;
       if (item.buyer) {
@@ -95,7 +104,6 @@ export default {
       } catch (error) {
         console.log('USERDETAILS ERROR WHILE GETTING USERID: ', this.user, 'error:', error)
       }
-      
     },
     async approveSale(item) {
       const soldItem = JSON.parse(JSON.stringify(item));
@@ -103,6 +111,7 @@ export default {
       try {
         await this.$store.dispatch({ type: 'saveItem', item: soldItem });
         this.$store.dispatch({ type: 'setMsg', msg: 'Item Sold!'});
+        SocketService.emit('approveMsg', 'ITEM SUCCESSFULLY SOLD')
       } catch(error) {
         console.log('ERROR: USER DETAILS APPROVING SALE FAILED')
       }
@@ -121,7 +130,7 @@ export default {
   },
   computed: {
     userItems() {
-      return this.user.ownItems.filter(item => item.status === this.itemsFilter) 
+      return this.user.ownItems.filter(item => item.status === this.itemsFilter)
     },
     loggedInUser(){
        return this.$store.getters.loggedInUser

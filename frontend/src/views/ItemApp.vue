@@ -1,5 +1,5 @@
 <template>
-    <section class="item-app">
+    <section class="item-app" v-if="items">
         <div class="item-app-top">
             <h1>New On Site:</h1>
             <ItemList :items="itemsByCreatedAt" @addToWishList="addToWishList"/>
@@ -15,7 +15,8 @@
             <ItemList :items="itemsByPrice" @addToWishList="addToWishList"/>
             <router-link to="/item">See more</router-link>
         </div>       
-            <ItemList :items="items" @addToWishList="addToWishList"/>
+            <!-- <h1>All:</h1> -->
+            <!-- <ItemList :items="items" @addToWishList="addToWishList"/> -->
     </section>
 </template>
 
@@ -37,8 +38,10 @@ export default {
         }
     },
     methods: {
-        addToWishList(itemId) {    
-            this.$store.dispatch('addToWishList', itemId);
+        addToWishList(item) {    
+            this.$store.dispatch('setOnWishList', item);
+        // addToWishList(itemId) {    
+        //     this.$store.dispatch('addToWishList', itemId);
         }
     },
     computed:{

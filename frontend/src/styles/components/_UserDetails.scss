@@ -16,6 +16,7 @@
 
 .user-section {
     position: sticky;
+    height: 90vh;
     padding: 20px;
     background-color: $clr2;
     & .btns {
@@ -121,4 +122,34 @@
 
 .uploadImg-input {
     width: 20vw;
+}
+
+
+
+
+.icon-red {color: #0088cc}
+
+.icon-grey {color: grey}
+
+.items-section span {   
+    width:100px;
+    text-align:center;
+    vertical-align:middle;
+    position: relative;
+}
+
+.badge:after{
+    content: "new";
+    position: absolute;
+    background: red;
+    height: 2rem;
+    top: -1.5rem;
+    right: 0.5rem;
+    width: 2rem;
+    text-align: center;
+    line-height: 2rem;;
+    font-size: 0.7rem;
+    border-radius: 50%;
+    color: white;
+    border:1px solid $clr11;
 }

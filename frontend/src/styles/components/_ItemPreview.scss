@@ -13,7 +13,7 @@
         }
     }
     &:hover .img-hover img {
-            transform: scale(1.1)
+        transform: scale(1.1)
     }
     @include for-mobile-layout {
         margin: 0 5px;
