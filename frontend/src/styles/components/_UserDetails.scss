@@ -8,6 +8,10 @@
     & h2 {
         font-size: 1rem
     }
+    @include for-mobile-layout {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .user-section {
@@ -23,6 +27,18 @@
             margin-top: 10px;
         }
     }
+    @include for-mobile-layout {
+        padding: 10px;
+        & .btns {
+            margin: 0 auto;
+            margin-top: 0px; 
+            // & .btn {
+            //     margin-right: 20px;
+            //     margin-top: 10px;
+            // }
+        }
+    }
+
 }
 
 .fa-user {
@@ -36,7 +52,11 @@
     & h1 {
         margin: 0 auto;
     }
+    @include for-mobile-layout {
+        height: 40vh;
+    }
 }
+
 
 .user-img {
     margin:  0 auto;
@@ -65,11 +85,29 @@
             background-color: $clr11;
         }
     }
+    @include for-mobile-layout {
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        & .btns {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            & .btn {
+                padding: 5px;
+            }
+        }
+    }
 }
 
 .items {
     grid-gap: rem(15px);
     grid-template-columns: repeat(auto-fill, minmax(rem(180px), rem(200px)));
+    @include for-mobile-layout {
+        grid-gap: 10px 3%;
+    grid-template-columns: repeat(auto-fill, minmax(7.5rem, 2fr));
+    margin-bottom: 10px;
+    }
 }
 
 .uploadImg-input {

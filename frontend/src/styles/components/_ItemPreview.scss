@@ -15,6 +15,9 @@
     &:hover .img-hover img {
         transform: scale(1.1)
     }
+    @include for-mobile-layout {
+        margin: 0 5px;
+    }
 }
 
 img.img-preview {
@@ -24,25 +27,53 @@ img.img-preview {
 }
 
 .preview-content {
-    padding: 0 10px;
+    // padding: 0 10px;
     height: 100px;
     padding: 0 rem(5px) 0 rem(5px);
     line-height: 1.4;
+    @include for-mobile-layout {
+        height: 70px;
+        & .preview-seller-mobile {
+            flex-direction: row;
+        }
+        @include for-mobile-layout {
+            margin-top: 3px;
+            margin-bottom: 5px;
+        }
+    }
 }
 
 .preview-name {
     font-size: rem(16px);
+
+    // align-self: center;;
+
 }
 
 .preview-price {
     font-size: rem(13px);
 }
 
+.avatar-img{
+    @include for-mobile-layout {
+    }
+
+}
+
 .by {
     margin: rem(5px);
+    @include for-mobile-layout {
+        display: none;
+    }
 }
 
 .preview-heart {
     position: absolute;
     z-index: 1;
+}
+// for item details page
+.similar-items{
+    & .grid-container{
+        grid-template-columns: repeat(auto-fill, minmax(12.125rem, 1fr));
+    }
 }

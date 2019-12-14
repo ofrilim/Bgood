@@ -29,6 +29,9 @@ export default {
         ItemList,
     },
     props: ['sortBy'],
+    created(){
+        this.$store.dispatch({type: 'loadItems', filterBy: {}})
+    },
     data(){
         return {
            isHome: false,

@@ -1,9 +1,18 @@
 .grid-container {
     // padding: 10px 60px;
     display: grid;
-    grid-gap: 30px 14px;
+    grid-gap: 30px 5%;
     grid-template-columns: repeat(auto-fill, minmax(rem(210px), 2fr));
     margin-bottom: 10px;
+    @include for-mobile-layout {
+        grid-gap: 10px 3%;
+        grid-template-columns: repeat(auto-fill, minmax(rem(120px), 2fr));
+        margin-bottom: 10px;
+        li:last-child {
+            display: none;
+        }
+
+    }
 }
 
 .item-app-top {
@@ -22,6 +31,13 @@
         font-weight: bolder;
         // background-color: rgb(238, 235, 235);
         border-radius: 5px;
+    }
+    @include for-mobile-layout {
+        padding: 10px 20px;
+        & h1 {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
     }
 }
 

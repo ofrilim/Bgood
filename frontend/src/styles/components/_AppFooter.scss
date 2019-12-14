@@ -1,6 +1,10 @@
 .footer {
     height: 28vh;
     flex-grow: 1;
+    @include for-mobile-layout {
+        height: 15vh;
+        padding: 10px 0;
+    }
 }
 
 .footer-content {

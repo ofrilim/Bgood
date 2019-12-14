@@ -24,7 +24,7 @@ const routes = [
   {
     path: '/item',
     name: 'ItemApp',
-    component: ItemApp
+    component: ItemApp,
   },
   {
     path: '/item/edit/:id?',

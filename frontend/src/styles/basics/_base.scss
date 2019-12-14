@@ -36,6 +36,10 @@ body {
     &:hover {
         color: $clr4;
     }
+    @include for-mobile-layout {
+        padding: 10px;
+    }
+
 }
 
 .alert {

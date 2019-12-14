@@ -23,3 +23,45 @@
   padding-top: rem(20px);
   width: 30vw;
 }
+
+.hamburger-btn {
+  display: none;
+}
+// copy of header -
+
+@media screen and (max-width: 900px){
+
+  .nav-bar{
+  flex-direction: column;
+  }
+  
+  .hamburger-btn {
+      display: block;
+      padding: 10px;
+      // font-size: 1rem;
+  }
+  .spread-nav-bar {
+      flex-direction:  column;
+      align-content: center;
+      padding-right: 0;
+      position: fixed;
+      top: 0px;
+      right: 0px;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.8);
+      border-left: 1px solid rgba(153, 153, 153, 0.5);
+      transform: translate(100%, 0);
+      transition: transform .6s;
+      z-index: 10;
+  }
+
+  .user-nav{
+      flex-direction:  column;
+      align-items: center;
+  }
+
+  .spread-nav-bar.open-menu{
+      transform: translate(0, 0);
+  }   
+
+}

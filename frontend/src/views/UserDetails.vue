@@ -5,6 +5,7 @@
         <img class="user-img" :src="user.imgUrl" />
         <h1>{{ user.firstName }}'s Boutique</h1>
         <section class="user-info">
+          <!-- LOGGED IN USER <pre>{{loggedInUser}}</pre> -->
           <h2><i class="fa fa-user"></i>{{ user.fullName }}</h2>
           <h2><i class="fa fa-envelope"></i>{{ user.email }}</h2>
         </section>
@@ -39,13 +40,10 @@
         </button>
       </div>
       <section class="items grid">
-        <item-preview v-for="item in userItems" :key="item._id" :item="item" @addToWishList="addToWishList(item._id)">
-          <button
-            class="btn"
-            v-if="itemsFilter === 'in process'"
-            @click="approveSale(item)">
-            Approve sell
-          </button>
+        <item-preview v-for="item in userItems" :key="item._id" :item="item" :buyerInfo="item.buyerInfo" @addToWishList="addToWishList(item._id)">
+            <button class="btn" v-if="itemsFilter === 'in process'" @click="approveSale(item)">
+              Approve sell
+            </button>
         </item-preview>
       </section>
     </section>
@@ -73,17 +71,21 @@ export default {
   },
   async created() {
     await this.setUserById()
-    const orderedItem = this.user.ownItems.filter(item => item.status === 'in process')
-    if (orderedItem) this.incomingOrderCount = orderedItem.length
     SocketService.setup();
     SocketService.on('BEMsg', msg => {
       this.isNewIncoming = true;
       console.log('USER DETAILS CMP, MSG ARRIVED FROM BE SOCKET: ', msg)
       console.log('USER DETAILS CMP, isnewIncoming', this.isNewIncoming)
     })
+    return (this.user.ownItems.map(async item => {
+      if (item.status === 'in process') this.incomingOrderCount++;
+      if (item.buyer) {
+        item.buyerInfo = await userService.getById(item.buyer)
+      }
+    }))
   },
   watch: {
-    $route() {
+    '$route'() {
       this.setUserById()
     }
   },
@@ -92,13 +94,12 @@ export default {
       this.$store.dispatch('addToWishList', itemId);
     },
     async setUserById(){
+      this.userId = this.$route.params.id;
       try {
-        this.userId = this.$route.params.id;
         const tempUser = await userService.getById(this.userId);
         this.user = JSON.parse(JSON.stringify(tempUser));
-        
       } catch (error) {
-        console.log('USERDETAILS ERROR WHILE GETTING USERID: ', this.user)
+        console.log('USERDETAILS ERROR WHILE GETTING USERID: ', this.user, 'error:', error)
       }
     },
     async approveSale(item) {
@@ -126,7 +127,7 @@ export default {
   },
   computed: {
     userItems() {
-      return this.user.ownItems.filter(item => item.status === this.itemsFilter);
+      return this.user.ownItems.filter(item => item.status === this.itemsFilter) 
     },
     loggedInUser(){
        return this.$store.getters.loggedInUser
