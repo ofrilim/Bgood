@@ -22,7 +22,7 @@ function query(filterBy) {
 
 function update(edited) {    
     return HttpService.put(`item/${edited._id}`, edited)
-}``
+}
 
 function getById(id) {
     var item = HttpService.get(`item/${id}`)

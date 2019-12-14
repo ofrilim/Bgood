@@ -1,7 +1,7 @@
 <template>
-    <li class="preview">
+    <li class="preview caps">
         <router-link :to="`/item/${item._id}`">
-            <i class="fa fa-heart preview-heart" @click.prevent="addToWishList(item)">{{item.wishCount}}</i>
+            <i class="fa fa-heart preview-heart" @click.prevent="addToWishList(item)"><span v-if="item.wishCount">{{item.wishCount}}</span></i>
             <div class="img-hover">
                 <img class="img-preview" :src="item.imgUrl"/>
             </div>
@@ -21,7 +21,7 @@
                     </router-link>
                 </div>
             </div>
-            <div v-if="buyerInfo">
+            <div v-if="item.buyerInfo">
                 <router-link  :to="`/user/${item.buyerInfo._id}`">
                     Ordered By: {{item.buyerInfo.fullName}}
                 </router-link>
@@ -34,9 +34,7 @@
 <script> 
 export default {
     name:'ItemPreview',
-    props: { item: Object,
-            buyerInfo: Object
-            },
+    props: ['item'],
     data(){
         return {
             isInProcess: false      
