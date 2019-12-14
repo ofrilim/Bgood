@@ -39,9 +39,7 @@ export default {
     },
     methods: {
         addToWishList(item) {    
-            this.$store.dispatch('setOnWishList', item);
-        // addToWishList(itemId) {    
-        //     this.$store.dispatch('addToWishList', itemId);
+            this.$store.dispatch({type:'setOnWishList', item});
         }
     },
     computed:{
