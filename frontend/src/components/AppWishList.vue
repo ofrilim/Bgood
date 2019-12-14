@@ -54,7 +54,7 @@ export default {
         baughtItem.buyer = user._id;
         baughtItem.status = 'in process';
         await this.$store.dispatch({type: 'saveItem', item: baughtItem});
-        await this.remove(item._id)
+        await this.remove(item)
         // { item: item_id, seller: item.ownerId }
         SocketService.emit('newMsg', 'ITEM SUCCESSFULLY ORDERED')
         this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully'});

@@ -20,6 +20,11 @@ export default {
             const idx = state.items.findIndex(item => item._id === itemId)
             state.items.splice(idx, 1)
         },
+        setWishCount(state, {itemId, diff}) {
+            let item = state.items.find(someItem => someItem._id === itemId);
+            if (!item) return;
+            item.wishCount += diff;
+        }
     },
     actions: {
         async loadItems(context, {filterBy}) {
@@ -48,7 +53,9 @@ export default {
             context.commit({ type: 'removeItem', itemId })
             return {};
         },
-        setWishCount(context, {item, diff}){
+        async setWishCount(context, {item, diff}){
+            await context.commit({ type: 'setWishCount', itemId: item._id, diff })
+            item = JSON.parse(JSON.stringify(item))
             item.wishCount += diff
             context.dispatch({type: 'saveItem', item})
         }

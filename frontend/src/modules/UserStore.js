@@ -53,7 +53,8 @@ export default {
                 let diff;
                 const user = JSON.parse(JSON.stringify(context.state.loggedInUser)) 
                 if (user.wishList.includes(item._id)) {
-                    const idx = user.wishList.findIndex(wishListItem => wishListItem._id === item._id)
+                    const idx = user.wishList.findIndex(itemId => itemId === item._id)
+                    // console.log(idx);
                     user.wishList.splice(idx, 1)
                     diff = -1
                 } else {
