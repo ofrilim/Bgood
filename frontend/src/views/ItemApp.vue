@@ -13,7 +13,7 @@
         <div class="item-app-top">
             <h1>Lowest Price:</h1>
             <ItemList :items="itemsByPrice" @addToWishList="addToWishList"/>
-            <router-link to="/item">See more</router-link>
+            <router-link class="more" to="/item">See more</router-link>
         </div>       
             <!-- <h1>All:</h1> -->
             <!-- <ItemList :items="items" @addToWishList="addToWishList"/> -->
