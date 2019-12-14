@@ -1,8 +1,8 @@
 <template>
     <section v-if="item" class="item-details">
         <div class="item-details-main flex">
-            <div class="img-details">
-                <img :src="this.item.imgUrl"/>
+            <div>
+                <img :src="this.item.imgUrl" class="img-details"/>
             </div>
             <div class="details-title-content">
                 <section class="flex flex-between align-center">
