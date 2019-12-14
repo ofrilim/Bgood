@@ -33,7 +33,7 @@ img.img-preview {
     padding: 0 rem(5px) 0 rem(5px);
     line-height: 1.4;
     @include for-mobile-layout {
-        height: 70px;
+        height: 90px;
         & .preview-seller-mobile {
             flex-direction: row;
         }

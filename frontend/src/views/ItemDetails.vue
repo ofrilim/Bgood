@@ -10,7 +10,7 @@
                     <h1 class="details-title bold inline">{{item.name}}</h1>
                     <button class="btn action-buy" v-if="!isOwner" @click="buyItem">BUY</button>
                 </section>
-                <div class="details-content-box">
+                <div class="details-content-box bold">
                     <h3><span class="bold">Category: </span>{{item.category}}</h3>
                     <h3 v-if="item.category==='clothes' || item.category==='shoes'"><span class="bold">Size: </span>{{item.size}}</h3>
                     <h3><span class="bold">Condition: </span>{{item.condition}}</h3>
@@ -63,7 +63,8 @@ export default {
             itemId: null,
             isOwner: false,
             createdAtDate: '',
-            itemsToShow: []
+            itemsToShow: [],
+            isInProcess: false
         }
     },
     async created() {
@@ -87,8 +88,13 @@ export default {
         }
     },
     methods: {
-        addToWishList(itemId) {    
-            this.$store.dispatch('addToWishList', itemId);
+        addToWishList(item) {    
+             if (this.isInProcess) return
+                this.isInProcess = true
+                this.$store.dispatch('setOnWishList', item);
+            setTimeout(() => {
+                this.isInProcess = false
+            }, 600); 
         },
         async removeItem(itemId) {
             await this.$store.dispatch({type: 'removeItem', itemId})
@@ -105,7 +111,7 @@ export default {
                 SocketService.emit('newMsg', 'ITEM SUCCESSFULLY ORDERED')
             }
             catch (error) {
-                console.log('ERROR: ITEMDETAILS BUYITEM FAILED error: ', error)
+                console.error('ERROR: ITEMDETAILS BUYITEM FAILED error: ', error)
                 this.$store.dispatch({type: 'setMsg', msg: 'Item order failed. Try again later'});
             }
         },

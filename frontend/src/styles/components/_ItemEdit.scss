@@ -1,0 +1,11 @@
+.item-edit-container {
+    padding: 50px;
+}
+
+.item-edit-form {
+    & button {
+        width: 15vw;
+        background-color: $clr2;
+        margin: 5px;
+    }
+}

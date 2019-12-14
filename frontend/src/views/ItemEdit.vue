@@ -62,13 +62,13 @@
             <td><label> Upload your image:</label></td>
             <td><input class="frame" @change="uploadImg" type="file" /></td>
           </tr>
-
-          <button class="submit-btn btn" type="primary" @click.prevent="save">
-            Save Item
-          </button>
-          <button class="reset-btn btn" @click.prevent="resetForm">
-            Reset
-          </button>
+            <td></td>
+            <button class="submit-btn btn" type="primary" @click.prevent="save">
+                Save Item
+            </button>
+            <button class="reset-btn btn" @click.prevent="resetForm">
+                Reset
+            </button>
         </tbody>
       </table>
     </form>

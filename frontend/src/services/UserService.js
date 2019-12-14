@@ -10,15 +10,8 @@ export default {
     signIn,
     logOut,
     signUp,
-    // addItemToWishList
 }
 
-// async function addItemToWishList(itemId, userId) {  // TODO: IN PROCCESS TRYING TO HAVE A WISH LIST
-//     let user = await getById(userId);
-//     user.wishList.unshift(itemId);
-//     await update(user);
-//     return user
-// }
 
 async function query() {
     try {
@@ -32,8 +25,6 @@ async function query() {
 async function update(edited) {
     try {
         const user = await HttpService.put(`user/${edited._id}`, edited)
-        console.log('service updated user:', user);
-        
         return user;
     } catch(error) {
         console.error(`ERROR USERSERVICE => couldnt update user: ${edited._id}`);

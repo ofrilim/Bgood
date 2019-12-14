@@ -1,12 +1,12 @@
 <template>
   <section class="sign-in" v-if="!loggedinUser">
     <h2 class="sign-in-title center">Welcome to Bgood!</h2>
-    <div class="flex flex-evenly">
+    <div class="sign-in-forms flex flex-evenly">
       <div class="alert signIn-msg" v-if="msg">{{msg}}</div>
       <form>
         <table>
           <tr>
-            <th colspan="2">Have a account?</th>
+            <th colspan="2">Have an Account?</th>
           </tr>
           <tbody>
             <tr>
@@ -22,9 +22,8 @@
               </td>
             </tr>
             <tr>
-              <td>
-                <button class="btn" @click.prevent="signIn">Sign In</button>
-              </td>
+              <td></td>
+                <td><button class="btn" @click.prevent="signIn">Sign In</button></td>
             </tr>
           </tbody>
         </table>

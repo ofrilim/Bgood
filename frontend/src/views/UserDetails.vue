@@ -40,10 +40,13 @@
         </button>
       </div>
       <section class="items grid">
-        <item-preview v-for="item in userItems" :key="item._id" :item="item" :buyerInfo="item.buyerInfo" @addToWishList="addToWishList(item._id)">
-            <button class="btn" v-if="itemsFilter === 'in process'" @click="approveSale(item)">
-              Approve sell
-            </button>
+        <item-preview v-for="item in userItems" :key="item._id" :item="item" @addToWishList="addToWishList(item._id)">
+          <td><button
+            class="btn btn-wide"
+            v-if="itemsFilter === 'in process'"
+            @click="approveSale(item)">
+            Approve Sell
+          </button></td>
         </item-preview>
       </section>
     </section>
@@ -127,7 +130,7 @@ export default {
   },
   computed: {
     userItems() {
-      return this.user.ownItems.filter(item => item.status === this.itemsFilter) 
+      return this.user.ownItems.filter(item => item.status === this.itemsFilter)
     },
     loggedInUser(){
        return this.$store.getters.loggedInUser

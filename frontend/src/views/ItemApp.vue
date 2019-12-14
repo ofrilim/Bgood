@@ -1,19 +1,19 @@
 <template>
-    <section class="item-app">
+    <section class="item-app" v-if="items">
         <div>
             <h1>New On Site:</h1>
             <ItemList :items="itemsByCreatedAt" @addToWishList="addToWishList"/>
-            <router-link class="more" to="/item">More</router-link>
+            <router-link class="more" to="/item">See more</router-link>
         </div>
         <div>
             <h1>Most Popular:</h1>
             <ItemList :items="itemsByWishCount" @addToWishList="addToWishList"/>
-            <router-link class="more" to="/item">More</router-link>
+            <router-link class="more" to="/item">See more</router-link>
         </div>
         <div>
             <h1>Lowest Price:</h1>
             <ItemList :items="itemsByPrice" @addToWishList="addToWishList"/>
-            <router-link to="/item">More</router-link>
+            <router-link class="more" to="/item">See more</router-link>
         </div>       
             <!-- <h1>All:</h1> -->
             <!-- <ItemList :items="items" @addToWishList="addToWishList"/> -->
@@ -38,8 +38,10 @@ export default {
         }
     },
     methods: {
-        addToWishList(itemId) {    
-            this.$store.dispatch('addToWishList', itemId);
+        addToWishList(item) {    
+            this.$store.dispatch('setOnWishList', item);
+        // addToWishList(itemId) {    
+        //     this.$store.dispatch('addToWishList', itemId);
         }
     },
     computed:{
