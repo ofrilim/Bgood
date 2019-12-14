@@ -44,8 +44,9 @@
 </template>
 
 <script>
-import UtilsService from '../services/UtilsService.js';
-import ItemService from '../services/ItemService.js';
+import UtilsService from '../services/UtilsService';
+import ItemService from '../services/ItemService';
+import SocketService from '../services/SocketService';
 
 import ItemList from '../components/ItemList.vue'
 
@@ -102,6 +103,7 @@ export default {
             try {
                 await this.$store.dispatch({type: 'saveItem', item: baughtItem});
                 this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully. Order sent to seller'});
+                SocketService.emit('newMsg', 'ITEM SUCCESSFULLY ORDERED')
             }
             catch (error) {
                 console.error('ERROR: ITEMDETAILS BUYITEM FAILED error: ', error)

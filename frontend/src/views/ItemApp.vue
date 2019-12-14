@@ -15,7 +15,8 @@
             <ItemList :items="itemsByPrice" @addToWishList="addToWishList"/>
             <!-- <router-link to="/item">More</router-link> -->
         </div>       
-            <ItemList :items="items" @addToWishList="addToWishList"/>
+            <!-- <h1>All:</h1> -->
+            <!-- <ItemList :items="items" @addToWishList="addToWishList"/> -->
     </section>
 </template>
 

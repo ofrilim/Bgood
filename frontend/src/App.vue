@@ -22,7 +22,7 @@ export default {
       this.$store.dispatch({type: 'loadItems', filterBy: {}})
   },
   computed: {
-        msg(){      // CHECK msg THING HERE => also above at template
+        msg(){        // TODO:  CHECK IF NECCESSARY - ALL msg thing in all app
             return this.$store.getters.msg
         },
     },
