@@ -35,6 +35,7 @@ async function remove(id) {
 }
 
 async function add(newItem) {
+    newItem.keywords = newItem.keywords.split(' ');
     newItem.wishCount = 0;
     newItem.createdAt = Date.now();
     newItem.status = 'available';

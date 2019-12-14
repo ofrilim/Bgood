@@ -36,7 +36,7 @@
             </div>
             <div class="interest-items">
                 <h1>Related Products</h1>
-                 <ul class="interest-ul" v-for="item in itemsToShow" :key="item._id" >
+                 <ul class="interest-ul" :key="item._id" >
                      <li class="grid" v-for="item in itemsToShow" :key="item._id">
                         <router-link :to="`/item/${item._id}`"><img :src="item.imgUrl"/></router-link>
                         <div class="similar-content flex flex-col flex-around">

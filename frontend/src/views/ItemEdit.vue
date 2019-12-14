@@ -12,6 +12,10 @@
             <td>
               <input class="frame" type="textarea" v-model="newItem.description"/>
             </td>
+            <td><label name="description">Keywords:</label></td>
+            <td>
+              <input class="frame" type="text" v-model="newItem.keywords"/>
+            </td>
           </tr>
           <tr>
             <td><label for="category">Category:</label></td>
