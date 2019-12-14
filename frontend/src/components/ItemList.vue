@@ -17,7 +17,7 @@ export default {
         ItemPreview
     },
     methods: {
-        addItemToWishList(itemId){       // TODO: WISH LIST - HILA
+        addItemToWishList(itemId) {    
             this.$emit('addToWishList', itemId)
         }
     }

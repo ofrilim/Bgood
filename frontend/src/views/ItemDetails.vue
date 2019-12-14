@@ -1,8 +1,8 @@
 <template>
     <section v-if="item" class="item-details">
         <div class="item-details-main flex">
-            <div class="">
-                <img class="img-details" :src="this.item.imgUrl"/>
+            <div class="img-details">
+                <img :src="this.item.imgUrl"/>
             </div>
             <div class="details-title-content">
                 <section class="flex flex-between align-center">
@@ -12,7 +12,7 @@
                 </section>
                 <div class="details-content-box">
                     <h3><span class="bold">Category: </span>{{item.category}}</h3>
-                    <h3><span class="bold" v-if="item.category==='clothes' || item.category==='shoes'">Size: </span>{{item.size}}</h3>
+                    <h3><span class="bold" v-if="item.category ==='clothes' || item.category ==='shoes'">Size: </span>{{item.size}}</h3>
                     <h3><span class="bold">Condition: </span>{{item.condition}}</h3>
                     <h3><span class="bold">Uploaded at: </span>{{createdAtDate}}</h3>
                     <h3><span class="bold">Price: $ </span>{{item.price}}</h3>
@@ -39,8 +39,9 @@
 </template>
 
 <script>
-import UtilsService from '../services/UtilsService.js';
-import ItemService from '../services/ItemService.js';
+import UtilsService from '../services/UtilsService';
+import ItemService from '../services/ItemService';
+import SocketService from '../services/SocketService';
 
 export default {
     name: 'item-details',
@@ -75,6 +76,7 @@ export default {
             try {
                 await this.$store.dispatch({type: 'saveItem', item: baughtItem});
                 this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully. Order sent to seller'});
+                SocketService.emit('newMsg', 'ITEM SUCCESSFULLY ORDERED')
             }
             catch (error) {
                 console.log('ERROR: ITEMDETAILS BUYITEM FAILED error: ', error)

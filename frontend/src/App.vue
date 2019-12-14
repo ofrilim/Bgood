@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <AppHeader/>
-    <AppWishList @toggleWishList="toggleWishList"/>
-    <main @addToWishList="addToWishList">
+    <AppWishList/>
+    <main>
       <h1 class="user-msg action-buy frame" v-if="msg">{{msg}}</h1>
       <router-view/>
     </main>
@@ -20,11 +20,6 @@ export default {
   created() {
         this.$store.dispatch('loadItems')
         this.$store.dispatch('loadLoggedInUser')
-  },
-  methods: {
-      addToWishList(itemId) {
-        this.$store.dispatch('addToWishList', itemId);
-      }
   },
   computed: {
         msg(){      // CHECK msg THING HERE => also above at template

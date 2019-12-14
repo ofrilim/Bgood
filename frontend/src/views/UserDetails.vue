@@ -24,7 +24,7 @@
     </section>
     <section class="items-section">
       <div class="btns">
-        <button autofocus class="btn" @click="itemsFilter = 'available' || 'in process'">
+        <button autofocus class="btn" @click="itemsFilter = 'available'">
           Available Items
         </button>
         <!-- TODO: render order button only if user is loggedInUser -->
@@ -33,6 +33,7 @@
           @click="itemsFilter = 'in process'" v-if="isLoggedInUser" :class="{ notification : incomingOrderCount }">
           Incoming Orders ( {{incomingOrderCount}} )
         </button>
+        <span v-if="isNewIncoming && isLoggedInUser" class="icon-red badge bold"></span>
         <button class="btn" @click="itemsFilter = 'sold'" v-if="isLoggedInUser">
           Sold Items
         </button>
@@ -55,6 +56,7 @@
 import ItemPreview from '../components/ItemPreview.vue';
 import UtilsService from '../services/UtilsService.js';
 import userService from '../services/UserService.js';
+import SocketService from '../services/SocketService';
 
 export default {
   name: 'user-details',
@@ -64,16 +66,21 @@ export default {
       user: null,
       itemsFilter: 'available',
       msg: '',
-      isLoggedInUser: false,
       isEdit: false,
-      incomingOrderCount: 0
+      incomingOrderCount: 0,
+      isNewIncoming: false
     };
   },
   async created() {
     await this.setUserById()
     const orderedItem = this.user.ownItems.filter(item => item.status === 'in process')
     if (orderedItem) this.incomingOrderCount = orderedItem.length
-    console.log('USER DETASILS ' ,orderedItem)
+    SocketService.setup();
+    SocketService.on('BEMsg', msg => {
+      this.isNewIncoming = true;
+      console.log('USER DETAILS CMP, MSG ARRIVED FROM BE SOCKET: ', msg)
+      console.log('USER DETAILS CMP, isnewIncoming', this.isNewIncoming)
+    })
   },
   watch: {
     $route() {
@@ -82,7 +89,6 @@ export default {
   },
   methods: {
     addToWishList(itemId) { 
-      console.log(itemId)   
       this.$store.dispatch('addToWishList', itemId);
     },
     async setUserById(){
@@ -94,8 +100,6 @@ export default {
       } catch (error) {
         console.log('USERDETAILS ERROR WHILE GETTING USERID: ', this.user)
       }
-      const userIdFromStore = this.$store.getters.loggedInUser._id
-      if (userIdFromStore) this.isLoggedInUser = userIdFromStore === this.userId;
     },
     async approveSale(item) {
       const soldItem = JSON.parse(JSON.stringify(item));
@@ -103,6 +107,7 @@ export default {
       try {
         await this.$store.dispatch({ type: 'saveItem', item: soldItem });
         this.$store.dispatch({ type: 'setMsg', msg: 'Item Sold!'});
+        SocketService.emit('approveMsg', 'ITEM SUCCESSFULLY SOLD')
       } catch(error) {
         console.log('ERROR: USER DETAILS APPROVING SALE FAILED')
       }
@@ -111,7 +116,7 @@ export default {
       const imgUrl = await UtilsService.uploadImg(ev);
       this.user.imgUrl = imgUrl;
     },
-    async editUserImg() {
+    editUserImg() {
       if (!this.user.imgUrl) return;
       userService.update(this.user);
     },
@@ -122,6 +127,13 @@ export default {
   computed: {
     userItems() {
       return this.user.ownItems.filter(item => item.status === this.itemsFilter);
+    },
+    loggedInUser(){
+       return this.$store.getters.loggedInUser
+    },
+    isLoggedInUser(){
+      if (!this.loggedInUser) return
+      return (this.loggedInUser._id === this.userId)
     }
   },
   components: {
