@@ -30,7 +30,7 @@ export default {
     },
     props: ['sortBy'],
     created(){
-        this.$store.dispatch({type: 'loadItems', filterBy: {}})
+        this.$store.dispatch({ type: 'loadItems', filterBy: {} })
     },
     data(){
         return {
@@ -40,8 +40,6 @@ export default {
     methods: {
         addToWishList(item) {    
             this.$store.dispatch('setOnWishList', item);
-        // addToWishList(itemId) {    
-        //     this.$store.dispatch('addToWishList', itemId);
         }
     },
     computed:{

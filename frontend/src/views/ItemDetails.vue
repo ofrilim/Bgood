@@ -6,7 +6,7 @@
             </div>
             <div class="details-title-content">
                 <section class="flex flex-between align-center">
-                    <i class="fa fa-heart pointer" v-if="!isOwner" title="Add To WishList" @click.stop="addToWishList(item._id)"></i>
+                    <i class="fa fa-heart pointer" v-if="!isOwner" title="Add To WishList" @click.stop="addToWishList(item)"></i>
                     <h1 class="details-title bold inline">{{item.name}}</h1>
                     <button class="btn action-buy" v-if="!isOwner" @click="buyItem">BUY</button>
                 </section>

@@ -71,22 +71,22 @@ export default {
                 console.error('ERROR: USERSTORE ADDTOWISHLIST ACTION', error)
             }
          },
-        async addToWishList(context, itemId) {    
-           try {
-               const user = JSON.parse(JSON.stringify(context.state.loggedInUser)) 
-               console.log('user.wishList.includes(itemId):', user.wishList.includes(itemId));
+        // async addToWishList(context, itemId) {    
+        //    try {
+        //        const user = JSON.parse(JSON.stringify(context.state.loggedInUser)) 
+        //        console.log('user.wishList.includes(itemId):', user.wishList.includes(itemId));
                
-               if (user.wishList.includes(itemId)) return;
-               user.wishList.unshift(itemId)
-               console.log('user wishlist:', user.wishList);
+        //        if (user.wishList.includes(itemId)) return;
+        //        user.wishList.unshift(itemId)
+        //        console.log('user wishlist:', user.wishList);
                
-               const updatedUser = await UserService.update(user)
-               context.commit({type: 'updateUser', user: updatedUser})
-           }
-           catch (error) {
-               console.error('ERROR: USERSTORE ADDTOWISHLIST ACTION', error)
-           }
-        },
+        //        const updatedUser = await UserService.update(user)
+        //        context.commit({type: 'updateUser', user: updatedUser})
+        //    }
+        //    catch (error) {
+        //        console.error('ERROR: USERSTORE ADDTOWISHLIST ACTION', error)
+        //    }
+        // },
         async removeFromWishList(context, { itemId }) {
             try {
                 let user = JSON.parse(JSON.stringify(context.state.loggedInUser)) 

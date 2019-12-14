@@ -45,23 +45,14 @@ export default {
         }
     },
     methods: {
-        // addToWishList(itemId) {
         addToWishList(item) {
-            if (this.isInProcess) return
-                this.isInProcess = true
+            if (this.isInProcess) return;
+            this.isInProcess = true;
             this.$emit('addToWishList', item)
             setTimeout(() => {
                 this.isInProcess = false
             }, 600); 
-
-            // this.$emit('addToWishList', itemId)
         },
     },
 }
 </script>
-<style lang="scss" scoped>
-    .item {
-  margin-top: 10px;
-  margin-right: 40px;
-}
-</style>
