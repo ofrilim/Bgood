@@ -3,17 +3,17 @@
         <div class="item-app-top">
             <h1>New On Site:</h1>
             <ItemList :items="itemsByCreatedAt" @addToWishList="addToWishList"/>
-            <!-- <router-link class="more" to="/item">More</router-link> -->
+            <router-link class="more" to="/item">See more</router-link>
         </div>
         <div class="item-app-top">
             <h1>Most Popular:</h1>
             <ItemList :items="itemsByWishCount" @addToWishList="addToWishList"/>
-            <!-- <router-link class="more" to="/item">More</router-link> -->
+            <router-link class="more" to="/item">See more</router-link>
         </div>
         <div class="item-app-top">
             <h1>Lowest Price:</h1>
             <ItemList :items="itemsByPrice" @addToWishList="addToWishList"/>
-            <!-- <router-link to="/item">More</router-link> -->
+            <router-link to="/item">See more</router-link>
         </div>       
             <ItemList :items="items" @addToWishList="addToWishList"/>
     </section>

@@ -17,7 +17,7 @@
           <div v-if="loggedInUser" class="flex">
             <router-link :to="`/user/${loggedInUser._id}`">{{loggedInUser.firstName}}'s Page</router-link>
             <router-link to="/"  @click="logOut">
-              <button @click="logOut">Log Out</button>
+              <button class="logOut" @click="logOut">Log Out</button>
             </router-link>
           </div>
           <i class="fa fa-heart pointer" @click="clicked" title="Wish List"></i>

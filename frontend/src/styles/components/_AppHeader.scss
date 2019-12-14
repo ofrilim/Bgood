@@ -23,3 +23,9 @@
   padding-top: rem(20px);
   width: 30vw;
 }
+
+button { 
+  &.logOut {
+    color: $clr9;
+  }
+}
