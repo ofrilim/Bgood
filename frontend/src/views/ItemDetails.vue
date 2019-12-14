@@ -7,11 +7,11 @@
                 </div>
                 <div class="details-title-content">
                     <section class="flex flex-between align-center">
-                        <i class="fa fa-heart pointer" v-if="!isOwner" title="Add To WishList" @click.stop="addToWishList(item._id)"></i>
+                        <i class="fa fa-heart pointer" v-if="!isOwner" title="Add To WishList" @click.stop="addToWishList(item)"></i>
                         <h1 class="details-title bold inline">{{item.name}}</h1>
                         <button class="btn action-buy" v-if="!isOwner" @click="buyItem">BUY</button>
                     </section>
-                    <div class="details-content-box">
+                    <div class="details-content-box bold">
                         <h3><span class="bold">Category: </span>{{item.category}}</h3>
                         <h3 v-if="item.category==='clothes' || item.category==='shoes'"><span class="bold">Size: </span>{{item.size}}</h3>
                         <h3><span class="bold">Condition: </span>{{item.condition}}</h3>
@@ -57,7 +57,8 @@ export default {
             itemId: null,
             isOwner: false,
             createdAtDate: '',
-            itemsToShow: []
+            itemsToShow: [],
+            isInProcess: false
         }
     },
     async created() {
@@ -81,8 +82,13 @@ export default {
         }
     },
     methods: {
-        addToWishList(itemId) {    
-            this.$store.dispatch('addToWishList', itemId);
+        addToWishList(item) {    
+             if (this.isInProcess) return
+                this.isInProcess = true
+                this.$store.dispatch('setOnWishList', item);
+            setTimeout(() => {
+                this.isInProcess = false
+            }, 600); 
         },
         async removeItem(itemId) {
             await this.$store.dispatch({type: 'removeItem', itemId})
@@ -98,7 +104,7 @@ export default {
                 this.$store.dispatch({type: 'setMsg', msg: 'Item reserved successfully. Order sent to seller'});
             }
             catch (error) {
-                console.log('ERROR: ITEMDETAILS BUYITEM FAILED error: ', error)
+                console.error('ERROR: ITEMDETAILS BUYITEM FAILED error: ', error)
                 this.$store.dispatch({type: 'setMsg', msg: 'Item order failed. Try again later'});
             }
         },
@@ -111,16 +117,6 @@ export default {
             await this.$store.dispatch({type: 'loadItems', filterBy})
             this.itemsToShow = this.$store.getters.items.filter(item => item._id !== this.itemId).slice(0,4)
         },
-    },
-    computed: {
-        // itemsToShow(){
-            // var filterBy = {}
-            // filterBy.category = this.item.category
-            // return this.$store.getters.items
-            // if (items.length > 4) items.splice(0, 4)
-            // console.log('item details items:', items);
-            // return items;
-        // }
     },
     components: {
      ItemList,

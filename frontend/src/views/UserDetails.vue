@@ -118,7 +118,7 @@ export default {
   },
   computed: {
     userItems() {
-      return this.user.ownItems.filter(item => item.status === this.itemsFilter) 
+      return this.user.ownItems.filter(item => item.status === this.itemsFilter)
     },
     loggedInUser(){
        return this.$store.getters.loggedInUser

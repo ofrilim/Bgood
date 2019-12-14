@@ -1,5 +1,5 @@
 <template>
-    <section class="item-app">
+    <section class="item-app" v-if="items">
         <div class="item-app-top">
             <h1>New On Site:</h1>
             <ItemList :items="itemsByCreatedAt" @addToWishList="addToWishList"/>
@@ -37,8 +37,10 @@ export default {
         }
     },
     methods: {
-        addToWishList(itemId) {    
-            this.$store.dispatch('addToWishList', itemId);
+        addToWishList(item) {    
+            this.$store.dispatch('setOnWishList', item);
+        // addToWishList(itemId) {    
+        //     this.$store.dispatch('addToWishList', itemId);
         }
     },
     computed:{
