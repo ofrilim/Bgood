@@ -19,17 +19,15 @@ export default {
         },
     },
     actions: {
-        async loadItems(context, filterBy) {
-            var items = [];
+        async loadItems(context, {filterBy}) {
             try {
-                if (filterBy) {
-                    items = await ItemService.query(filterBy);
-                    console.log('store load items:', items);
-                } else {
-                    items = await ItemService.query();
-                    context.commit({ type: 'setItems', items })
+                if (!filterBy) {
+                    filterBy.txt = ''
                 }
-                    return items
+                var items = [];
+                    items = await ItemService.query(filterBy);
+                    context.commit({ type: 'setItems', items })
+                return items
             } catch (err) {
                 console.error('ITEM STORE ERROR LOAD ITEMS', err);
             }

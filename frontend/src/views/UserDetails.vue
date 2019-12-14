@@ -5,6 +5,7 @@
         <img class="user-img" :src="user.imgUrl" />
         <h1>{{ user.firstName }}'s Boutique</h1>
         <section class="user-info">
+          <!-- LOGGED IN USER <pre>{{loggedInUser}}</pre> -->
           <h2><i class="fa fa-user"></i>{{ user.fullName }}</h2>
           <h2><i class="fa fa-envelope"></i>{{ user.email }}</h2>
         </section>
@@ -24,7 +25,7 @@
     </section>
     <section class="items-section">
       <div class="btns">
-        <button autofocus class="btn" @click="itemsFilter = 'available' || 'in process'">
+        <button autofocus class="btn" @click="itemsFilter = 'available'">
           Available Items
         </button>
         <!-- TODO: render order button only if user is loggedInUser -->
@@ -64,16 +65,18 @@ export default {
       user: null,
       itemsFilter: 'available',
       msg: '',
-      isLoggedInUser: false,
       isEdit: false,
       incomingOrderCount: 0
     };
   },
   async created() {
     await this.setUserById()
-    const orderedItem = this.user.ownItems.filter(item => item.status === 'in process')
-    if (orderedItem) this.incomingOrderCount = orderedItem.length
-    console.log('USER DETASILS ' ,orderedItem)
+    return (this.user.ownItems.map(async item => {
+      if (item.status === 'in process') this.incomingOrderCount++;
+      if (item.buyer) {
+        item.buyerInfo = await userService.getById(item.buyer)
+      }
+    }))
   },
   watch: {
     '$route'() {
@@ -82,20 +85,17 @@ export default {
   },
   methods: {
     addToWishList(itemId) { 
-      console.log(itemId)   
       this.$store.dispatch('addToWishList', itemId);
     },
     async setUserById(){
+      this.userId = this.$route.params.id;
       try {
-        this.userId = this.$route.params.id;
         const tempUser = await userService.getById(this.userId);
         this.user = JSON.parse(JSON.stringify(tempUser));
-        
       } catch (error) {
-        console.log('USERDETAILS ERROR WHILE GETTING USERID: ', this.user)
+        console.log('USERDETAILS ERROR WHILE GETTING USERID: ', this.user, 'error:', error)
       }
-      const userIdFromStore = this.$store.getters.loggedInUser._id
-      if (userIdFromStore) this.isLoggedInUser = userIdFromStore === this.userId;
+      
     },
     async approveSale(item) {
       const soldItem = JSON.parse(JSON.stringify(item));
@@ -111,7 +111,7 @@ export default {
       const imgUrl = await UtilsService.uploadImg(ev);
       this.user.imgUrl = imgUrl;
     },
-    async editUserImg() {
+    editUserImg() {
       if (!this.user.imgUrl) return;
       userService.update(this.user);
     },
@@ -121,7 +121,14 @@ export default {
   },
   computed: {
     userItems() {
-      return this.user.ownItems.filter(item => item.status === this.itemsFilter);
+      return this.user.ownItems.filter(item => item.status === this.itemsFilter) 
+    },
+    loggedInUser(){
+       return this.$store.getters.loggedInUser
+    },
+    isLoggedInUser(){
+      if (!this.loggedInUser) return
+      return (this.loggedInUser._id === this.userId)
     }
   },
   components: {

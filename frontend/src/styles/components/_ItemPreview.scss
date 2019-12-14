@@ -71,3 +71,9 @@ img.img-preview {
     position: absolute;
     z-index: 1;
 }
+// for item details page
+.similar-items{
+    & .grid-container{
+        grid-template-columns: repeat(auto-fill, minmax(12.125rem, 1fr));
+    }
+}

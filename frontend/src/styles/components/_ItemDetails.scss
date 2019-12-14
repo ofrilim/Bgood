@@ -9,7 +9,6 @@
         max-width: none;
         align-items: center;
     }
-    
 }
 
 .details-title-content {
@@ -23,7 +22,7 @@
 
 .img-details {
     padding: 20px;  
-    width: 20vw;
+    // width: 20vw;
     @include for-mobile-layout {
         width: 70vw;
         margin: 0 auto;
