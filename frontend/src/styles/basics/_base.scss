@@ -35,6 +35,9 @@ body {
     }
     &:hover {
         color: $clr4;
+        &.logOut {
+            color: $clr9;
+        }
     }
     @include for-mobile-layout {
         padding: 10px;
