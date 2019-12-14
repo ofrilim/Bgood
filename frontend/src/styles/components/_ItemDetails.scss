@@ -45,9 +45,14 @@
 .details-content-box {
     padding: 8px;
     line-height: 1.8;
+    & span {
+        font-weight: bold;
+        text-transform: capitalize;
+    }
     @include for-mobile-layout {
         padding: none;
     }
+    
 }
 
 .details-footer-content {

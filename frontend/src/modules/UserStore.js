@@ -48,23 +48,23 @@ export default {
             const user = await UserService.getById(userFromSession._id)
             context.commit({ type: 'setLoggedInUser', user })
         },
-        async setOnWishList(context, {item}) {    
+        async setOnWishList(context, {itemId}) {    
             try {
                 let diff;
                 const user = JSON.parse(JSON.stringify(context.state.loggedInUser)) 
-                if (user.wishList.includes(item._id)) {
-                    const idx = user.wishList.findIndex(wishListItem => wishListItem._id === item._id)
+                if (user.wishList.includes(itemId)) {
+                    const idx = user.wishList.findIndex(wishListItem => wishListItem === itemId)
                     user.wishList.splice(idx, 1)
                     diff = -1
                 } else {
-                    user.wishList.unshift(item._id)
+                    user.wishList.unshift(itemId)
                     diff = 1
                 }
-            var payload = {item, diff}
-            await context.dispatch('setWishCount', payload)
-            const updatedUser = await UserService.update(user)
-            context.commit({type: 'updateUser', user: updatedUser})
-            }
+                var payload = {itemId, diff}
+                await context.dispatch('setWishCount', payload)
+                const updatedUser = await UserService.update(user)
+                context.commit({type: 'updateUser', user: updatedUser})
+                }
             catch (error) {
                 console.error('ERROR: USERSTORE ADDTOWISHLIST ACTION', error)
             }

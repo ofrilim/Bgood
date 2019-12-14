@@ -9,12 +9,9 @@ export default {
             state.items = items;
         },
         setItem(state, { editedItem }) {
-            // console.log('editedItem:', editedItem, editedItem._id);
             const idx = state.items.findIndex(item => item._id === editedItem._id)
             if (idx !== -1) state.items.splice(idx, 1, editedItem)
             else state.items.unshift(editedItem)
-            // if (idx === -1) state.items.unshift(editedItem)
-            // else state.items.splice(idx, 1, editedItem)
         },
         removeItem(state, { itemId }) {
             const idx = state.items.findIndex(item => item._id === itemId)
@@ -36,11 +33,10 @@ export default {
             }
         },
         async saveItem(context, { item }) {
+            
             let editedItem = {};
-            // console.log('eItem:', item, 'id:', item._id);                
             if (item._id) editedItem = await ItemService.update(item)
             else editedItem = await ItemService.add(item)
-            // console.log('editedItem:', editedItem, editedItem._id);                
             context.commit({ type: 'setItem', editedItem })
         },
         async removeItem(context, { itemId }) {
@@ -48,9 +44,11 @@ export default {
             context.commit({ type: 'removeItem', itemId })
             return {};
         },
-        setWishCount(context, {item, diff}){
-            item.wishCount += diff
-            context.dispatch({type: 'saveItem', item})
+        setWishCount(context, {itemId, diff}){
+            const item = context.state.items.find(item => item._id === itemId)
+            var itemCopy = JSON.parse(JSON.stringify(item))
+            itemCopy.wishCount += diff
+            context.dispatch({type: 'saveItem', item: itemCopy})
         }
     },
     getters: {

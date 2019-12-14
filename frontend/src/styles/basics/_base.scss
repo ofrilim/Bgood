@@ -57,6 +57,11 @@ body {
 .primary {
     color: #007bff
 }
+
+.caps {
+    text-transform: capitalize;
+}
+
 .user-msg {
     position: fixed;
     width: 25vw;

@@ -1,7 +1,7 @@
 <template>
-    <li class="preview">
+    <li class="preview caps">
         <router-link :to="`/item/${item._id}`">
-            <i class="fa fa-heart preview-heart" @click.prevent="addToWishList(item)">{{item.wishCount}}</i>
+            <i class="fa fa-heart preview-heart" @click.prevent="addToWishList(item._id)"><span v-if="item.wishCount">{{item.wishCount}}</span></i>
             <div class="img-hover">
                 <img class="img-preview" :src="item.imgUrl"/>
             </div>
@@ -43,10 +43,10 @@ export default {
         }
     },
     methods: {
-        addToWishList(item) {
+        addToWishList(itemId) {
             if (this.isInProcess) return
                 this.isInProcess = true
-            this.$emit('addToWishList', item)
+            this.$emit('addToWishList', itemId)
             setTimeout(() => {
                 this.isInProcess = false
             }, 800); 
