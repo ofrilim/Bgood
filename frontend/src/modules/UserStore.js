@@ -48,13 +48,11 @@ export default {
             const user = await UserService.getById(userFromSession._id)
             context.commit({ type: 'setLoggedInUser', user })
         },
-        async setOnWishList(context, item) {    
+        async setOnWishList(context, {item}) {    
             try {
-                // console.log('item:', item._id);
                 let diff;
                 const user = JSON.parse(JSON.stringify(context.state.loggedInUser)) 
                 if (user.wishList.includes(item._id)) {
-                    // console.log('isOnUserWishList:', user.wishList.includes(item._id));
                     const idx = user.wishList.findIndex(wishListItem => wishListItem._id === item._id)
                     user.wishList.splice(idx, 1)
                     diff = -1
@@ -71,34 +69,6 @@ export default {
                 console.error('ERROR: USERSTORE ADDTOWISHLIST ACTION', error)
             }
          },
-        // async addToWishList(context, itemId) {    
-        //    try {
-        //        const user = JSON.parse(JSON.stringify(context.state.loggedInUser)) 
-        //        console.log('user.wishList.includes(itemId):', user.wishList.includes(itemId));
-               
-        //        if (user.wishList.includes(itemId)) return;
-        //        user.wishList.unshift(itemId)
-        //        console.log('user wishlist:', user.wishList);
-               
-        //        const updatedUser = await UserService.update(user)
-        //        context.commit({type: 'updateUser', user: updatedUser})
-        //    }
-        //    catch (error) {
-        //        console.error('ERROR: USERSTORE ADDTOWISHLIST ACTION', error)
-        //    }
-        // },
-        async removeFromWishList(context, { itemId }) {
-            try {
-                let user = JSON.parse(JSON.stringify(context.state.loggedInUser)) 
-                const idx = user.wishList.findIndex(item => itemId === item)
-                user.wishList.splice(idx, 1)
-                const updatedUser = await UserService.update(user)
-                context.commit({type: 'updateUser', user: updatedUser})
-            }
-            catch (error) {
-                console.error('ERROR: USERSTORE ADDTOWISHLIST ACTION', error)
-            }
-        },
     },
     getters: {
         loggedInUser(state) {

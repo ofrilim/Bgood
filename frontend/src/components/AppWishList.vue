@@ -17,7 +17,7 @@
               </div>
               <div class="btns flex flex-col justify-center flex-evenly">
                 <button class="btn action-buy" @click="buyItem(item)">Buy</button>
-                <button class="btn action-remove" @click="remove(item._id)">Remove</button>
+                <button class="btn action-remove" @click="remove(item)">Remove</button>
               </div>
             </li>
           </ul>
@@ -45,8 +45,8 @@ export default {
       toggleScreen() {
         this.toggleWishList = !this.toggleWishList;
       },
-      remove(itemId) {
-        this.$store.dispatch({ type: 'removeFromWishList', itemId })
+      remove(item) {
+        this.$store.dispatch({ type: 'setOnWishList', item })
       },
       async buyItem(item) {
         var user = this.$store.getters.loggedInUser;   

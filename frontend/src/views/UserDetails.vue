@@ -5,7 +5,6 @@
         <img class="user-img" :src="user.imgUrl" />
         <h1>{{ user.firstName }}'s Boutique</h1>
         <section class="user-info">
-          <!-- LOGGED IN USER <pre>{{loggedInUser}}</pre> -->
           <h2><i class="fa fa-user"></i>{{ user.fullName }}</h2>
           <h2><i class="fa fa-envelope"></i>{{ user.email }}</h2>
         </section>
@@ -28,10 +27,8 @@
         <button autofocus class="btn" @click="itemsFilter = 'available'">
           Available Items
         </button>
-        <!-- TODO: render order button only if user is loggedInUser -->
-        <button
-          class="btn"
-          @click="itemsFilter = 'in process'" v-if="isLoggedInUser" :class="{ notification : incomingOrderCount }">
+        <button class="btn" @click="itemsFilter = 'in process'" 
+          v-if="isLoggedInUser" :class="{ notification : incomingOrderCount }">
           Incoming Orders ( {{incomingOrderCount}} )
         </button>
         <span v-if="isNewIncoming && isLoggedInUser" class="icon-red badge bold"></span>
@@ -40,13 +37,13 @@
         </button>
       </div>
       <section class="items grid">
-        <item-preview v-for="item in userItems" :key="item._id" :item="item" @addToWishList="addToWishList(item)">
-          <td><button
-            class="btn btn-wide"
-            v-if="itemsFilter === 'in process'"
-            @click="approveSale(item)">
+        <item-preview v-for="item in userItems" :key="item._id" 
+        :item="item" @addToWishList="addToWishList(item)">
+          <td>
+            <button class="btn btn-wide" v-if="itemsFilter === 'in process'" @click="approveSale(item)">
             Approve Sell
-          </button></td>
+            </button>
+          </td>
         </item-preview>
       </section>
     </section>
@@ -94,7 +91,7 @@ export default {
   },
   methods: {
     addToWishList(item) { 
-      this.$store.dispatch('setOnWishList', item);
+      this.$store.dispatch({ type:'setOnWishList', item });
     },
     async setUserById(){
       this.userId = this.$route.params.id;
@@ -102,7 +99,7 @@ export default {
         const tempUser = await userService.getById(this.userId);
         this.user = JSON.parse(JSON.stringify(tempUser));
       } catch (error) {
-        console.log('USERDETAILS ERROR WHILE GETTING USERID: ', this.user, 'error:', error)
+        console.error('USERDETAILS ERROR WHILE GETTING USERID: ', this.user, 'error:', error)
       }
     },
     async approveSale(item) {
@@ -113,7 +110,7 @@ export default {
         this.$store.dispatch({ type: 'setMsg', msg: 'Item Sold!'});
         SocketService.emit('approveMsg', 'ITEM SUCCESSFULLY SOLD')
       } catch(error) {
-        console.log('ERROR: USER DETAILS APPROVING SALE FAILED')
+        console.error('ERROR: USER DETAILS APPROVING SALE FAILED')
       }
     },
     async uploadImg(ev) {

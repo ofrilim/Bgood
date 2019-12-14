@@ -1,8 +1,6 @@
 <template>
     <li class="preview">
         <router-link :to="`/item/${item._id}`">
-  <!-- <el-button size="small">comments</el-button> -->
-            <!-- <i class="fa fa-heart preview-heart" @click.prevent="addToWishList(item._id)">{{item.wishCount}}</i> -->
             <i class="fa fa-heart preview-heart" @click.prevent="addToWishList(item)">{{item.wishCount}}</i>
             <div class="img-hover">
                 <img class="img-preview" :src="item.imgUrl"/>
@@ -51,7 +49,7 @@ export default {
             this.$emit('addToWishList', item)
             setTimeout(() => {
                 this.isInProcess = false
-            }, 600); 
+            }, 800); 
         },
     },
 }

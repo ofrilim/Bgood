@@ -10,7 +10,7 @@
                     <h1 class="details-title bold inline">{{item.name}}</h1>
                     <button class="btn action-buy" v-if="!isOwner" @click="buyItem">BUY</button>
                 </section>
-                <div class="details-content-box bold">
+                <div class="details-content-box">
                     <h3><span class="bold">Category: </span>{{item.category}}</h3>
                     <h3 v-if="item.category==='clothes' || item.category==='shoes'"><span class="bold">Size: </span>{{item.size}}</h3>
                     <h3><span class="bold">Condition: </span>{{item.condition}}</h3>
@@ -70,8 +70,6 @@ export default {
     async created() {
         this.itemId = this.$route.params.id; 
         this.item = await ItemService.getById(this.itemId);
-        console.log('item:', this.item);
-        
         this.setItems()
         this.createdAtDate = UtilsService.timeStampToString(this.item.createdAt)           
         const loggedInUser = this.$store.getters.loggedInUser;
@@ -91,10 +89,10 @@ export default {
         addToWishList(item) {    
              if (this.isInProcess) return
                 this.isInProcess = true
-                this.$store.dispatch('setOnWishList', item);
+                this.$store.dispatch({type:'setOnWishList', item});
             setTimeout(() => {
                 this.isInProcess = false
-            }, 600); 
+            }, 800); 
         },
         async removeItem(itemId) {
             await this.$store.dispatch({type: 'removeItem', itemId})
