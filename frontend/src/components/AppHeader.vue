@@ -1,20 +1,20 @@
 <template>
-    <section class="app-header border-bottom flex flex-between">
+    <section class="app-header flex flex-between caps">
         <div class="screen" :class="open" @click="onToggleNavBar"></div>        
         <div class="left-nav bold flex align-center">
           <router-link to="/"><h1 class="logo inline" title="Home Page">B-good</h1></router-link>
-          <select class="select pointer" placeholder="Categories">
+          <!-- <select class="select pointer" placeholder="Categories">
             <option default>Categories</option>
             <option>Clothes</option>
             <option>Accessories</option>
             <option>Shoes</option>
-          </select>
+          </select> -->
         </div>
         <div class="nav bold flex align-center">
           <button class="hamburger-btn" @click="onToggleNavBar">
             <i class="fa fa-bars"></i>
           </button>
-          <nav class="nav-bar spread-nav-bar bold flex align-center" :class="{'open-menu' : isOpen}">
+          <nav class="nav-bar spread-nav-bar bold flex align-center" :class="{ 'open-menu' : isOpen }">
             <router-link to="/item">Explore</router-link>
             <router-link to="/signin" v-if="!loggedInUser">SignIn</router-link>
             <div v-if="loggedInUser" class="flex user-nav">
@@ -56,9 +56,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-  .fa-bars{
-    font-size: 32px;
-  }
-</style>

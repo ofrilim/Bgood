@@ -15,10 +15,12 @@
 }
 
 .user-section {
+    background-color: rgb(235, 142, 170);
+    color: $clr1;
     position: sticky;
     height: 90vh;
     padding: 20px;
-    background-color: $clr2;
+    background-image: url('');
     & .btns {
         margin: 0 auto;
         margin-top: 20px; 

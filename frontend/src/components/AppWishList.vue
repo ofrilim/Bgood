@@ -1,5 +1,5 @@
 <template>
-    <section class="wish-list">
+    <section class="wish-list caps">
       <div class="screen" :class="open" @click="toggleScreen"></div>
         <el-drawer class="wish-list-drawer" :visible.sync="toggleWishList"
                    direction="ltr" size="100%">

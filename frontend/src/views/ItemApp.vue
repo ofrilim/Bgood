@@ -2,17 +2,23 @@
     <section class="item-app caps" v-if="items">
         <div>
             <h1>New On Site:</h1>
-            <ItemList :items="itemsByCreatedAt" @addToWishList="addToWishList"/>
+                <sequential-entrance delay="1500"> 
+                    <ItemList :items="itemsByCreatedAt" @addToWishList="addToWishList"/>
+                </sequential-entrance>
             <router-link class="more" to="/item">See more</router-link>
         </div>
         <div>
             <h1>Most Popular:</h1>
-            <ItemList :items="itemsByWishCount" @addToWishList="addToWishList"/>
+                <sequential-entrance>
+                    <ItemList :items="itemsByWishCount" @addToWishList="addToWishList"/>
+                </sequential-entrance>
             <router-link class="more" to="/item">See more</router-link>
         </div>
         <div>
             <h1>Lowest Price:</h1>
-            <ItemList :items="itemsByPrice" @addToWishList="addToWishList"/>
+                <sequential-entrance>
+                    <ItemList :items="itemsByPrice" @addToWishList="addToWishList"/>
+                </sequential-entrance>
             <router-link class="more" to="/item">See more</router-link>
         </div>       
             <!-- <h1>All:</h1> -->

@@ -1,26 +1,34 @@
 .app-header {
+  background-color: $clr1;
+  color: $clr4;
   position: fixed;
   width: 100%;
   top: 0;
-  background-color: #fff;
   padding: 0 rem(20px);
   box-shadow: 0 1px rem(6px) 0 rgba(32,33,36,0.28);
   z-index: 10;
-}
-
-.logo {
-  font-size: rem(24px);
-  &:hover {
-    color: $clr4;
+  &.logOut:hover {
+    color: $clr9;
   }
 }
 
-.select {
-  padding: 0 20px;
+.logo {
+  font-size: rem(34px);
+  &:hover {
+    color: $clr9;
+  }
 }
 
-.logOut:hover {
-    color: $clr9;
+// .select {
+//   padding: 0 20px;
+// }
+
+.nav-bar {
+  font-size: 1.3rem;
+}
+
+.fa-bars{
+  font-size: 32px;
 }
 
 .hamburger-btn {

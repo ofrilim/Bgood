@@ -12,14 +12,14 @@
                 </section>
                 <div class="details-content-box">
                     <h3 class="caps"><span>Category: </span>{{item.category}}</h3>
-                    <h3 v-if="item.category==='clothes' || item.category==='shoes'"><span class="">Size: </span>{{item.size}}</h3>
+                    <h3 v-if="item.category==='clothes' || item.category==='shoes'"><span class="caps">Size: </span>{{item.size}}</h3>
                     <h3 class="caps"><span class="">Condition: </span>{{item.condition}}</h3>
-                    <h3><span class="">Uploaded at: </span>{{createdAtDate}}</h3>
-                    <h3><span class="">Price: $ </span>{{item.price}}</h3>
+                    <h3><span class="caps">Uploaded at: </span>{{createdAtDate}}</h3>
+                    <h3><span class="caps">Price: $ </span>{{item.price}}</h3>
                     <h4><span class="">Additional information: </span>{{item.description}}</h4>
-                    <h3><span class="alert" v-if="item.status==='in process'">Someone is interested in this item</span></h3>
-                    <h3><span class="success" v-if="item.status === 'available'">Item is available</span></h3>
-                    <h3><span class="primary" v-if="item.status === 'sold'">{{item.byUser.firstName}} had sold the {{item.name}}</span></h3>    
+                    <h3><span class="alert caps" v-if="item.status==='in process'">Someone is interested in this item</span></h3>
+                    <h3><span class="success caps" v-if="item.status === 'available'">Item is available</span></h3>
+                    <h3><span class="primary caps" v-if="item.status === 'sold'">{{item.byUser.firstName}} had sold the {{item.name}}</span></h3>    
                 </div>
                 <div class="">
                     <div class="details-footer-content caps" v-if="!isOwner">

@@ -1,15 +1,18 @@
 .item-app {
     padding: 20px 40px;
     & h1 {
-        // border-top: rgb(226, 222, 222) 1px solid;
         font-family: Handlee, sans-serif;
         font-size: 30px;
-        color: $clr5;
-        padding-top: 40px;
+        color: $clr4;
+        // padding-top: 40px;
         padding-bottom: 40px;
+        padding-left: 40px;
         font-weight: bolder;
         // background-color: rgb(238, 235, 235);
         border-radius: 5px;
+        &:first-child {
+            padding-top: 30px;
+        }
     }
     @include for-mobile-layout {
         padding: 10px 20px;

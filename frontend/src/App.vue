@@ -35,10 +35,6 @@ export default {
 </script>
 
 <style scoped>
-#app {
-  display: flex;
-  flex-direction: column;
-}
 main {
   min-height: 60vh;
 }

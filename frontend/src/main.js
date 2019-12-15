@@ -9,6 +9,7 @@ import SequentialEntrance from 'vue-sequential-entrance'
 import 'vue-sequential-entrance/vue-sequential-entrance.css'
 
 
+
 // Styles
 import './styles/global.scss';
 

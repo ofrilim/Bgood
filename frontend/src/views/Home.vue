@@ -1,6 +1,9 @@
 <template>
   <section class="home">
-    <img class="home-img" src="../assets/imgs/FotoJet.jpg"/>
+    <pre>      Your   <span class="endless">endless</span> 
+                closet    online
+                      <img class="arrow" src="../assets/imgs/arrow.png"/></pre>
+    <img class="home-img" src="../assets/imgs/fashion.jpg"/>
     <ItemApp/>
   </section>
 </template>
@@ -12,7 +15,7 @@ export default {
   name: 'home',
   components: {
     ItemApp,
-  },
+  }
 }
 </script>
 

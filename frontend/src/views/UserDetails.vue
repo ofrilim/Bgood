@@ -3,17 +3,17 @@
     <section class="user-section">
       <div class="user-details-content flex flex-col flex-around">
         <img class="user-img" :src="user.imgUrl" />
-        <h1>{{ user.firstName }}'s Boutique</h1>
+        <h1 class="caps">{{ user.firstName }}'s Boutique</h1>
         <section class="user-info">
-          <h2><i class="fa fa-user"></i>{{ user.fullName }}</h2>
+          <h2><i class="fa fa-user caps"></i>{{ user.fullName }}</h2>
           <h2><i class="fa fa-envelope"></i>{{ user.email }}</h2>
         </section>
-        <div class="btns">
-          <router-link to="/item/edit" v-if="isLoggedInUser"><button class="btn">Add Item</button></router-link>
-          <button class="btn" v-if="isLoggedInUser" @click="toggleIsEdit">
+        <div class="btns caps">
+          <router-link to="/item/edit" v-if="isLoggedInUser"><button class="btn bold">Add Item</button></router-link>
+          <button class="btn bold" v-if="isLoggedInUser" @click="toggleIsEdit">
             Edit Picture
           </button>
-          <button class="btn" v-else>Contact Me</button>
+          <button class="btn bold" v-else>Contact Me</button>
         </div>
       </div>
       <div v-if="isEdit">
@@ -22,7 +22,7 @@
         <button class="btn" @click="editUserImg">Save Picture</button>
       </div>
     </section>
-    <section class="items-section">
+    <section class="items-section caps">
       <div class="btns">
         <button autofocus class="btn" @click="itemsFilter = 'available'">
           Available Items
